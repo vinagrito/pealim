@@ -6,9 +6,18 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
+</head>
 <body>
-
-<%= yield %>
-
+  <div id="header">
+  <% if params[:controller] == 'access' %>
+    <%= link_to "Русский", :controller => 'access', :action => 'set_user_lang', :locale => 'ru' if I18n.locale != :ru %>
+    <%= link_to "English", :controller => 'access', :action => 'set_user_lang', :locale => 'en' if I18n.locale != :en %>
+    <%= link_to "Español", :controller => 'access', :action => 'set_user_lang', :locale => 'es' if I18n.locale != :es %>
+  <% end %>
+  </div>  
+  <div id="container">
+    <%= yield %>
+  </div>
+  
 </body>
 </html>

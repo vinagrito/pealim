@@ -1,0 +1,53 @@
+<%@page_title = "New verb"%>
+
+<%=link_to "<< #{t 'navigation.back'} ", :controller => 'buildings' %>
+
+
+  <%=form_for :verb, :url => {:action => 'create'} do |v|%>
+    <div id="newVerbForm">
+  
+    <table id="newVerb">
+      <tr class='verb-root'>     
+        <td>
+          <%= select_tag :root_4, 
+                         options_from_collection_for_select(@letters, :id, :name) %>
+                         <%= label_tag "." %>
+          <%= select_tag :root_3, 
+                         options_from_collection_for_select(@letters, :id, :name) %>.
+          <%= select_tag :root_2, 
+                         options_from_collection_for_select(@letters, :id, :name) %>.
+          <%= select_tag :root_1, 
+                         options_from_collection_for_select(@letters, :id, :name) %>
+        </td>
+        <th>שוֹרֶש</th>
+      </tr>
+      <tr>
+        <th>תירגום</th>
+        <td class='verb-translate'><%= v.text_field :name %></td>
+        
+        <td><%= select_tag(:building_id, 
+                            options_for_select( Building.all.collect{|b|[b.name,b.id]}), 
+                            {:class => "build-new-sel"})%>
+        </td>
+        <th>בניין</th>   
+      </tr> 
+    </table>  
+  </div>  
+  <div id="addButton"><%= submit_tag "#{t "button.text.submit"}" %></div>
+  <%end%>
+  
+
+    <%#render :partial => 'shared/paal'%>
+  
+  <div id="nifal" class="infForm">
+    <%#render :partial => 'shared/nifal'%>
+  </div>
+  <div id="piel" class="infForm">
+    <%#render :partial => 'shared/piel'%>
+  </div>
+  <div id="hifil" class="infForm">
+    <%#render :partial => 'shared/hifil'%>
+  </div>  
+  <div id="hitpael" class="infForm">
+    <%#render :partial => 'shared/hitpael'%>
+  </div>

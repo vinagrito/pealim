@@ -1,16 +1,13 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
-en:
+es:
   intro:
     text:
-    add_verb: "Add verb"
-    verb: "Verb"
+    add_verb: "Agregar verbo"
+    verb: "verbo"
   navigation:
-    back: "Back"
+    back: "Volver"
   button:
     text:
-      submit: "Submit"
-  label:
-    text:
-      translate: "Translate"
+      submit: "Enviar"

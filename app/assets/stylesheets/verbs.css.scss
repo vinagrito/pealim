@@ -1,0 +1,110 @@
+// Place all the styles related to the verbs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+body {    
+  background-color: #4B7399; 
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 14px;
+  line-height: 2;
+}
+
+a img {
+  border: none;
+}
+
+a {
+  color: red;/*#0000FF;*/
+}
+
+.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+
+#container {
+  min-width: 900px;
+  width:1000px;
+  margin:200px;
+  /*background: url(../images/Verbsbackground.png)no-repeat;*/  
+  border: solid 1px black;
+  margin-top: 20px;
+  position:absolute;
+}
+
+#container img{
+  position:absolute;
+  width:100%;
+  height:100%;
+  z-index:-1;
+}
+
+TABLE #newVerb TR .verb-root TH {float: right; text-align: right; }
+
+TABLE #newVerb TD .verb-translate INPUT { float: right; text-align: center; }
+
+#container table{
+  float:right;
+  font-size:32px;
+}
+
+#container table,table td,table th{
+  border:collapse;
+  vertical-align:middle;    
+}
+#addButton{
+  float:right;
+  clear:both; 
+  text-align:center;
+  width:260px;
+}
+.buttonClass{
+  width:100px;
+  height:50px;
+  font-size:25px;
+}
+.testClass{
+  height:35px;
+  width:35px;
+  font-size:30px;
+  text-align:right;
+}
+
+.root-new-inp{
+  vertical-align:middle;
+  height:28px;
+  width:22px;
+  font-size:24px;
+  
+}
+.inf-new-inp{
+  vertical-align:middle;  
+  height:20px;
+  font-size:18px;
+}
+.build-new-sel{
+  vertical-align:middle;
+  width:105px;  
+  height:200px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

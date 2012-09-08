@@ -1,0 +1,15 @@
+
+<div id="introduction">
+  <h1>Hebrew learning</h1>
+  
+</div>
+<hr>
+<hr>
+<p id="newVerb"><%=link_to "#{t "intro.add_verb"}", new_verb_path %></p>
+
+<div id="verbChoice">
+  <% form_for(:verb, :url => {:action => 'list'}) do |v| %>
+    <p><%= t "intro.verb"%>: <%= v.text_field :name %> 
+    <%= v.submit "#{t "button.text.submit"}" %></p>
+  <% end %> 
+</div>
