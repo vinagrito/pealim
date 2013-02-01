@@ -3,11 +3,23 @@
 
 es:
   intro:
-    text:
+    welcome: "Bienvenido!"
     add_verb: "Agregar verbo"
-    verb: "verbo"
+    type_verb: "Digite un verbo"
+    search: "Buscar"
+    verb_not_present: "No encontraste el verbo buscabas?,"
+    add_verb_action: "agrégalo acá"
+    help: "Ayuda"
+  comments:
+      title: "Ideas?"
+      name: "Nombre"
+      email: "Correo electrónico"
+      text: "Sus comentarios..."
+      errors:
+        fields_required: "Todos los campos son obligatorios"
   navigation:
     back: "Volver"
   button:
     text:
       submit: "Enviar"
+

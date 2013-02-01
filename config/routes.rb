@@ -1,9 +1,4 @@
 Poalim::Application.routes.draw do
-  get "verbs/index"
-
-  get "verbs/show"
-
-  get "verbs/new"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -13,6 +8,8 @@ Poalim::Application.routes.draw do
   #match 'access/set_user_lang' => 'access#set_user_lang'
 
   resources :verbs
+
+  resources :comments, :only => [:index, :show, :new]
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

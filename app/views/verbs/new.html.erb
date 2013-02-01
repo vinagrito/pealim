@@ -1,53 +1,55 @@
 <%@page_title = "New verb"%>
 
-<%=link_to "<< #{t 'navigation.back'} ", :controller => 'buildings' %>
+<div class="navbar">
+  <div class="nav-pills">
+    <%= render "/shared/helper_link" %>
+    <ul class="nav pull-right">
+      <li><%= link_to t("navigation.back"), verbs_path %></li>
+    </ul>
+  </div>
+</div>
+
+<div id="new_verb_form" class="row span12">
+  <%=form_for :hebrew_verb, :url => {:action => 'create'} do |heb_verb|%>
+    <div class="row">
+      <p class="lead span2 pull-right"><b>שורש</b></p>
+
+        <%= heb_verb.select :root_1, options_from_collection_for_select(@letters, :id, :name), {}, {:class => "span1 pull-right btn bnt-small"} %>
+
+        <%= heb_verb.select :root_2, options_from_collection_for_select(@letters, :id, :name), {}, :class => "span1 pull-right btn bnt-small" %>
+
+        <%= heb_verb.select :root_3, options_from_collection_for_select(@letters, :id, :name), {}, :class => "span1 pull-right btn btn-small" %>
+
+        <%= heb_verb.select :root_4, options_from_collection_for_select(@letters, :id, :name), {}, :class => "span1 pull-right btn btn-small" %>
+
+    </div>
+
+    <div class="row">
+      <p class="lead span2 pull-right"><b>בניין</b></p>
+      <%= heb_verb.select :building_id,
+                    options_from_collection_for_select(@buildings, :id ,:name), {},
+                    {:class => "span2 pull-right btn btn-large"} %>
+    </div>
+
+    <div class="row">
+      <p class="lead span2 pull-right"><b>תירגום</b></p>
+      <p class="span2 pull-right"><%= heb_verb.text_field :english, :placeholder => "English", :class => "span2 offset1" %></p>
+    </div>
+    <div class="row">
+      <p class="lead span2 pull-right"></p>
+      <p class="span2 pull-right"><%= heb_verb.text_field :russian, :placeholder => "Русский", :class => "span2 offset1" %></p>
+    </div>
+    <div class="row">
+      <p class="lead span2 pull-right"></p>
+      <p class="span2 pull-right"><%= heb_verb.text_field :spanish, :placeholder => "Español", :class => "span2 offset1"%></p>
+    </div>
 
 
-  <%=form_for :verb, :url => {:action => 'create'} do |v|%>
-    <div id="newVerbForm">
-  
-    <table id="newVerb">
-      <tr class='verb-root'>     
-        <td>
-          <%= select_tag :root_4, 
-                         options_from_collection_for_select(@letters, :id, :name) %>
-                         <%= label_tag "." %>
-          <%= select_tag :root_3, 
-                         options_from_collection_for_select(@letters, :id, :name) %>.
-          <%= select_tag :root_2, 
-                         options_from_collection_for_select(@letters, :id, :name) %>.
-          <%= select_tag :root_1, 
-                         options_from_collection_for_select(@letters, :id, :name) %>
-        </td>
-        <th>שוֹרֶש</th>
-      </tr>
-      <tr>
-        <th>תירגום</th>
-        <td class='verb-translate'><%= v.text_field :name %></td>
-        
-        <td><%= select_tag(:building_id, 
-                            options_for_select( Building.all.collect{|b|[b.name,b.id]}), 
-                            {:class => "build-new-sel"})%>
-        </td>
-        <th>בניין</th>   
-      </tr> 
-    </table>  
-  </div>  
-  <div id="addButton"><%= submit_tag "#{t "button.text.submit"}" %></div>
+    <div class="row">
+      <div class="span5 offset2"><%= heb_verb.submit t("button.text.submit"), :class => " span2 pull-right btn btn-success" %></div>
+    </div>
+
   <%end%>
-  
+</div>
 
-    <%#render :partial => 'shared/paal'%>
-  
-  <div id="nifal" class="infForm">
-    <%#render :partial => 'shared/nifal'%>
-  </div>
-  <div id="piel" class="infForm">
-    <%#render :partial => 'shared/piel'%>
-  </div>
-  <div id="hifil" class="infForm">
-    <%#render :partial => 'shared/hifil'%>
-  </div>  
-  <div id="hitpael" class="infForm">
-    <%#render :partial => 'shared/hitpael'%>
-  </div>
+

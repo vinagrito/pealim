@@ -1,11 +1,22 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
-ru:    
-  intro: 
-    text:
+ru:
+  intro:
+    welcome: "Добро пожаловать!"
     add_verb: "Добавить глагол"
-    verb: "Глагол"
+    type_verb: "Введите глагол"
+    search: "Поиск"
+    verb_not_present: "Не нашел глагол, который искал?,"
+    add_verb_action: "добавь его здесь"
+    help: "Помощь"
+  comments:
+      title: "Есть какие-то идеи?"
+      name: "Имя"
+      email: "Электронная почта"
+      text: "Ваши комментарии..."
+      errors:
+        fields_required: "Все поля обязательные"
   navigation:
     back: "Назад"
   button:

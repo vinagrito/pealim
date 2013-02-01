@@ -11,10 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120714113850) do
+ActiveRecord::Schema.define(:version => 20120930215549) do
 
   create_table "buildings", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.string   "author"
+    t.string   "email"
+    t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -24,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20120714113850) do
     t.integer  "verb_id"
     t.string   "root"
     t.string   "infinitive"
+    t.string   "past_base"
     t.string   "me_past"
     t.string   "you_mas_sing_past"
     t.string   "you_fem_sing_past"
@@ -62,10 +71,12 @@ ActiveRecord::Schema.define(:version => 20120714113850) do
   end
 
   create_table "verbs", :force => true do |t|
-    t.string   "name_eng"
+    t.string   "english"
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "russian"
+    t.string   "spanish"
   end
 
 end

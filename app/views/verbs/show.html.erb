@@ -1,2 +1,151 @@
-<h1>Verbs#show</h1>
-<p>Find me in app/views/verbs/show.html.erb</p>
+<div class="container verb-show-action">
+  <div class="navbar">
+    <div class="nav-pills">
+      <%= render "/shared/helper_link" %>
+      <ul class="nav pull-right">
+        <li><%= link_to t("navigation.back"), verbs_path %></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="verb-infinitive" class="row section">
+    <h2 class="span11">
+      (<%= @hebrew_verb.root %>)<%=@hebrew_verb.infinitive%> - <%=@hebrew_verb.verb.send(@language) %></h2>
+  </div>
+
+  <div class="row section">
+    <div class="span11">
+      <h3>זמן הווה</h3>
+    </div>
+    <div class="span7 offset4">
+      <table class="table table-hover present-tense">
+        <thead>
+          <tr>
+            <th>מין זכר / יחיד</th>
+            <th>מין נקבה / יחיד</th>
+            <th>מין זכר / רבים</th>
+            <th>מין נקבה/רבות</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%=@hebrew_verb.mas_sing_pres%></td>
+            <td><%=@hebrew_verb.fem_sing_pres%></td>
+            <td><%=@hebrew_verb.mas_plu_pres%></td>
+            <td><%=@hebrew_verb.fem_plu_pres%></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row section-header">
+    <div class="span5">
+      <h3>זמן ציווי</h3>
+    </div>
+    <div class="span3">
+      <h3>זמן עתיד</h3>
+    </div>
+    <div class="span3">
+      <h3>זמן עבר</h3>
+    </div>
+  </div>
+
+  <div class="row section-block">
+    <!-- IMPERATIVE TENSE TABLE -->
+    <div class="span2 offset3">
+      <table class="table table-hover imperative-tense">
+        <thead>
+          <tr>
+            <th>הוא</th>
+            <td><%=@hebrew_verb.mas_imp%></td>
+          </tr>
+        </thead>
+          <tr>
+            <th>היא</th>
+            <td><%=@hebrew_verb.fem_imp%></td>
+          </tr>
+          <tr>
+            <th>הֵם-ן</th>
+            <td><%=@hebrew_verb.plural_imp%></td>
+          </tr>
+      </table>
+    </div>
+    <!-- FUTURE TENSE TABLE -->
+    <div class="span2 offset1">
+      <table class="table table-hover future-tense" >
+        <thead>
+          <tr>
+            <th>אנִי</th>
+            <td><%=@hebrew_verb.me_fut%></td>
+          </tr>
+        </thead>
+        <tr>
+          <th>אתָה - היא</th>
+          <td><%=@hebrew_verb.you_mas_sing_she_fut%></td>
+        </tr>
+        <tr>
+          <th>הוא</th>
+          <td><%=@hebrew_verb.he_fut%></td>
+        </tr>
+        <tr>
+          <th>אנַחְנו</th>
+          <td><%=@hebrew_verb.we_fut%></td>
+        </tr>
+        <tr>
+          <th>אתְ</th>
+          <td><%=@hebrew_verb.you_fem_sing_fut%></td>
+        </tr>
+        <tr>
+          <th>אתֵם-ן</th>
+          <td><%=@hebrew_verb.you_plu_fut%></td>
+        </tr>
+        <tr>
+          <th>הֵם-ן</th>
+          <td><%=@hebrew_verb.they_fut%></td>
+        </tr>
+      </table>
+    </div>
+    <!-- PAST TENSE TABLE -->
+    <div class="span1 offset2">
+      <table class="table table-hover past-tense" >
+        <thead>
+          <tr>
+            <th>אנִי</th>
+            <td><%=@hebrew_verb.me_past%></td>
+          </tr>
+        </thead>
+        <tr>
+          <th>אתָה</th>
+          <td><%=@hebrew_verb.you_mas_sing_past%></td>
+        </tr>
+        <tr>
+          <th>אתְ</th>
+          <td><%=@hebrew_verb.you_fem_sing_past%></td>
+        </tr>
+        <tr>
+          <th>אנַחְנו</th>
+          <td ><%=@hebrew_verb.we_past%></td>
+        </tr>
+        <tr>
+          <th>אתֵם-ן</th>
+          <td><%=@hebrew_verb.you_mas_plu_past + "-ן"%></td>
+        </tr>
+        <tr>
+          <th>הוא</th>
+          <td><%=@hebrew_verb.he_past%></td>
+        </tr>
+        <tr>
+          <th>היא</th>
+          <td><%=@hebrew_verb.she_past%></td>
+        </tr>
+        <tr>
+          <th>הֵם-ן</th>
+          <td><%=@hebrew_verb.they_past%></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+

@@ -3,9 +3,20 @@
 
 en:
   intro:
-    text:
+    welcome: "Welcome!"
     add_verb: "Add verb"
-    verb: "Verb"
+    type_verb: "Type a verb"
+    search: "Search"
+    verb_not_present: "Didn't find the verb you were looking for?,"
+    add_verb_action: "add it here"
+    help: "Help"
+  comments:
+      title: "Any thoughts?"
+      name: "Name"
+      email: "Email"
+      text: "Your comments..."
+      errors:
+        fields_required: "All fields are required"
   navigation:
     back: "Back"
   button:

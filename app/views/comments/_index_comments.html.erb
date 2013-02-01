@@ -1,0 +1,10 @@
+<div class='row'>
+  <div class='span3 comment-holder'>
+    <div class='comment-header'>
+      <span class='posted-author'><%= @comment.author %></span>
+      <span class='posted-time'><%= @comment.created_at.to_s(:short) %></span>
+    </div>
+    <span class='posted-content'><%= @comment.text %></span>
+  </div>
+</div>
+<br/>

@@ -2,109 +2,51 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.row                       {
+                              margin-top: 0;
+                           }
 
-body {    
-  background-color: #4B7399; 
-  font-family: Verdana, Helvetica, Arial;
-  font-size: 14px;
-  line-height: 2;
-}
+UL.helper-link             { position: relative; display: inline-block; width: 20px; height: 20px; }
+#main_page_inner_container { height: auto; margin-top: 25px; margin-left: 50px; }
+.start-image               { vertical-align: middle; }
 
-a img {
-  border: none;
-}
-
-a {
-  color: red;/*#0000FF;*/
-}
-
-.clear {
-  clear: both;
-  height: 0;
-  overflow: hidden;
-}
-
-#container {
-  min-width: 900px;
-  width:1000px;
-  margin:200px;
-  /*background: url(../images/Verbsbackground.png)no-repeat;*/  
-  border: solid 1px black;
-  margin-top: 20px;
-  position:absolute;
-}
-
-#container img{
-  position:absolute;
-  width:100%;
-  height:100%;
-  z-index:-1;
-}
-
-TABLE #newVerb TR .verb-root TH {float: right; text-align: right; }
-
-TABLE #newVerb TD .verb-translate INPUT { float: right; text-align: center; }
-
-#container table{
-  float:right;
-  font-size:32px;
-}
-
-#container table,table td,table th{
-  border:collapse;
-  vertical-align:middle;    
-}
-#addButton{
-  float:right;
-  clear:both; 
-  text-align:center;
-  width:260px;
-}
-.buttonClass{
-  width:100px;
-  height:50px;
-  font-size:25px;
-}
-.testClass{
-  height:35px;
-  width:35px;
-  font-size:30px;
-  text-align:right;
-}
-
-.root-new-inp{
-  vertical-align:middle;
-  height:28px;
-  width:22px;
-  font-size:24px;
-  
-}
-.inf-new-inp{
-  vertical-align:middle;  
-  height:20px;
-  font-size:18px;
-}
-.build-new-sel{
-  vertical-align:middle;
-  width:105px;  
-  height:200px;
-}
+#new_verb_form             { margin-top: 50px; }
+#hebrew_verb_root_4        { display: none; }
+#footer                    { padding-top: 10px; text-align: center; }
 
 
 
+DIV.verb-show-action      { direction: rtl; margin-top: 10px; font-size: 16px; }
+DIV.section               { border-radius: 15px; background-color: #F0F0F0; vertical-align: middle; margin-top: 10px; margin-bottom: 10px; }
+Div.section-header        { background-color: #F0F0F0; border-top-right-radius: 15px; border-top-left-radius: 15px;}
+Div.section-block         { background-color: #eeeeee; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px; }
+
+DIV.verb-show-action TABLE TR TH,
+DIV.verb-show-action TABLE TR TD    { text-align: right; }
 
 
+DIV#comments                        { height: 60%; }
+DIV#comments #comment_author        { margin-right: 15px; }
+DIV#comments #comment_text  { max-width: 205px; height: 70px; max-height: 210px; }
 
+DIV#list_of_comments .comment-holder  {
+                                        display: inline;
+                                        height: auto;
+                                        width: 300px;
+                                        border: 1px solid #eeeeee;
+                                        border-radius: 5px;
+                                      }
 
+DIV#list_of_comments .comment-header  {
+                                        border-top: 2px solid #eeeeee;
+                                        border-bottom: 2px solid #eeeeee;
+                                        background-color: #eeeeee;
+                                      }
 
+DIV#list_of_comments .posted-time     { float: right; }
+DIV#list_of_comments .posted-content  { vertical-align: text-top;
 
-
-
-
-
-
-
-
+                                      }
 
 
 
