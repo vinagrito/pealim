@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.ui-autocomplete           {
+                              max-height: 200px;
+                              overflow-y: auto;
+                              width: 200px;
+                           }
 .row                       {
                               margin-top: 0;
                            }

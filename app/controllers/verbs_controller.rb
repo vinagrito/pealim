@@ -7,6 +7,14 @@ class VerbsController < ApplicationController
 
   def index
     @verbs = Verb.all
+
+    respond_to do |format|
+      if request.xhr?
+        format.json { render :json => @verbs.to_json }
+      else
+        format.html
+      end
+    end
   end
 
   def show

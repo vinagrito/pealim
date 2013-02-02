@@ -3,6 +3,14 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
+  locales = []
+  $("#language-nav").find("li:not(:empty) a").map (index, element) ->
+    locales.push $(element).text()
+
+  currentLocale = "English"
+  ["Español", "English", "Русский"].map (locale) ->
+    currentLocale = locale  if locales.indexOf(locale) is -1
+
 
   commentDiv       = $('#comments')
   posted_comm      = $('#list_of_comments')
@@ -52,8 +60,36 @@ $ ->
   verbBuilding = $("#hebrew_verb_building_id")
   root_4       = $("#hebrew_verb_root_4")
 
-  setFourthRootPartVisibility(verbBuilding.find("option[value='" + verbBuilding.val() + "']").text())
+  productsNameList = []
 
+  $.ajax("verbs/").done (verbs) ->
+    modelColumn = "english"
+
+    switch currentLocale
+      when "Español"
+        modelColumn = "spanish"
+      when "Русский"
+        modelColumn = "russian"
+
+    verbsNameList = verbs.map (verb) ->
+      verb[modelColumn]
+
+    $("#verb_name").autocomplete
+      source: verbsNameList
+
+  $("#help-link").popover()
+  # $('#help-link').on("click", (e)->
+  #   e.preventDefault()
+  #   ).tooltip(
+  #     trigger: 'click'
+  #   )
+
+  # .popover(
+  #   placement: "bottom"
+  #   ).on "click", (e) ->
+  #   e.preventDefault()
+
+  setFourthRootPartVisibility(verbBuilding.find("option[value='" + verbBuilding.val() + "']").text())
 
   verbBuilding.on 'change', ->
     setFourthRootPartVisibility($(this).find("option[value='" + $(this).val() + "']").text())

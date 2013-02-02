@@ -1,7 +1,7 @@
 <div class="navbar">
   <div class="nav-pills">
     <%= render "/shared/helper_link" %>
-    <ul class="nav pull-right">
+    <ul id="language-nav" class="nav pull-right">
       <li><%=link_to "English", :controller => 'application', :action => 'set_user_lang', :locale => 'en' if I18n.locale != :en%></li>
       <li><%= link_to "Español",:controller => 'application', :action => 'set_user_lang', :locale => 'es' if I18n.locale != :es %></li>
       <li><%=link_to "Русский", :controller => 'application', :action => 'set_user_lang', :locale => 'ru' if I18n.locale != :ru %></li>
