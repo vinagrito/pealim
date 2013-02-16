@@ -25,8 +25,9 @@
   <div class='span3' id="verb-search">
     <%= form_for :verb, :url => {:action => "show"}, :method => :get, :html => {:class => "form-search"} do |v| %>
       <div class="input-append">
+        <%= v.hidden_field :id %>
         <%= v.text_field :name, :placeholder => t("intro.type_verb"), :class => "search-query" %>
-        <%= v.submit t("intro.search"), :class => "btn btn-success" %>
+        <%= v.submit t("intro.search"), :name => nil, :class => "btn btn-success" %>
       </div>
     <% end %>
   </div>

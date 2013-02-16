@@ -18,7 +18,7 @@ class VerbsController < ApplicationController
   end
 
   def show
-    @hebrew_verb = HebrewVerb.find(params[:id])
+    @hebrew_verb = HebrewVerb.find(params[:verb][:id])
   end
 
   def new

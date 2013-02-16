@@ -60,7 +60,7 @@ $ ->
   verbBuilding = $("#hebrew_verb_building_id")
   root_4       = $("#hebrew_verb_root_4")
 
-  productsNameList = []
+  verbsNameList = []
 
   $.ajax("verbs/").done (verbs) ->
     modelColumn = "english"
@@ -71,18 +71,27 @@ $ ->
       when "Русский"
         modelColumn = "russian"
 
-    verbsNameList = verbs.map (verb) ->
-      verb[modelColumn]
+    # verbsNameList = verbs.map (verb) ->
+    #   verb[modelColumn]
+    verbs.map (verb) ->
+      verbsNameList.push
+        label: verb[modelColumn]
+        value: verb.id
 
     $("#verb_name").autocomplete
       source: verbsNameList
+      focus: (event, ui) ->
+        $(@).val(ui.item.label)
+        $("#verb_id").val(ui.item.value)
+        event.preventDefault()
+      select: (event, ui) ->
+        event.preventDefault()
 
-  $("#help-link").popover()
+    # $("#verb_name").val()
   # $('#help-link').on("click", (e)->
-  #   e.preventDefault()
-  #   ).tooltip(
-  #     trigger: 'click'
-  #   )
+  #   e.stopPropagation()
+  #   ).modal()
+
 
   # .popover(
   #   placement: "bottom"
