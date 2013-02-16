@@ -1,6 +1,15 @@
-<ul id="help-link" class="nav pull-left" data-animation="bottom">
+<ul id="help-link" class="nav pull-left" data-toggle="modal">
   <li class="text-info">
-    <a href="#" data-content="<%= t "intro.help" %>"><%= t "intro.help"%></a>
-    <%#= link_to t "intro.help", "#" %>
+    <a href="#" ><%= t "intro.help"%></a>
   </li>
 </ul>
+
+<div id="helperModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel"><%= t "intro.help" %></h3>
+  </div>
+  <div class="modal-body">
+    <p>HERE COMES THE HELP BODY</p>
+  </div>
+</div>
