@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
 
   def index
+    @comments = Comment.ordered
   end
 
   def show

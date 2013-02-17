@@ -1,0 +1,33 @@
+<div id="comments">
+  <h3><%= t('comments.title') %></h3>
+  <%= form_for :comment do |c| %>
+    <div class='row'>
+      <p class='span2'><%= c.text_field :author, :placeholder => t('comments.name') %></p>
+    </div>
+    <div class='row'>
+      <p class='span2'><%= c.text_field :email, :placeholder => t('comments.email') %></p>
+    </div>
+    <div class='row'>
+      <p class='span4'><%= c.text_area :text, :placeholder => t('comments.text') %></p>
+    </div>
+    <div class='row'>
+      <div class='span1'><%= c.submit t('button.text.submit'), :id => 'add-comment', :class => 'btn btn-primary' %></div>
+    </div>
+  <% end %>
+
+  <div class='container' id='list_of_comments'>
+    <% @comments.each do |comment| %>
+      <div class='row'>
+        <div class='span3 comment-holder'>
+          <div class='comment-header'>
+            <span class='posted-author'><%= comment.author %></span>
+            <span class='posted-time'><%= comment.created_at.to_s(:short) %></span>
+          </div>
+          <span class='posted-content'><%= comment.text %></span>
+        </div>
+      </div>
+      <br/>
+    <% end %>
+  </div>
+
+</div>

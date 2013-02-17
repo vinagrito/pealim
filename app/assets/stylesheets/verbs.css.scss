@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body                       { font-size: 16px; }
 .ui-autocomplete           {
                               max-height: 200px;
                               overflow-y: auto;
@@ -15,6 +16,9 @@ UL.helper-link             { position: relative; display: inline-block; width: 2
 #main_page_inner_container { height: auto; margin-top: 25px; margin-left: 50px; }
 .start-image               { vertical-align: middle; }
 
+#search-section            { margin-top: 150px}
+#verb_name                 { width: 500px; height: 30px; font-size: 22px; line-height: 1.5em; }
+#search-btn                { width: 150px; height: 40px; font-size: 22px; }
 #new_verb_form             { margin-top: 50px; }
 #hebrew_verb_root_4        { display: none; }
 #footer                    { padding-top: 10px; text-align: center; }
@@ -28,28 +32,4 @@ Div.section-block         { background-color: #eeeeee; border-bottom-right-radiu
 
 DIV.verb-show-action TABLE TR TH,
 DIV.verb-show-action TABLE TR TD    { text-align: right; }
-
-
-DIV#comments                        { height: 60%; }
-DIV#comments #comment_author        { margin-right: 15px; }
-DIV#comments #comment_text  { max-width: 205px; height: 70px; max-height: 210px; }
-
-DIV#list_of_comments .comment-holder  {
-                                        display: inline;
-                                        height: auto;
-                                        width: 300px;
-                                        border: 1px solid #eeeeee;
-                                        border-radius: 5px;
-                                      }
-
-DIV#list_of_comments .comment-header  {
-                                        border-top: 2px solid #eeeeee;
-                                        border-bottom: 2px solid #eeeeee;
-                                        background-color: #eeeeee;
-                                      }
-
-DIV#list_of_comments .posted-time     { float: right; }
-DIV#list_of_comments .posted-content  { vertical-align: text-top; }
-
-
 
