@@ -4,33 +4,71 @@
 
 body                       { font-size: 16px; }
 .ui-autocomplete           {
-                              max-height: 200px;
-                              overflow-y: auto;
-                              width: 200px;
+      max-height: 200px;
+      overflow-y: auto;
+      width: 200px;
                            }
-.row                       {
-                              margin-top: 0;
-                           }
+.row    {
+    margin-top: 0;
+}
 
-UL.helper-link             { position: relative; display: inline-block; width: 20px; height: 20px; }
-#main_page_inner_container { height: auto; margin-top: 25px; margin-left: 50px; }
-.start-image               { vertical-align: middle; }
+UL.helper-link             {
+      position: relative;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+}
+#main_page_inner_container {
+      height: auto;
+      margin-top: 25px;
+      margin-left: 50px;
+}
+.start-image    { vertical-align: middle; }
 
 #search-section            { margin-top: 150px}
-#verb_name                 { width: 500px; height: 30px; font-size: 22px; line-height: 1.5em; }
-#search-btn                { width: 150px; height: 40px; font-size: 22px; }
+#verb_name                 {
+      width: 500px;
+      height: 30px;
+      font-size: 22px;
+      line-height: 1.5em;
+}
+#search-btn                {
+      width: 150px;
+      height: 40px;
+      font-size: 22px;
+}
 #paypal-api                { margin-top: 200px; }
 
 #new_verb_form             { margin-top: 50px; }
-#hebrew_verb_root_4        { display: none; }
-#footer                    { padding-top: 10px; text-align: center; }
+
+#footer                 {
+      padding-top: 10px;
+      text-align: center;
+}
 
 
 
-DIV.verb-show-action      { direction: rtl; margin-top: 10px; font-size: 16px; }
-DIV.section               { border-radius: 15px; vertical-align: middle; margin-top: 10px; margin-bottom: 10px; }
-Div.section-header        { background-color: #F0F0F0; border-top-right-radius: 15px; border-top-left-radius: 15px;}
-Div.section-block         { background-color: #eeeeee; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px; }
+DIV.verb-show-action      {
+      direction: rtl;
+      margin-top: 10px;
+      font-size: 16px;
+}
+DIV.section               {
+      border-radius: 15px;
+      vertical-align: middle;
+      margin-top: 10px;
+      margin-bottom: 10px;
+}
+Div.section-header        {
+    background-color: #F0F0F0;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+Div.section-block         {
+    background-color: #eeeeee;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
 
 DIV.verb-show-action      {
   font-size: 20px;
@@ -50,8 +88,14 @@ DIV.verb-show-action TABLE.table {
   }
 }
 
-/*DIV.verb-show-action TABLE TR TH,
-DIV.verb-show-action TABLE TR TD    { text-align: right; }*/
+.verb-fourth-root         { display: none; }
+SPAN.small-top-btn-delete {
+  background-image: url("/assets/small-top-delete-btn.png");
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+}
+
 
 
 

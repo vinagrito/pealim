@@ -13,14 +13,22 @@
   <%=form_for :hebrew_verb, :url => {:action => 'create'} do |heb_verb|%>
     <div class="row">
       <p class="lead span2 pull-right"><b>שורש</b></p>
+        <div>
 
-        <%= heb_verb.select :root_1, options_from_collection_for_select(@letters, :id, :name), {}, {:class => "span1 pull-right btn bnt-small"} %>
+            <%= heb_verb.select :root_1, options_from_collection_for_select(@letters, :id, :name),
+                                     {}, :class => "span1 pull-right btn bnt-small" %>
 
-        <%= heb_verb.select :root_2, options_from_collection_for_select(@letters, :id, :name), {}, :class => "span1 pull-right btn bnt-small" %>
 
-        <%= heb_verb.select :root_3, options_from_collection_for_select(@letters, :id, :name), {}, :class => "span1 pull-right btn btn-small" %>
+            <%= heb_verb.select :root_2, options_from_collection_for_select(@letters, :id, :name),
+                                     {}, :class => "span1 pull-right btn bnt-small" %></li>
 
-        <%= heb_verb.select :root_4, options_from_collection_for_select(@letters, :id, :name), {}, :class => "span1 pull-right btn btn-small" %>
+            <%= heb_verb.select :root_3, options_from_collection_for_select(@letters, :id, :name),
+                                     {}, :class => "span1 pull-right btn btn-small" %>
+
+          <div class="verb-fourth-root"><%= heb_verb.select :root_4, options_from_collection_for_select(@letters, :id, :name), {}, :class => "span1 pull-right btn btn-small" %>
+              <span class="small-top-btn-delete pull-right"></span>
+          </div>
+        </div>
 
     </div>
 

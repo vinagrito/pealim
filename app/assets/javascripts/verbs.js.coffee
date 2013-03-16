@@ -34,7 +34,7 @@ $ ->
           $("#add-comment").removeAttr('disabled')
         , 1500)
 
-  setFourthRootPartVisibility = (verbBuildingText) ->
+  setFourthRootVisibility = (verbBuildingText) ->
     if verbBuildingText is "פִיעֵל"
       root_4.fadeIn()
     else
@@ -58,7 +58,8 @@ $ ->
 
   # CREATE VERB
   verbBuilding = $("#hebrew_verb_building_id")
-  root_4       = $("#hebrew_verb_root_4")
+  root_4       = $(".verb-fourth-root")
+  deleteFourthRoot = $(".small-top-btn-delete")
 
   verbsNameList = []
 
@@ -87,20 +88,14 @@ $ ->
       select: (event, ui) ->
         event.preventDefault()
 
-    # $("#verb_name").val()
-  # $('#help-link').on("click", (e)->
-  #   e.stopPropagation()
-  #   ).modal()
+
+  verbBuilding.on "change", ->
+    selectedOption = "option[value='#{$(this).val()}']"
+    selectedOptionText = $(this).find(selectedOption).text()
+    setFourthRootVisibility(selectedOptionText)
+
+  deleteFourthRoot.on "click", ->
+    root_4.hide()
 
 
-  # .popover(
-  #   placement: "bottom"
-  #   ).on "click", (e) ->
-  #   e.preventDefault()
-
-  setFourthRootPartVisibility(verbBuilding.find("option[value='" + verbBuilding.val() + "']").text())
-
-  verbBuilding.on 'change', ->
-    setFourthRootPartVisibility($(this).find("option[value='" + $(this).val() + "']").text())
-
-
+  setFourthRootVisibility(verbBuilding.find("option[value='#{verbBuilding.val()}']").text())
