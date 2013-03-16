@@ -23,7 +23,7 @@ class VerbsController < ApplicationController
 
   def new
     @letters = Letter.where("num_value <= ? ", 400) # We don't query for ending letters
-    @buildings = Building.all
+    @buildings = Building.get_allowed_building_types
     @heb_verb = HebrewVerb.new
 
   end

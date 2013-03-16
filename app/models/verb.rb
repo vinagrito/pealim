@@ -4,7 +4,6 @@ class Verb < ActiveRecord::Base
 
   validate :at_least_one_translation
 
-
   private
 
   def at_least_one_translation
