@@ -1,7 +1,9 @@
 <div class="navbar">
   <div class="nav-pills">
     <%= render "/shared/helper_link" %>
-    <p><%= link_to "Comments", comments_path %></p>
+    <ul class="nav">
+      <li><%= link_to "Comments", comments_path %></li>
+    </ul>
     <ul id="language-nav" class="nav pull-right">
       <li><%=link_to "English", :controller => 'application', :action => 'set_user_lang', :locale => 'en' if I18n.locale != :en%></li>
       <li><%= link_to "Español",:controller => 'application', :action => 'set_user_lang', :locale => 'es' if I18n.locale != :es %></li>
@@ -29,12 +31,15 @@
   </div>
 </div>
 
-<div class="row-fluid">
-  <div class='span2 offset2'>
+<div id="fb-api" class="row">
+  <div class='span2 offset5'>
     <iframe class='fb-like-btn' src="https://www.facebook.com/plugins/like.php?href=http://lit-ocean-7187.herokuapp.com/games" scrolling="no" frameborder="0" style="border:none; width:450px; height:80px">
     </iframe>
   </div>
-  <div class='span2 offset1'>
+</div>
+
+<div id="paypal-api"class="row-fluid">
+  <div class='span2 offset'>
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
     <input type="hidden" name="cmd" value="_s-xclick">
 

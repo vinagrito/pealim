@@ -19,6 +19,8 @@ UL.helper-link             { position: relative; display: inline-block; width: 2
 #search-section            { margin-top: 150px}
 #verb_name                 { width: 500px; height: 30px; font-size: 22px; line-height: 1.5em; }
 #search-btn                { width: 150px; height: 40px; font-size: 22px; }
+#paypal-api                { margin-top: 200px; }
+
 #new_verb_form             { margin-top: 50px; }
 #hebrew_verb_root_4        { display: none; }
 #footer                    { padding-top: 10px; text-align: center; }
@@ -26,10 +28,31 @@ UL.helper-link             { position: relative; display: inline-block; width: 2
 
 
 DIV.verb-show-action      { direction: rtl; margin-top: 10px; font-size: 16px; }
-DIV.section               { border-radius: 15px; background-color: #F0F0F0; vertical-align: middle; margin-top: 10px; margin-bottom: 10px; }
+DIV.section               { border-radius: 15px; vertical-align: middle; margin-top: 10px; margin-bottom: 10px; }
 Div.section-header        { background-color: #F0F0F0; border-top-right-radius: 15px; border-top-left-radius: 15px;}
 Div.section-block         { background-color: #eeeeee; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px; }
 
-DIV.verb-show-action TABLE TR TH,
-DIV.verb-show-action TABLE TR TD    { text-align: right; }
+DIV.verb-show-action      {
+  font-size: 20px;
+  h3  { font-size: 26px; }
+}
+
+DIV.verb-show-action TABLE.table {
+  font-size: 24px;
+  letter-spacing: 1px;
+  thead th { font-weight: normal; text-align: right; }
+  tbody td { text-align: center; }
+
+  &.table-hover{
+    &.imperative-tense, &.future-tense, &.past-tense {
+      thead td, th { text-align: right;}
+    }
+  }
+}
+
+/*DIV.verb-show-action TABLE TR TH,
+DIV.verb-show-action TABLE TR TD    { text-align: right; }*/
+
+
+
 
