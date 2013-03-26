@@ -3,7 +3,7 @@ class VerbsController < ApplicationController
   include VerbContructor::PaalHelper
 
   before_filter :get_language
-
+  before_filter :set_root, only: :create
 
   def index
     @verbs = Verb.all
@@ -107,7 +107,12 @@ class VerbsController < ApplicationController
     when :ru
       @language = "russian"
     end
+  end
 
+  def set_root
+    if params[:hidden_root_4] == "delete"
+      params[:hebrew_verb].delete(:root_4)
+    end
   end
 
 

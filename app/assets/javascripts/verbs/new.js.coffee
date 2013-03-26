@@ -1,13 +1,14 @@
 $ ->
-  verbBuilding     = $("#hebrew_verb_building_id")
-  root_4           = $(".verb-fourth-root")
-  deleteFourthRoot = $(".small-top-btn-delete")
+  verbBuilding       = $("#hebrew_verb_building_id")
+  fourthRootUi       = $(".verb-fourth-root")
+  deleteFourthRoot   = $(".small-top-btn-delete")
+  fourthRootPresence = $("#hidden_root_4")
 
   setFourthRootVisibility = (verbBuildingText) ->
     if verbBuildingText is "פִיעֵל"
-      root_4.fadeIn()
+      fourthRootUi.fadeIn()
     else
-      root_4.fadeOut()
+      fourthRootUi.fadeOut()
 
   verbBuilding.on "change", ->
     selectedOption = "option[value='#{$(@).val()}']"
@@ -15,5 +16,9 @@ $ ->
     setFourthRootVisibility(selectedOptionText)
 
   deleteFourthRoot.on "click", ->
-    root_4.hide()
-    $("#hebrew_verb_hidden_root_4").val("delete")
+    fourthRootUi.hide()
+    fourthRootPresence.val("delete")
+
+  $(".submit.btn-success").on "click", ->
+    if $(".verb-fourth-root").is(":visible")
+      fourthRootPresence.val("")
