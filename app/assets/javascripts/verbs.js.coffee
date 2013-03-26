@@ -63,7 +63,7 @@ $ ->
 
   verbsNameList = []
 
-  $.ajax("verbs/").done (verbs) ->
+  $.ajax("/verbs").done (verbs) ->
     modelColumn = "english"
 
     switch currentLocale
