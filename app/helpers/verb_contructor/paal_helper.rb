@@ -1,8 +1,9 @@
 # encoding: UTF-8
 module VerbContructor::PaalHelper
 
-  def present_tense(hebrew_verb, root)
+  def present_tense(root)
     # DEFAULT VERB CONJUGATION
+    hebrew_verb = Hash.new
     hebrew_verb[:mas_sing_pres] = "#{root[0]}ו#{root[1]}ֵ#{root[2]}"
     hebrew_verb[:fem_sing_pres] = "#{root[0]}ו#{root[1]}ֶ#{root[2]}ֶת"
     hebrew_verb[:mas_plu_pres]  = "#{root[0]}ו#{root[1]}ְ#{root[2]}ִים"
@@ -95,94 +96,96 @@ module VerbContructor::PaalHelper
     #   end
     # end
 
-
     hebrew_verb
   end
 
-  def past_tense(hebrew_verb, root)
-
+  def past_tense(root, past_base)
+    hebrew_verb = Hash.new
     if hebrew_verb[:past_base] == "נַתַן"
-      past_base                       = hebrew_verb[:past_base][0..2]
-      hebrew_verb[:me_past]           = past_base + "ַתִי"
-      hebrew_verb[:you_mas_sing_past] = past_base + "ַתְ"
-      hebrew_verb[:you_fem_sing_past] = past_base + "ַתָ"
-      hebrew_verb[:we_past]           = past_base + "ַנו"
-      hebrew_verb[:you_mas_plu_past]  = past_base + "ַתֶם"
-      hebrew_verb[:you_fem_plu_past]  = past_base + "ַתֶן"
-      hebrew_verb[:he_past]           = hebrew_verb[:past_base]
-      hebrew_verb[:she_past]          = past_base + "ְנָה"
-      hebrew_verb[:they_past]         = past_base + "ְנוּ"
+      _past_base                      = past_base[0..2]
+      hebrew_verb[:me_past]           = _past_base + "ַתִי"
+      hebrew_verb[:you_mas_sing_past] = _past_base + "ַתְ"
+      hebrew_verb[:you_fem_sing_past] = _past_base + "ַתָ"
+      hebrew_verb[:we_past]           = _past_base + "ַנו"
+      hebrew_verb[:you_mas_plu_past]  = _past_base + "ַתֶם"
+      hebrew_verb[:you_fem_plu_past]  = _past_base + "ַתֶן"
+      hebrew_verb[:he_past]           = past_base
+      hebrew_verb[:she_past]          = _past_base + "ְנָה"
+      hebrew_verb[:they_past]         = _past_base + "ְנוּ"
 
       return hebrew_verb
     end
 
-    past_base = hebrew_verb[:past_base]
+    _past_base = past_base
 
     if ['ו','י'].include?(root[1])
-      hebrew_verb[:me_past]           = past_base + "תִי"
-      hebrew_verb[:you_mas_sing_past] = past_base + "תָ"
-      hebrew_verb[:you_fem_sing_past] = past_base + "תְ"
-      hebrew_verb[:we_past]           = past_base + "נוּ"
-      hebrew_verb[:you_mas_plu_past]  = past_base + "תֶם"
-      hebrew_verb[:you_fem_plu_past]  = past_base + "תֶן"
-      hebrew_verb[:he_past]           = past_base
-      hebrew_verb[:she_past]          = past_base + "ָה"
-      hebrew_verb[:they_past]         = past_base + "וּ"
+      hebrew_verb[:me_past]           = _past_base + "תִי"
+      hebrew_verb[:you_mas_sing_past] = _past_base + "תָ"
+      hebrew_verb[:you_fem_sing_past] = _past_base + "תְ"
+      hebrew_verb[:we_past]           = _past_base + "נוּ"
+      hebrew_verb[:you_mas_plu_past]  = _past_base + "תֶם"
+      hebrew_verb[:you_fem_plu_past]  = _past_base + "תֶן"
+      hebrew_verb[:he_past]           = _past_base
+      hebrew_verb[:she_past]          = _past_base + "ָה"
+      hebrew_verb[:they_past]         = _past_base + "וּ"
 
       return hebrew_verb
     end
 
     if ['א'].include?(root[2])
-      hebrew_verb[:me_past]           = past_base + "תִי"
-      hebrew_verb[:you_mas_sing_past] = past_base + "תָ"
-      hebrew_verb[:you_fem_sing_past] = past_base + "תְ"
-      hebrew_verb[:we_past]           = past_base + "נוּ"
-      hebrew_verb[:you_mas_plu_past]  = past_base + "תֵם"
-      hebrew_verb[:you_fem_plu_past]  = past_base + "תֵן"
-      hebrew_verb[:he_past]           = past_base
-      hebrew_verb[:she_past]          = past_base + "ְאָה"
-      hebrew_verb[:they_past]         = past_base + "ְְאו"
+      hebrew_verb[:me_past]           = _past_base + "תִי"
+      hebrew_verb[:you_mas_sing_past] = _past_base + "תָ"
+      hebrew_verb[:you_fem_sing_past] = _past_base + "תְ"
+      hebrew_verb[:we_past]           = _past_base + "נוּ"
+      hebrew_verb[:you_mas_plu_past]  = _past_base + "תֵם"
+      hebrew_verb[:you_fem_plu_past]  = _past_base + "תֵן"
+      hebrew_verb[:he_past]           = _past_base
+      hebrew_verb[:she_past]          = _past_base + "ְאָה"
+      hebrew_verb[:they_past]         = _past_base + "ְְאו"
 
       return hebrew_verb
     end
 
     if ['ה'].include?(root[2])
-      past_base = hebrew_verb[:past_base][3..-1]
-      hebrew_verb[:me_past]           = past_base + "ִתִי"
-      hebrew_verb[:you_mas_sing_past] = past_base + "ִתְ"
-      hebrew_verb[:you_fem_sing_past] = past_base + "ִתָ"
-      hebrew_verb[:we_past]           = past_base + "ִנו"
-      hebrew_verb[:you_mas_plu_past]  = past_base + "ִתֶם"
-      hebrew_verb[:you_fem_plu_past]  = past_base + "ִתֶן"
-      hebrew_verb[:he_past]           = hebrew_verb[:past_base]
+      _past_base = past_base[3..-1]
+      hebrew_verb[:me_past]           = _past_base + "ִתִי"
+      hebrew_verb[:you_mas_sing_past] = _past_base + "ִתְ"
+      hebrew_verb[:you_fem_sing_past] = _past_base + "ִתָ"
+      hebrew_verb[:we_past]           = _past_base + "ִנו"
+      hebrew_verb[:you_mas_plu_past]  = _past_base + "ִתֶם"
+      hebrew_verb[:you_fem_plu_past]  = _past_base + "ִתֶן"
+      hebrew_verb[:he_past]           = past_base
       if root[1] == 'א'
-        hebrew_verb[:she_past] = past_base + "ֲתָה"
+        hebrew_verb[:she_past] = _past_base + "ֲתָה"
       else
-        hebrew_verb[:she_past] = past_base + "ְתָה"
+        hebrew_verb[:she_past] = _past_base + "ְתָה"
       end
-      hebrew_verb[:they_past]  = past_base + "וּ"
+      hebrew_verb[:they_past]  = _past_base + "וּ"
     else #['ד','ת','ט'].include?(root[2])
-      hebrew_verb[:me_past]           = past_base + "תִי"
-      hebrew_verb[:you_mas_sing_past] = past_base + "תְ"
-      hebrew_verb[:you_fem_sing_past] = past_base + "תָ"
-      hebrew_verb[:we_past]           = past_base + "נו"
-      hebrew_verb[:you_mas_plu_past]  = past_base + "תֶם"
-      hebrew_verb[:you_fem_plu_past]  = past_base + "תֶן"
-      hebrew_verb[:he_past]           = hebrew_verb[:past_base]
+      hebrew_verb[:me_past]           = _past_base + "תִי"
+      hebrew_verb[:you_mas_sing_past] = _past_base + "תָ"
+      hebrew_verb[:you_fem_sing_past] = _past_base + "תְ"
+      hebrew_verb[:we_past]           = _past_base + "נו"
+      hebrew_verb[:you_mas_plu_past]  = _past_base + "תֶם"
+      hebrew_verb[:you_fem_plu_past]  = _past_base + "תֶן"
+      hebrew_verb[:she_past]          = _past_base + "ָה"
+      hebrew_verb[:they_past]         = _past_base + "וּ"
+      hebrew_verb[:he_past]           = past_base
 
     end
     hebrew_verb
   end
 
-  def infinitive_and_future_base(hebrew_verb, root)
+  def infinitive_and_future_base(root)
+    hebrew_verb = Hash.new
     hebrew_verb[:infinitive] = "לִ#{root[0]}ְ#{root[1]}ו#{root[2]}"
 
     if ['ע', 'ה'].include?(root[0])
       inf_start = "לַ#{root[0]}ֲ#{root[1]}וֹ"
       if root[2] == 'ה'
-        inf_end += "ת"
+        inf_end = "ת"
       else
-        inf_end += "#{root[2]}"
+        inf_end = "#{root[2]}"
       end
       hebrew_verb[:infinitive] = inf_start + inf_end
 
@@ -369,6 +372,7 @@ module VerbContructor::PaalHelper
       hebrew_verb[:they_fut] = "יִ"  + "#{root[0]}ַ" + "#{root[1]}ֲ#{root[2]}וּ"
 
     else
+      infinitive_base = ""
       if ['ח','ע'].include?(root[2])
         infinitive_base = hebrew_verb[:fut_base]
       end

@@ -30,10 +30,10 @@ class VerbsController < ApplicationController
 
   def create
 
-    verb = Verb.new(:english => params[:hebrew_verb][:english],
-                    :russian => params[:hebrew_verb][:russian],
-                    :spanish => params[:hebrew_verb][:spanish]
-                    )
+    verb = Verb.new(english: params[:hebrew_verb][:english],
+                    russian: params[:hebrew_verb][:russian],
+                    spanish: params[:hebrew_verb][:spanish])
+
     if verb.valid?
       verb.save
     else
@@ -41,34 +41,32 @@ class VerbsController < ApplicationController
       render 'new'
     end
 
-    hebrew_verb = {}.merge(:verb_id => verb.id)
+    hebrew_verb = {verb_id: verb.id, building_id: params[:hebrew_verb][:building_id]}
 
-    hebrew_verb[:building_id] = params[:hebrew_verb][:building_id]
     root = [
              Letter.find(params[:hebrew_verb][:root_1]).name,
              Letter.find(params[:hebrew_verb][:root_2]).name,
              Letter.find(params[:hebrew_verb][:root_3]).name
             ]
     hebrew_verb[:root] = root[0] + "." + root[1] + "." + root[2]
-
     case hebrew_verb[:building_id]
-      when '1' # *PAAL*
+      when "1" # *PAAL*
       # PRESENT TENSE
-        hebrew_verb.merge(present_tense(hebrew_verb, root))
+        hebrew_verb.merge!(present_tense(root))
 
       # PAST TENSE
-        hebrew_verb.merge(past_tense(hebrew_verb, root))
+        hebrew_verb.merge!(past_tense(root, hebrew_verb[:past_base]))
 
       # INFINITIVE AND FUTURE BASE
-        hebrew_verb.merge(infinitive_and_future_base(hebrew_verb, root))
+        hebrew_verb.merge!(infinitive_and_future_base(root))
 
       # FUTURE TENSE
-        hebrew_verb.merge(future_tense(hebrew_verb,root))
+        hebrew_verb.merge!(future_tense(hebrew_verb,root))
       when '2' # *PIEL*
       when '3' # *HITPAEL*
     end
 
-
+    @v = HebrewVerb.new(hebrew_verb)
     # if(root[2] == 'כ')
     #   root[2] = 'ך'
     # elsif root[2] == 'מ'
@@ -80,7 +78,7 @@ class VerbsController < ApplicationController
     # elsif root[2] == 'צ'
     #   root[2] = 'ץ'
     # end
-    @past_base = hebrew_verb[:past_base]
+    #@past_base = hebrew_verb[:past_base]
     #hebrew_verb.delete(:past_base)
 
     # @hebrew_verb = HebrewVerb.new(hebrew_verb)
