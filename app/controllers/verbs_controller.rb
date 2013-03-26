@@ -61,7 +61,7 @@ class VerbsController < ApplicationController
         hebrew_verb.merge!(infinitive_and_future_base(root))
 
       # FUTURE TENSE
-        hebrew_verb.merge!(future_tense(hebrew_verb,root))
+        hebrew_verb.merge!(future_tense(root, hebrew_verb[:infinitive]))
       when '2' # *PIEL*
       when '3' # *HITPAEL*
     end

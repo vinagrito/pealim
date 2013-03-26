@@ -235,13 +235,15 @@ module VerbContructor::PaalHelper
 
   end
 
-  def future_tense(hebrew_verb, root)
-    return hebrew_verb
-    verb_exceptions = ['לִלְמוד','לִגְדול','לִלְבוש']
-    future_base = hebrew_verb[:infinitive].delete(hebrew_verb[:infinitive][0..1])
+  def future_tense(root, infinitive)
+    binding.pry
 
-    if verb_exceptions.include?(hebrew_verb[:infinitive])
-      case hebrew_verb[:infinitive]
+    hebrew_verb = Hash.new
+    verb_exceptions = ['לִלְמוד','לִגְדול','לִלְבוש']
+    future_base = infinitive.delete(infinitive[0..1])
+
+    if verb_exceptions.include?(infinitive)
+      case infinitive
         when 'לִלְבוש'
            future_base = 'לְבַש'
         when 'לִגְדול'
