@@ -59,16 +59,6 @@ DIV.section               {
       margin-top: 10px;
       margin-bottom: 10px;
 }
-Div.section-header        {
-    background-color: #F0F0F0;
-    border-top-right-radius: 15px;
-    border-top-left-radius: 15px;
-}
-Div.section-block         {
-    background-color: #eeeeee;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-}
 
 DIV.verb-show-action      {
   font-size: 20px;
@@ -78,8 +68,17 @@ DIV.verb-show-action      {
 DIV.verb-show-action TABLE.table {
   font-size: 24px;
   letter-spacing: 1px;
-  thead th { font-weight: normal; text-align: right; }
-  tbody td { text-align: center; }
+  thead th, tbody td {
+    line-height: 1;
+  }
+
+  thead th {
+    font-weight: normal;
+    text-align: right;
+  }
+  tbody td {
+    text-align: center;
+  }
 
   &.table-hover{
     &.imperative-tense, &.future-tense, &.past-tense {
@@ -89,6 +88,7 @@ DIV.verb-show-action TABLE.table {
 }
 
 .verb-fourth-root         { display: none; }
+
 SPAN.small-top-btn-delete {
   background-image: url("/assets/small-top-delete-btn.png");
   height: 16px;
