@@ -179,22 +179,16 @@ module VerbContructor::PaalHelper
     hebrew_verb = Hash.new
     hebrew_verb[:infinitive] = "לִ#{root[0]}ְ#{root[1]}ו#{root[2]}"
 
-    if ["ע", "ה"].include?(root[0])
-      inf_start = "לַ#{root[0]}ֲ#{root[1]}וֹ"
-      if root[2] == "ה"
-        inf_end = "ת"
-      else
-        inf_end = "#{root[2]}"
-      end
-      hebrew_verb[:infinitive] = inf_start + inf_end
+    if ["ח", "ע", "ה"].include?(root[0])
+      infinitive_start = root[0] == "ח" ? "לַ#{root[0]}ְ#{root[1]}וֹ" : "לַ#{root[0]}ֲ#{root[1]}וֹ"
 
-      return hebrew_verb
+      infinitive_end   = root[2] == "ה" ? "ת" : "#{root[2]}"
+
+      hebrew_verb[:infinitive] = infinitive_start + infinitive_end
     end
 
     if root[0] == "א"
       hebrew_verb[:infinitive] = "לֶאֱ#{root[1]}ו#{root[2]}"
-
-      return hebrew_verb
     end
 
     if root[0] == "י"
@@ -207,14 +201,10 @@ module VerbContructor::PaalHelper
       else
         hebrew_verb[:infinitive] = "לִי{root[1]}ו#{root[2]}"
       end
-
-      return hebrew_verb
     end
 
     if ["ו", "י"].include?(root[1])
       hebrew_verb[:infinitive] = "לָ#{root[0]}#{root[1]}#{root[2]}"
-
-      return hebrew_verb
     end
 
     if root[2] == "א"
@@ -222,16 +212,13 @@ module VerbContructor::PaalHelper
       if ["ח", "ע"].include?(root[0])
         hebrew_verb[:infinitive] = "לַ" + "#{root[0]}ֲ" + "#{root[1]}וא"
       end
-
-      return hebrew_verb
     end
 
     if ["ע","ח"].include?(root[2])
       hebrew_verb[:infinitive] = "לִ" + "#{root[0]}ְ#{root[1]}ו" + "#{root[2]}ַ"
-
-      return hebrew_verb
     end
 
+    return hebrew_verb
   end
 
   def future_tense(root, infinitive)
