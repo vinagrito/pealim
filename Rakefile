@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Poalim::Application.load_tasks
+Pealim::Application.load_tasks

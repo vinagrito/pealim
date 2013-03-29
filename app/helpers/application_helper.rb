@@ -1,6 +1,6 @@
 module ApplicationHelper
 
   def get_main_logo
-    url("poalim-logo.png")
+    url("pealim-logo.png")
   end
 end
