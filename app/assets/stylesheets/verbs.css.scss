@@ -25,14 +25,17 @@ UL.helper-link {
 }
 .start-image  { vertical-align: middle; }
 
-#search-section { margin-top: 150px}
-#verb_name                 {
+#search-section {
+  direction: ltr;
+  margin-top: 150px;
+}
+#verb_name {
   width: 500px;
   height: 30px;
   font-size: 22px;
   line-height: 1.5em;
 }
-#search-btn                {
+#search-btn {
   width: 150px;
   height: 40px;
   font-size: 22px;
@@ -46,7 +49,10 @@ UL.helper-link {
   text-align: center;
 }
 /*VERB SHOW ACTION */
-DIV.verb-show-action      {
+DIV.verb-show-action {
+  #search-section {
+    margin-top: 0px;
+  }
   h3  {
     font-size: 26px;
   }
