@@ -3,91 +3,88 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body                       { font-size: 16px; }
-.ui-autocomplete           {
-      max-height: 200px;
-      overflow-y: auto;
-      width: 200px;
-                           }
+.ui-autocomplete  {
+  max-height: 200px;
+  overflow-y: auto;
+  width: 200px;
+}
 .row    {
-    margin-top: 0;
+  margin-top: 0;
 }
 
-UL.helper-link             {
-      position: relative;
-      display: inline-block;
-      width: 20px;
-      height: 20px;
+UL.helper-link {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
 }
 #main_page_inner_container {
-      height: auto;
-      margin-top: 25px;
-      margin-left: 50px;
+  height: auto;
+  margin-top: 25px;
+  margin-left: 50px;
 }
-.start-image    { vertical-align: middle; }
+.start-image  { vertical-align: middle; }
 
-#search-section            { margin-top: 150px}
+#search-section { margin-top: 150px}
 #verb_name                 {
-      width: 500px;
-      height: 30px;
-      font-size: 22px;
-      line-height: 1.5em;
+  width: 500px;
+  height: 30px;
+  font-size: 22px;
+  line-height: 1.5em;
 }
 #search-btn                {
-      width: 150px;
-      height: 40px;
-      font-size: 22px;
+  width: 150px;
+  height: 40px;
+  font-size: 22px;
 }
-#paypal-api                { margin-top: 200px; }
+#paypal-api { margin-top: 200px; }
 
-#new_verb_form             { margin-top: 50px; }
+#new_verb_form  { margin-top: 50px; }
 
-#footer                 {
-      padding-top: 10px;
-      text-align: center;
+#footer {
+  padding-top: 10px;
+  text-align: center;
 }
-
-
-
+/*VERB SHOW ACTION */
 DIV.verb-show-action      {
-      direction: rtl;
-      margin-top: 10px;
-      font-size: 16px;
-}
-DIV.section               {
-      border-radius: 15px;
-      vertical-align: middle;
-      margin-top: 10px;
-      margin-bottom: 10px;
-}
-
-DIV.verb-show-action      {
+  h3  {
+    font-size: 26px;
+  }
+  direction: rtl;
+  margin-top: 10px;
   font-size: 20px;
-  h3  { font-size: 26px; }
-}
 
-DIV.verb-show-action TABLE.table {
-  font-size: 24px;
-  letter-spacing: 1px;
-  thead th, tbody td {
-    line-height: 1;
-  }
+  TABLE.table {
+    font-size: 24px;
+    letter-spacing: 1px;
+    thead th, tbody td {
+      line-height: 1;
+    }
 
-  thead th {
-    font-weight: normal;
-    text-align: right;
-  }
-  tbody td {
-    text-align: center;
-  }
+    thead th {
+      font-weight: normal;
+      text-align: right;
+    }
+    tbody td {
+      text-align: center;
+    }
 
-  &.table-hover{
-    &.imperative-tense, &.future-tense, &.past-tense {
-      thead td, th { text-align: right;}
+    &.table-hover{
+      &.imperative-tense, &.future-tense, &.past-tense {
+        thead td, th { text-align: right;}
+      }
     }
   }
 }
 
-.verb-fourth-root         { display: none; }
+DIV.section               {
+  border-radius: 15px;
+  vertical-align: middle;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.verb-fourth-root { display: none; }
 
 SPAN.small-top-btn-delete {
   background-image: url("/assets/small-top-delete-btn.png");
@@ -98,8 +95,3 @@ SPAN.small-top-btn-delete {
   top: -5px;
   left: 10px;
 }
-
-
-
-
-
