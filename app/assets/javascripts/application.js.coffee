@@ -10,27 +10,3 @@
 #= require jquery-ui-1.10.0.custom
 #= require bootstrap
 #= require_tree .
-($)->
-  $.ajax("/verbs").done (verbs) ->
-    verbsNameList = []
-    modelColumn = "english"
-
-    switch currentLocale
-      when "Español"
-        modelColumn = "spanish"
-      when "Русский"
-        modelColumn = "russian"
-
-    verbs.map (verb) ->
-      verbsNameList.push
-        label: verb[modelColumn]
-        value: verb.id
-
-    $("#verb_name").autocomplete
-      source: verbsNameList
-      focus: (event, ui) ->
-        $(@).val(ui.item.label)
-        $("#verb_id").val(ui.item.value)
-        event.preventDefault()
-      select: (event, ui) ->
-        event.preventDefault()

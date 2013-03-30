@@ -1,4 +1,5 @@
 $ ->
+
   verbBuilding       = $("#hebrew_verb_building_id")
   fourthRootUi       = $(".verb-fourth-root")
   deleteFourthRoot   = $(".small-top-btn-delete")
