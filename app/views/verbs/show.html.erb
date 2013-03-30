@@ -2,9 +2,10 @@
   <div class="navbar">
     <div class="nav-pills">
       <%= render "/shared/helper_link" %>
-      <ul class="nav pull-right">
+      <ul class="nav">
         <li><%= link_to t("navigation.back"), verbs_path %></li>
       </ul>
+      <%= render "shared/languages_bar" %>
     </div>
   </div>
 
