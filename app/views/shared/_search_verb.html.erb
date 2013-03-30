@@ -9,3 +9,9 @@
     <% end %>
   </div>
 </div>
+
+<div id="add_missing_verb" class="row-fluid">
+  <div class="span12 offset4">
+    <p class="text-info"><%= t("intro.verb_not_present")%><%=link_to t("intro.add_verb_action"), new_verb_path, :class => "btn btn-link" %></p>
+  </div>
+</div>

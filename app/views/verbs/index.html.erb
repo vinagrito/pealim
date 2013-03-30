@@ -12,14 +12,7 @@
   </div>
 </div>
 
-
-<%= render "shared/search_verb" %>
-
-<div class="row-fluid">
-  <div class="span12 offset4">
-    <p class="text-info"><%= t("intro.verb_not_present")%><%=link_to t("intro.add_verb_action"), new_verb_path, :class => "btn btn-link" %></p>
-  </div>
-</div>
+<%= render :partial => "shared/_search_verb" %>
 
 <div id="fb-api" class="row">
   <div class='span2 offset5'>
