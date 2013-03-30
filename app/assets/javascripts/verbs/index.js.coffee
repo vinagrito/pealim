@@ -48,31 +48,3 @@ $ ->
               comment: commentObj
             dataType: "html"
           ).done(afterSendNewComment)
-
-
-  verbsNameList = []
-
-  $.ajax("/verbs").done (verbs) ->
-    modelColumn = "english"
-
-    switch currentLocale
-      when "Español"
-        modelColumn = "spanish"
-      when "Русский"
-        modelColumn = "russian"
-
-    # verbsNameList = verbs.map (verb) ->
-    #   verb[modelColumn]
-    verbs.map (verb) ->
-      verbsNameList.push
-        label: verb[modelColumn]
-        value: verb.id
-
-    $("#verb_name").autocomplete
-      source: verbsNameList
-      focus: (event, ui) ->
-        $(@).val(ui.item.label)
-        $("#verb_id").val(ui.item.value)
-        event.preventDefault()
-      select: (event, ui) ->
-        event.preventDefault()
