@@ -9,11 +9,8 @@ class VerbsController < ApplicationController
     @verbs = Verb.all
 
     respond_to do |format|
-      if request.xhr?
-        format.json { render :json => @verbs.to_json }
-      else
         format.html
-      end
+        format.json { render :json => @verbs.to_json }
     end
   end
 
