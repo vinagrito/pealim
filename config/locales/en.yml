@@ -11,6 +11,7 @@ en:
     add_verb_action: "add it here"
     help: "Help"
   comments:
+      link: "Comments"
       title: "Any thoughts?"
       name: "Name"
       email: "Email"

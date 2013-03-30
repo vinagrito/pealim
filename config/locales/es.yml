@@ -11,6 +11,7 @@ es:
     add_verb_action: "agrégalo acá"
     help: "Ayuda"
   comments:
+      link: "Comentarios"
       title: "Ideas?"
       name: "Nombre"
       email: "Correo electrónico"

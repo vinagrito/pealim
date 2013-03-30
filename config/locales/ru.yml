@@ -11,6 +11,7 @@ ru:
     add_verb_action: "добавь его здесь"
     help: "Помощь"
   comments:
+      link: "Коментарии"
       title: "Есть какие-то идеи?"
       name: "Имя"
       email: "Электронная почта"
