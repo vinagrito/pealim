@@ -10,3 +10,6 @@
 #= require jquery-ui-1.10.0.custom
 #= require bootstrap
 #= require_tree .
+
+$ ->
+  $.ajaxSetup cache: false
