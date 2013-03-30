@@ -4,7 +4,7 @@
 
 body {
   font-family: Georgia, Serif;
-  font-size: 16px;
+  font-size: 20px;
 }
 .ui-autocomplete  {
   max-height: 200px;
@@ -21,11 +21,15 @@ UL.helper-link {
   width: 20px;
   height: 20px;
 }
+
+/*#helperModal { margin-top: 1px; }*/
+
 #main_page_inner_container {
   height: auto;
   margin-top: 25px;
   margin-left: 50px;
 }
+
 .start-image  { vertical-align: middle; }
 
 #search-section {
@@ -56,6 +60,7 @@ UL.helper-link {
   padding-top: 10px;
   text-align: center;
 }
+
 /*VERB SHOW ACTION */
 DIV.verb-show-action {
   #search-section {
