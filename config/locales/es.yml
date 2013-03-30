@@ -21,6 +21,6 @@ es:
   navigation:
     back: "Volver"
   button:
-    text:
-      submit: "Enviar"
+    submit: "Enviar"
+    close: "Cerrar"
 

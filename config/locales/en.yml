@@ -21,8 +21,8 @@ en:
   navigation:
     back: "Back"
   button:
-    text:
-      submit: "Submit"
+    submit: "Submit"
+    close: "Close"
   label:
     text:
       translate: "Translate"
