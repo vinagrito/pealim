@@ -1,6 +1,6 @@
 
   <div id="search-section" class="span12 offset2 row-fluid">
-    <%= form_for :verb, :url => {:action => "show"}, :method => :get, :html => { :class => "form-search"} do |v| %>
+    <%= form_for :verb, :url => {controller: "verbs", action: :show}, :method => :get, :html => {:class => "form-search"} do |v| %>
       <div class="input-append">
         <%= v.hidden_field :id %>
         <%= v.text_field :name, :placeholder => t("intro.type_verb"), :class => "search-query" %>
