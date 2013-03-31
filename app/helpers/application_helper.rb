@@ -6,9 +6,9 @@ module ApplicationHelper
 
   def get_locale_name(locale)
     name = "english"
-    if locale == "es"
+    if locale == :es
       name = "spanish"
-    elsif locale == "ru"
+    elsif locale == :ru
       name = "russian"
     end
     name
