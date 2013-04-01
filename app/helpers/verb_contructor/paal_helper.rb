@@ -32,6 +32,7 @@ module VerbContructor::PaalHelper
     end
     if root[0] == "נ" && root[1] == "ת" && root[2] == "נ"
       hebrew_verb[:past_base]     = "נַתַן"
+      return hebrew_verb
     end
 
 
@@ -60,9 +61,8 @@ module VerbContructor::PaalHelper
         end
         hebrew_verb[:fem_sing_pres] = "#{root[0]}ו#{root[1]}ָה"
         hebrew_verb[:mas_plu_pres]  = "#{root[0]}ו#{root[1]}ִים"
-
+        hebrew_verb[:fem_plu_pres]  = "#{root[0]}ו#{root[1]}ות"
       end
-
     end
 
     if ["ח","ע"].include?(root[2])
