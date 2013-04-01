@@ -272,21 +272,9 @@ module VerbContructor::PaalHelper
     end
 
     if root[0] == "א"
-      hebrew_verb[:me_fut]               = "אֹ" + "#{root[1]}ָ" + "#{root[2]}"
-      hebrew_verb[:you_mas_sing_she_fut] = "תֹ" + "#{root[1]}ָ#{root[2]}"
-      hebrew_verb[:he_fut]               = "יֹ" + "#{root[1]}ָ#{root[2]}"
-      hebrew_verb[:we_fut]               = "נֹ" + "#{root[1]}ָ#{root[2]}"
-      hebrew_verb[:you_fem_sing_fut]     = "תֹ" + "#{root[1]}ְ#{root[2]}ִי"
-      hebrew_verb[:you_plu_fut]          = "תֹ" + "#{root[1]}ְ#{root[2]}וּ"
-      hebrew_verb[:they_fut]             = "יֹ" + "#{root[1]}ְ#{root[2]}וּ"
-      if root[1] == "ה"
-        hebrew_verb[:you_fem_sing_fut]   = "תֹ" + "#{root[1]}ֲ#{root[2]}ִי"
-        hebrew_verb[:you_plu_fut]        = "תֹ" + "#{root[1]}ֲ#{root[2]}וּ"
-        hebrew_verb[:they_fut]           = "יֹ" + "#{root[1]}ֲ#{root[2]}וּ"
-      end
-
-      return hebrew_verb
+      return pei_ha_poal_alef_future_case(root)
     end
+
     if root[0] == "י" || (root[0] == "ה" && root[1] == "ל" && root[2]== "כ")
       future_base = ["ע", "ח"].include?(root[2]) ? "#{root[1]}ַ#{root[2]}" : "#{root[1]}ֵ#{root[2]}"
       youfem_youplural_they_fut_base = "#{root[1]}ְ#{root[2]}"
@@ -385,6 +373,38 @@ module VerbContructor::PaalHelper
             hebrew_verb[key][hebrew_verb[key].size - 1] = "ץ"
         end
       #end
+    end
+    hebrew_verb
+  end
+
+  def pei_ha_poal_alef_future_case(root)
+    hebrew_verb = Hash.new
+    if (root[1] == "ה" && root[2] == "ב") ||
+       (root[1] == "כ" && root[2] == "ל") ||
+       (root[1] == "מ" && root[2] == "ר") ||
+       (root[1] == "ב" && root[2] == "ד") ||
+       (root[1] == "ח" && root[2] == "ז")
+      hebrew_verb[:me_fut]               = "אֹ" + "א#{root[1]}ַ#{root[2]}"
+      hebrew_verb[:you_mas_sing_she_fut] = "תֹ" + "א#{root[1]}ַ#{root[2]}"
+      hebrew_verb[:he_fut]               = "יֹ" + "א#{root[1]}ַ#{root[2]}"
+      hebrew_verb[:we_fut]               = "נֹ" + "א#{root[1]}ַ#{root[2]}"
+      hebrew_verb[:you_fem_sing_fut]     = "תֹ" + "א#{root[1]}ֲ#{root[2]}ִי"
+      hebrew_verb[:you_plu_fut]          = "תֹ" + "א#{root[1]}ֲ#{root[2]}וּ"
+      hebrew_verb[:they_fut]             = "יֹ" + "א#{root[1]}ֲ#{root[2]}וּ"
+    else
+      hebrew_verb[:me_fut]               = "אֶ" + "אֱ#{root[1]}ֹ#{root[2]}"
+      hebrew_verb[:you_mas_sing_she_fut] = "תֶ" + "אֱ#{root[1]}ֹ#{root[2]}"
+      hebrew_verb[:he_fut]               = "יֶ" + "אֱ#{root[1]}ֹ#{root[2]}"
+      hebrew_verb[:we_fut]               = "נֶ" + "אֱ#{root[1]}ֹ#{root[2]}"
+      if root[1] == "ה"
+        hebrew_verb[:you_fem_sing_fut]     = "תֶ" + "אֱ#{root[1]}ֶ#{root[2]}י"
+        hebrew_verb[:you_plu_fut]          = "תֶ" + "אֱ#{root[1]}ֶ#{root[2]}וּ"
+        hebrew_verb[:they_fut]             = "יֶ" + "אֱ#{root[1]}ֶ#{root[2]}וּ"
+      else
+        hebrew_verb[:you_fem_sing_fut]     = "תַ" + "אַ#{root[1]}ְ#{root[2]}י"
+        hebrew_verb[:you_plu_fut]          = "תַ" + "אַ#{root[1]}ְ#{root[2]}וּ"
+        hebrew_verb[:they_fut]             = "יַ" + "אַ#{root[1]}ְ#{root[2]}וּ"
+      end
     end
     hebrew_verb
   end
