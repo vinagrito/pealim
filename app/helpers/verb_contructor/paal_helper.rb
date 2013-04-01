@@ -264,6 +264,8 @@ module VerbContructor::PaalHelper
         hebrew_verb[:we_fut]               = "נַ" + future_base
         youfem_youplural_they_fut_base.slice! 1
         youfem_youplural_they_fut_base.insert 1, "ַ"
+        youfem_youplural_they_fut_base.slice! 2
+        youfem_youplural_they_fut_base.insert 2, "#{root[1]}ְ"
         hebrew_verb[:you_fem_sing_fut]     = "תַ" + youfem_youplural_they_fut_base + "ִי"
         hebrew_verb[:you_plu_fut]          = "תַ" + youfem_youplural_they_fut_base + "וּ"
         hebrew_verb[:they_fut]             = "יַ" + youfem_youplural_they_fut_base + "וּ"
