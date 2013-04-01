@@ -167,6 +167,7 @@ module VerbContructor::PaalHelper
       hebrew_verb[:we_past]           = _past_base + "נו"
       hebrew_verb[:you_mas_plu_past]  = _past_base + "תֶם"
       hebrew_verb[:you_fem_plu_past]  = _past_base + "תֶן"
+      _past_base = _past_base.gsub("ַ", "ְ")
       hebrew_verb[:she_past]          = _past_base + "ָה"
       hebrew_verb[:they_past]         = _past_base + "וּ"
       hebrew_verb[:he_past]           = past_base
@@ -181,30 +182,31 @@ module VerbContructor::PaalHelper
 
     if ["ח", "ע", "ה"].include?(root[0])
       infinitive_start = root[0] == "ח" ? "לַ#{root[0]}ְ#{root[1]}וֹ" : "לַ#{root[0]}ֲ#{root[1]}וֹ"
-
       infinitive_end   = root[2] == "ה" ? "ת" : "#{root[2]}"
-
       hebrew_verb[:infinitive] = infinitive_start + infinitive_end
+      return hebrew_verb
     end
 
     if root[0] == "א"
       hebrew_verb[:infinitive] = "לֶאֱ#{root[1]}ו#{root[2]}"
+      return hebrew_verb
     end
 
     if root[0] == "י"
       # * It presents several exception cases *
       if ["ח", "ע"].include?(root[2])
         hebrew_verb[:infinitive] = "לָ#{root[1]}ַ#{root[2]}ַת"
-        hebrew_verb[:fut_base]   = "#{root[1]}ַ#{root[2]}"
       elsif ["ש", "ל", "ר"].include?(root[1]) && ["ב", "ד", "ר", "ל"].include?(root[2])
         hebrew_verb[:infinitive] = "לָ#{root[1]}ֶ#{root[2]}ֶת"
       else
-        hebrew_verb[:infinitive] = "לִי{root[1]}ו#{root[2]}"
+        hebrew_verb[:infinitive] = "לִי#{root[1]}ו#{root[2]}"
       end
+      return hebrew_verb
     end
 
     if ["ו", "י"].include?(root[1])
       hebrew_verb[:infinitive] = "לָ#{root[0]}#{root[1]}#{root[2]}"
+      return hebrew_verb
     end
 
     if root[2] == "א"
@@ -212,13 +214,13 @@ module VerbContructor::PaalHelper
       if ["ח", "ע"].include?(root[0])
         hebrew_verb[:infinitive] = "לַ" + "#{root[0]}ֲ" + "#{root[1]}וא"
       end
+      return hebrew_verb
     end
 
     if ["ע","ח"].include?(root[2])
       hebrew_verb[:infinitive] = "לִ" + "#{root[0]}ְ#{root[1]}ו" + "#{root[2]}ַ"
+      return hebrew_verb
     end
-
-    return hebrew_verb
   end
 
   def future_tense(root, infinitive)
@@ -239,9 +241,7 @@ module VerbContructor::PaalHelper
     end
 
     if ["ח", "ע", "ה"].include?(root[0])
-
       future_base.slice! 1
-
       if root[2] == "ה" # ע"פ & ה"ל CASE
         future_base.insert 1,"ֶ"
         hebrew_verb[:me_fut]               = "אֶ" + future_base
@@ -286,18 +286,18 @@ module VerbContructor::PaalHelper
 
       return hebrew_verb
     end
-
-    if ["י","ה"].include?(root[0])
-      hebrew_verb[:me_fut] = "אֵ" + hebrew_verb[:fut_base]
-      hebrew_verb[:you_mas_sing_she_fut] = "תֵ" + hebrew_verb[:fut_base]
-      hebrew_verb[:he_fut] = "יֵ" + hebrew_verb[:fut_base]
-      hebrew_verb[:we_fut] = "נֵ" + hebrew_verb[:fut_base]
-      hebrew_verb[:you_fem_sing_fut] = "תֵ" + "#{root[1]}ְ#{root[2]}" + "ִי"
-      hebrew_verb[:you_plu_fut] = "תֵ" + "#{root[1]}ְ#{root[2]}"  + "וּ"
-      hebrew_verb[:they_fut] = "יֵ" + "#{root[1]}ְ#{root[2]}"  + "וּ"
-      hebrew_verb.delete(:fut_base)
+    if root[0] == "י" || (root[0] == "ה" && root[1] == "ל" && root[2]== "כ")
+      future_base = ["ע", "ח"].include?(root[2]) ? "#{root[1]}ַ#{root[2]}" : "#{root[1]}ֵ#{root[2]}"
+      youfem_youplural_they_fut_base = "#{root[1]}ְ#{root[2]}"
+      hebrew_verb[:me_fut] = "אֵ" + future_base
+      hebrew_verb[:you_mas_sing_she_fut] = "תֵ" + future_base
+      hebrew_verb[:he_fut] = "יֵ" + future_base
+      hebrew_verb[:we_fut] = "נֵ" + future_base
+      hebrew_verb[:you_fem_sing_fut] = "תֵ" + youfem_youplural_they_fut_base + "ִי"
+      hebrew_verb[:you_plu_fut] = "תֵ" + youfem_youplural_they_fut_base  + "וּ"
+      hebrew_verb[:they_fut] = "יֵ" + youfem_youplural_they_fut_base  + "וּ"
+      return hebrew_verb
     end
-
 
     if ["ו","י"].include?(root[1])
       hebrew_verb[:me_fut] = "אְַ" + future_base
@@ -333,10 +333,6 @@ module VerbContructor::PaalHelper
       hebrew_verb[:they_fut] = "יִ"  + "#{root[0]}ַ" + "#{root[1]}ֲ#{root[2]}וּ"
 
     else
-      infinitive_base = ""
-      if ["ח","ע"].include?(root[2])
-        infinitive_base = hebrew_verb[:fut_base]
-      end
       hebrew_verb[:me_fut] = "אֶ" + future_base
       hebrew_verb[:you_mas_sing_she_fut] = "תִ" + future_base
       hebrew_verb[:he_fut] = "יִ" + future_base
@@ -345,7 +341,7 @@ module VerbContructor::PaalHelper
       hebrew_verb[:you_plu_fut] = "תִ" + "#{root[0]}ְ#{root[1]}ְ#{root[2]}וּ"
       hebrew_verb[:they_fut] = "יִ" + "#{root[0]}ְ#{root[1]}ְ#{root[2]}וּ"
 
-      if !hebrew_verb[:fut_base].nil?
+      if hebrew_verb[:fut_base]
         hebrew_verb.delete(:fut_base)
       end
     end
