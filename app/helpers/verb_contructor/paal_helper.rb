@@ -146,7 +146,7 @@ module VerbContructor::PaalHelper
     end
 
     if root[2] == "ה"
-      _past_base = past_base.delete past_base[3..-1]
+      _past_base = past_base[0..-3]
       hebrew_verb[:me_past]           = _past_base + "ִתִי"
       hebrew_verb[:you_mas_sing_past] = _past_base + "ִתְ"
       hebrew_verb[:you_fem_sing_past] = _past_base + "ִתָ"
