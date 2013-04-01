@@ -384,13 +384,14 @@ module VerbContructor::PaalHelper
        (root[1] == "מ" && root[2] == "ר") ||
        (root[1] == "ב" && root[2] == "ד") ||
        (root[1] == "ח" && root[2] == "ז")
-      hebrew_verb[:me_fut]               = "אֹ" + "א#{root[1]}ַ#{root[2]}"
+      hebrew_verb[:me_fut]               = "אֹ" + "#{root[1]}ַ#{root[2]}"
       hebrew_verb[:you_mas_sing_she_fut] = "תֹ" + "א#{root[1]}ַ#{root[2]}"
       hebrew_verb[:he_fut]               = "יֹ" + "א#{root[1]}ַ#{root[2]}"
       hebrew_verb[:we_fut]               = "נֹ" + "א#{root[1]}ַ#{root[2]}"
-      hebrew_verb[:you_fem_sing_fut]     = "תֹ" + "א#{root[1]}ֲ#{root[2]}ִי"
-      hebrew_verb[:you_plu_fut]          = "תֹ" + "א#{root[1]}ֲ#{root[2]}וּ"
-      hebrew_verb[:they_fut]             = "יֹ" + "א#{root[1]}ֲ#{root[2]}וּ"
+      youfem_youplural_they_fut_base = root[1] == "ה" ? "א#{root[1]}ֲ#{root[2]}" : "א#{root[1]}ְ#{root[2]}"
+      hebrew_verb[:you_fem_sing_fut]     = "תֹ" + youfem_youplural_they_fut_base + "ִי"
+      hebrew_verb[:you_plu_fut]          = "תֹ" + youfem_youplural_they_fut_base + "וּ"
+      hebrew_verb[:they_fut]             = "יֹ" + youfem_youplural_they_fut_base + "וּ"
     else
       hebrew_verb[:me_fut]               = "אֶ" + "אֱ#{root[1]}ֹ#{root[2]}"
       hebrew_verb[:you_mas_sing_she_fut] = "תֶ" + "אֱ#{root[1]}ֹ#{root[2]}"
