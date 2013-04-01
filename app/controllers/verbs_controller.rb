@@ -50,13 +50,10 @@ class VerbsController < ApplicationController
       when "1" # *PAAL*
       # PRESENT TENSE
         hebrew_verb.merge!(present_tense(root))
-
       # PAST TENSE
         hebrew_verb.merge!(past_tense(root, hebrew_verb[:past_base]))
-
       # INFINITIVE AND FUTURE BASE
-        hebrew_verb.merge!(infinitive_and_future_base(root))
-
+        hebrew_verb.merge!(infinitive(root))
       # FUTURE TENSE
         hebrew_verb.merge!(future_tense(root, hebrew_verb[:infinitive]))
       when '2' # *PIEL*

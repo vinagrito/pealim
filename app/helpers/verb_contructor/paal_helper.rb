@@ -146,7 +146,7 @@ module VerbContructor::PaalHelper
     end
 
     if root[2] == "ה"
-      _past_base = past_base[3..-1]
+      _past_base = past_base.delete past_base[3..-1]
       hebrew_verb[:me_past]           = _past_base + "ִתִי"
       hebrew_verb[:you_mas_sing_past] = _past_base + "ִתְ"
       hebrew_verb[:you_fem_sing_past] = _past_base + "ִתָ"
@@ -176,13 +176,13 @@ module VerbContructor::PaalHelper
     hebrew_verb
   end
 
-  def infinitive_and_future_base(root)
+  def infinitive(root)
     hebrew_verb = Hash.new
-    hebrew_verb[:infinitive] = "לִ#{root[0]}ְ#{root[1]}ו#{root[2]}"
+    infinitive_end = root[2] == "ה" ? "ת" : "#{root[2]}"
+    hebrew_verb[:infinitive] = "לִ#{root[0]}ְ#{root[1]}ו" + infinitive_end
 
     if ["ח", "ע", "ה"].include?(root[0])
       infinitive_start = root[0] == "ח" ? "לַ#{root[0]}ְ#{root[1]}וֹ" : "לַ#{root[0]}ֲ#{root[1]}וֹ"
-      infinitive_end   = root[2] == "ה" ? "ת" : "#{root[2]}"
       hebrew_verb[:infinitive] = infinitive_start + infinitive_end
       return hebrew_verb
     end
@@ -221,6 +221,7 @@ module VerbContructor::PaalHelper
       hebrew_verb[:infinitive] = "לִ" + "#{root[0]}ְ#{root[1]}ו" + "#{root[2]}ַ"
       return hebrew_verb
     end
+    hebrew_verb
   end
 
   def future_tense(root, infinitive)
