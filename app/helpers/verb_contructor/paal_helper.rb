@@ -115,7 +115,7 @@ module VerbContructor::PaalHelper
       return hebrew_verb
     end
 
-    _past_base = past_base
+    _past_base = past_base.clone
 
     if ["ו","י"].include?(root[1])
       hebrew_verb[:me_past]           = _past_base + "תִי"
@@ -167,11 +167,16 @@ module VerbContructor::PaalHelper
       hebrew_verb[:we_past]           = _past_base + "נו"
       hebrew_verb[:you_mas_plu_past]  = _past_base + "תֶם"
       hebrew_verb[:you_fem_plu_past]  = _past_base + "תֶן"
-      _past_base = _past_base.gsub("ַ", "ְ")
+      hebrew_verb[:he_past]           = past_base
+      if ["א","ע","ח","ה"].include? root[1]
+        _past_base.slice! 3
+        _past_base.insert 3, "ֲ"
+      else
+        _past_base.slice! 3
+        _past_base.insert 3, "ְ"
+      end
       hebrew_verb[:she_past]          = _past_base + "ָה"
       hebrew_verb[:they_past]         = _past_base + "וּ"
-      hebrew_verb[:he_past]           = past_base
-
     end
     hebrew_verb
   end
@@ -179,7 +184,7 @@ module VerbContructor::PaalHelper
   def infinitive(root)
     hebrew_verb = Hash.new
     infinitive_end = root[2] == "ה" ? "ת" : "#{root[2]}"
-    hebrew_verb[:infinitive] = "לִ#{root[0]}ְ#{root[1]}ו" + infinitive_end
+    hebrew_verb[:infinitive] = "לִ#{root[0]}ְ#{root[1]}וֹ" + infinitive_end
 
     if ["ח", "ע", "ה"].include?(root[0])
       infinitive_start = root[0] == "ח" ? "לַ#{root[0]}ְ#{root[1]}וֹ" : "לַ#{root[0]}ֲ#{root[1]}וֹ"
@@ -188,7 +193,11 @@ module VerbContructor::PaalHelper
     end
 
     if root[0] == "א"
-      hebrew_verb[:infinitive] = "לֶאֱ#{root[1]}ו#{root[2]}"
+      if root[1] == "מ" && root[2] == "ר"
+        hebrew_verb[:infinitive] = "לוֹמַר"
+      else
+        hebrew_verb[:infinitive] = "לֶאֱ#{root[1]}ו#{root[2]}"
+      end
       return hebrew_verb
     end
 
@@ -199,7 +208,7 @@ module VerbContructor::PaalHelper
       elsif ["ש", "ל", "ר"].include?(root[1]) && ["ב", "ד", "ר", "ל"].include?(root[2])
         hebrew_verb[:infinitive] = "לָ#{root[1]}ֶ#{root[2]}ֶת"
       else
-        hebrew_verb[:infinitive] = "לִי#{root[1]}ו#{root[2]}"
+        hebrew_verb[:infinitive] = "לִי#{root[1]}וֹ#{root[2]}"
       end
       return hebrew_verb
     end
@@ -226,17 +235,17 @@ module VerbContructor::PaalHelper
 
   def future_tense(root, infinitive)
     hebrew_verb = Hash.new
-    verb_exceptions = ["לִלְמוד","לִגְדול","לִלְבוש"]
-    future_base = infinitive.delete(infinitive[0..1])
+    verb_exceptions = ["לִלְמוֹד","לִגְדוֹל","לִלְבוֹש"]
+    future_base = infinitive[2..-1]
     youfem_youplural_they_fut_base = future_base.delete future_base[3..4]
 
     if verb_exceptions.include?(infinitive)
       case infinitive
-        when "לִלְבוש"
-           future_base = "לְבַש"
-        when "לִגְדול"
+        when "לִלְבוֹש"
+          future_base = "לְבַש"
+        when "לִגְדוֹל"
           future_base = "גְדַל"
-        when "לִלְמוד"
+        when "לִלְמוֹד"
           future_base = "לְמַד"
       end
     end
@@ -285,14 +294,6 @@ module VerbContructor::PaalHelper
       hebrew_verb[:you_fem_sing_fut] = "תַ" + future_base + "ִי"
       hebrew_verb[:you_plu_fut] = "תַ" + future_base + "וּ"
       hebrew_verb[:they_fut] = "יַ" + future_base + "וּ"
-    # elsif root[2] == "ה"
-      # hebrew_verb[:me_fut] = "אֶ" + "#{root[0]}ְ#{root[1]}ֶ" + "#{root[2]}"
-      # hebrew_verb[:you_mas_sing_she_fut] = "תִ" + "#{root[0]}ְ#{root[1]}ֶ#{root[2]}"
-      # hebrew_verb[:he_fut] = "יִ" + "#{root[0]}ְ#{root[1]}ֶ#{root[2]}"
-      # hebrew_verb[:we_fut] = "נִ" + "#{root[0]}ְ#{root[1]}ֶ#{root[2]}"
-      # hebrew_verb[:you_fem_sing_fut] = "תִ" + "#{root[0]}ְ#{root[1]}ִי"
-      # hebrew_verb[:you_plu_fut] = "תִ" + "#{root[0]}ְ#{root[1]}וּ"
-      # hebrew_verb[:they_fut] = "יִ" + "#{root[0]}ְ#{root[1]}וּ"
     elsif root[2] == "א"
       hebrew_verb[:me_fut] = "אֶ" + "#{root[0]}ְ#{root[1]}ָא"
       hebrew_verb[:you_mas_sing_she_fut] = "תִ" + "#{root[0]}ְ#{root[1]}ָא"
@@ -396,13 +397,16 @@ module VerbContructor::PaalHelper
   def lamed_ha_poal_future_case_fix(conjugated_verb)
     %w(me_fut you_mas_sing_she_fut he_fut we_fut).each do |key|
       base_to_use = conjugated_verb[key.to_sym]
-      conjugated_verb[key.to_sym].slice!(base_to_use[base_to_use.length - 3..-1])
+      base_to_use.slice!(base_to_use[- 3..-1])
       conjugated_verb[key.to_sym] = conjugated_verb[key.to_sym]  + "ֶה"
     end
     base_to_use = conjugated_verb[:you_fem_sing_fut]
-    conjugated_verb[:you_fem_sing_fut].slice!(base_to_use[base_to_use.length - 4..-1])
-    conjugated_verb[:you_fem_sing_fut] = conjugated_verb[:you_fem_sing_fut] + "ִי"
-    conjugated_verb[:you_plu_fut], conjugated_verb[:they_fut] = conjugated_verb[:you_fem_sing_fut] + "וּ"
+    base_to_use.slice!(base_to_use[-4..-1])
+    conjugated_verb[:you_fem_sing_fut] = base_to_use + "ִי"
+    conjugated_verb[:you_plu_fut] = base_to_use + "וּ"
+    base_to_use = conjugated_verb[:they_fut]
+    base_to_use.slice!(base_to_use[-4..-1])
+    conjugated_verb[:they_fut] = base_to_use + "וּ"
     conjugated_verb
   end
 
