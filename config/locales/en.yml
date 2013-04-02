@@ -26,3 +26,5 @@ en:
   label:
     text:
       translate: "Translate"
+  verb:
+    translation_missing: "You must provide at least one translation"

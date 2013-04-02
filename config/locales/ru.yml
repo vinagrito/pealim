@@ -23,3 +23,8 @@ ru:
   button:
     submit: "Отправить"
     close: "Закрыть"
+  label:
+    text:
+      translate: "Перевести"
+  verb:
+    translation_missing: "Вы должны предоставить покрайне мере один перевод"
