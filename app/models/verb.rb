@@ -2,14 +2,15 @@ class Verb < ActiveRecord::Base
 
   has_many :hebrew_verbs
 
-  validate :at_least_one_translation
+  #validate :has_translation
 
   private
 
-  def at_least_one_translation
+  def has_translation
     if errors.empty?
-      if self.english.empty? && self.spanish.empty? && self.russian.empty?
-        errors[:base] << "You must enter at least one translation"
+      binding.pry
+      if english.blank? && spanish.blank? && russian.blank?
+        errors[:base] << t("verb.translation_missing")
       end
     end
   end
