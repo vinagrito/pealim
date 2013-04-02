@@ -22,7 +22,6 @@ class VerbsController < ApplicationController
     @letters = Letter.where("num_value <= ? ", 400) # We don't query for ending letters
     @buildings = Building.get_allowed_building_types
     @heb_verb = HebrewVerb.new
-
   end
 
   def create
@@ -63,17 +62,7 @@ class VerbsController < ApplicationController
     end
 
     @v = HebrewVerb.new(hebrew_verb)
-    # if(root[2] == 'כ')
-    #   root[2] = 'ך'
-    # elsif root[2] == 'מ'
-    #   root[2] = 'ם'
-    # elsif root[2] == 'נ'
-    #   root[2] = 'ן'
-    # elsif root[2] == 'פ'
-    #   root[2] = 'ף'
-    # elsif root[2] == 'צ'
-    #   root[2] = 'ץ'
-    # end
+
     #@past_base = hebrew_verb[:past_base]
     #hebrew_verb.delete(:past_base)
 
