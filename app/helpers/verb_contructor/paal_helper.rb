@@ -30,6 +30,17 @@ module VerbContructor::PaalHelper
 
       return hebrew_verb
     end
+
+    if root[0] == "צ" && root[1] == "מ" && root[2] == "א"
+      hebrew_verb[:mas_sing_pres] = "צָמֵא"
+      hebrew_verb[:fem_sing_pres] = "צְמֵאָה"
+      hebrew_verb[:mas_plu_pres]  = "צְמֵאִים"
+      hebrew_verb[:fem_plu_pres]  = "צְמֵאוֹת"
+      hebrew_verb[:past_base]     = "צָמֵא"
+
+      return hebrew_verb
+    end
+
     if root[0] == "נ" && root[1] == "ת" && root[2] == "נ"
       hebrew_verb[:past_base]     = "נַתַן"
       return hebrew_verb
@@ -54,6 +65,7 @@ module VerbContructor::PaalHelper
       if root[2] == "א"
         hebrew_verb[:fem_sing_pres] = "#{root[0]}ו#{root[1]}ֵ#{root[2]}ת" if root[1] != "ו"
         hebrew_verb[:past_base]     = "#{root[0]}ָ#{root[2]}" if root[1] == "ו"
+        hebrew_verb[:past_base]     = "שָנֵא" if root[0] == "ש" && root[1] == "נ"
       elsif root[2] == "ה"
         if root[1] == "ו"
           hebrew_verb[:mas_sing_pres] = "#{root[0]}ו#{root[1]}ֶה"
@@ -136,11 +148,20 @@ module VerbContructor::PaalHelper
       hebrew_verb[:you_mas_sing_past] = _past_base + "תָ"
       hebrew_verb[:you_fem_sing_past] = _past_base + "תְ"
       hebrew_verb[:we_past]           = _past_base + "נוּ"
-      hebrew_verb[:you_mas_plu_past]  = _past_base + "תֵם"
-      hebrew_verb[:you_fem_plu_past]  = _past_base + "תֵן"
       hebrew_verb[:he_past]           = _past_base
-      hebrew_verb[:she_past]          = _past_base + "ְאָה"
-      hebrew_verb[:they_past]         = _past_base + "ְְאו"
+      if root[0] == "צ" && root[1] == "מ"
+        hebrew_verb[:you_mas_plu_past]  = "צְמֵתֶם"
+        hebrew_verb[:you_fem_plu_past]  = "צְמֵתֶן"
+        hebrew_verb[:she_past]          = "צָמְאָה"
+        hebrew_verb[:they_past]         = "צָמְאוּ"
+      else
+        hebrew_verb[:you_mas_plu_past]  = _past_base + "תֶם"
+        hebrew_verb[:you_fem_plu_past]  = _past_base + "תֶן"
+        _past_base.slice! 3
+        _past_base.insert 3, "ְ"
+        hebrew_verb[:she_past]          = _past_base + "ָה"
+        hebrew_verb[:they_past]         = _past_base + "וּ"
+      end
 
       return hebrew_verb
     end
