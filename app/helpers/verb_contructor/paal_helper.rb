@@ -4,7 +4,7 @@ module VerbContructor::PaalHelper
   def present_tense(root)
     # DEFAULT VERB CONJUGATION
     hebrew_verb = Hash.new
-    hebrew_verb[:mas_sing_pres] = "#{root[0]}ו#{root[1]}ֵ#{root[2]}"
+    hebrew_verb[:mas_sing_pres] = root[2] == "ה" ? "#{root[0]}ו#{root[1]}ֶ#{root[2]}" : "#{root[0]}ו#{root[1]}ֵ#{root[2]}"
     hebrew_verb[:fem_sing_pres] = "#{root[0]}ו#{root[1]}ֶ#{root[2]}ֶת"
     hebrew_verb[:mas_plu_pres]  = "#{root[0]}ו#{root[1]}ְ#{root[2]}ִים"
     hebrew_verb[:fem_plu_pres]  = "#{root[0]}ו#{root[1]}ְ#{root[2]}ות"
@@ -344,6 +344,7 @@ module VerbContructor::PaalHelper
       hebrew_verb[:they_fut] = "יִ" + "#{root[0]}ְ#{root[1]}ְ#{root[2]}וּ"
 
     end
+
     ## IMPERATIVE
     @size_mas = hebrew_verb[:you_mas_sing_she_fut].size - 1
     @size_fem = hebrew_verb[:you_fem_sing_fut].size - 1
@@ -417,10 +418,15 @@ module VerbContructor::PaalHelper
     hebrew_verb
   end
 
-  def lamed_ha_poal_future_case_fix(conjugated_verb)
+  def lamed_ha_poal_future_case_fix(root, conjugated_verb)
+    if ["ה","ע","ח","א"].include?(root[1])
+      range_start = -2
+    else
+      range_start = -3
+    end
     %w(me_fut you_mas_sing_she_fut he_fut we_fut).each do |key|
       base_to_use = conjugated_verb[key.to_sym]
-      base_to_use.slice!(base_to_use[- 3..-1])
+      base_to_use.slice!(base_to_use[range_start..-1])
       conjugated_verb[key.to_sym] = conjugated_verb[key.to_sym]  + "ֶה"
     end
     base_to_use = conjugated_verb[:you_fem_sing_fut]
@@ -434,4 +440,3 @@ module VerbContructor::PaalHelper
   end
 
 end
-
