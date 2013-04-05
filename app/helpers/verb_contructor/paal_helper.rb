@@ -211,6 +211,7 @@ module VerbContructor::PaalHelper
     if ["ח", "ע", "ה"].include?(root[0])
       infinitive_start = root[0] == "ח" ? "לַ#{root[0]}ְ#{root[1]}וֹ" : "לַ#{root[0]}ֲ#{root[1]}וֹ"
       hebrew_verb[:infinitive] = infinitive_start + infinitive_end
+      hebrew_verb[:infinitive] = "לָלֶכֶת" if root[0] == "ה" && root[1] == "ל" && root[2] == "כ"
       return hebrew_verb
     end
 
@@ -274,7 +275,7 @@ module VerbContructor::PaalHelper
       end
     end
 
-    if ["ח", "ע", "ה"].include?(root[0])
+    if ["ח", "ע", "ה"].include?(root[0]) && (root[1] != "ל" && root[2] != "כ")
       future_base.slice! 1
       future_base.insert 1,"ֱ"
       hebrew_verb[:me_fut]               = "אֶ" + future_base
