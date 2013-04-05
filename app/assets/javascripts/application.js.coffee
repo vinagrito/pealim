@@ -7,6 +7,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery-1.9.0
+#= require jquery.cookie
 #= require jquery-ui-1.10.0.custom
 #= require bootstrap
 #= require_tree .
