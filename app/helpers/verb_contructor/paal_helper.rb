@@ -176,7 +176,7 @@ module VerbContructor::PaalHelper
       hebrew_verb[:you_mas_plu_past]  = _past_base + "ִיתֶם"
       hebrew_verb[:you_fem_plu_past]  = _past_base + "ִיתֶן"
       hebrew_verb[:he_past]           = past_base
-      if root[1] == "א"
+      if ["א","ע","ח","ה"].include? root[1]
         hebrew_verb[:she_past] = _past_base + "ֲתָה"
       else
         hebrew_verb[:she_past] = _past_base + "ְתָה"
