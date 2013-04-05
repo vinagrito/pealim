@@ -311,7 +311,7 @@ module VerbContructor::PaalHelper
     end
 
     if ["ו","י"].include?(root[1]) && root[2] != "ה"
-      hebrew_verb[:me_fut] = "אְַ" + future_base
+      hebrew_verb[:me_fut] = "אַ" + future_base
       hebrew_verb[:you_mas_sing_she_fut] = "תַ" + future_base
       hebrew_verb[:he_fut] = "יַ" + future_base
       hebrew_verb[:we_fut] = "נַ" + future_base
