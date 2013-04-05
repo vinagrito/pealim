@@ -18,7 +18,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'slim'
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -28,4 +28,3 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug'
 gem "debugger-pry", :require => "debugger/pry"
-
