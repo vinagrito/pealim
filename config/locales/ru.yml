@@ -27,4 +27,5 @@ ru:
     text:
       translate: "Перевести"
   verb:
+    new_verb: "Новый глагол"
     translation_missing: "Вы должны предоставить покрайне мере один перевод"
