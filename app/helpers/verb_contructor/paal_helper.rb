@@ -335,6 +335,15 @@ module VerbContructor::PaalHelper
       hebrew_verb[:you_fem_sing_fut] = "תִ"  + "#{root[0]}ְ" + "#{root[1]}ֲ#{root[2]}ִי"
       hebrew_verb[:you_plu_fut] = "תִ"  + "#{root[0]}ְ" + "#{root[1]}ֲ#{root[2]}וּ"
       hebrew_verb[:they_fut] = "יִ"  + "#{root[0]}ְ" + "#{root[1]}ֲ#{root[2]}וּ"
+    elsif ["ח", "ע"].include? root[2]
+      future_base.slice! future_base[-3..-1]
+      hebrew_verb[:me_fut] = "אֶ" + future_base + "ַ#{root[2]}"
+      hebrew_verb[:you_mas_sing_she_fut] = "תִ" + future_base + "ַ#{root[2]}"
+      hebrew_verb[:he_fut] = "יִ" + future_base + "ַ#{root[2]}"
+      hebrew_verb[:we_fut] = "נִ" + future_base + "ַ#{root[2]}"
+      hebrew_verb[:you_fem_sing_fut] = "תִ" + future_base + "ְ#{root[2]}ִי"
+      hebrew_verb[:you_plu_fut] = "תִ" + future_base + "ְ#{root[2]}וּ"
+      hebrew_verb[:they_fut] = "יִ" + future_base + "ְ#{root[2]}וּ"
     else
       hebrew_verb[:me_fut] = "אֶ" + future_base
       hebrew_verb[:you_mas_sing_she_fut] = "תִ" + future_base
