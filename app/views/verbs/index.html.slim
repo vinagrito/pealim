@@ -1,0 +1,21 @@
+div.navbar
+  div.nav-pills
+    = render "/shared/helper_link"
+    ul.nav
+      li = link_to t("comments.link"), comments_path
+    = render "shared/languages_bar"
+
+= render :partial => "shared/search_verb"
+
+div#fb-api.row
+  div.span2.offset4
+    iframe.fb-like-btn src="https://www.facebook.com/plugins/like.php?href=http://lit-ocean-7187.herokuapp.com/games" scrolling="no" frameborder="0" style="border:none; width:450px; height:80px"
+
+div#paypal-api.row-fluid
+  div.span2.offset
+    form action="https://www.paypal.com/cgi-bin/webscr" method="post"
+    input type="hidden" name="cmd" value="_s-xclick"
+
+    = hidden_field_tag :encrypted, YAML.load_file("config/settings/paypal.yml")[:production]["ecrypted_key"]
+    input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"
+    img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"
