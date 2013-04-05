@@ -70,10 +70,11 @@ module VerbContructor::PaalHelper
         if root[1] == "ו"
           hebrew_verb[:mas_sing_pres] = "#{root[0]}ו#{root[1]}ֶה"
           hebrew_verb[:fem_plu_pres]  = "#{root[0]}וות"
+        else
+          hebrew_verb[:fem_plu_pres]  = "#{root[0]}ו#{root[1]}ות"
         end
         hebrew_verb[:fem_sing_pres] = "#{root[0]}ו#{root[1]}ָה"
         hebrew_verb[:mas_plu_pres]  = "#{root[0]}ו#{root[1]}ִים"
-        hebrew_verb[:fem_plu_pres]  = "#{root[0]}ו#{root[1]}ות"
       end
     end
 
@@ -129,7 +130,7 @@ module VerbContructor::PaalHelper
 
     _past_base = past_base.clone
 
-    if ["ו","י"].include?(root[1])
+    if ["ו","י"].include?(root[1]) && root[2] != "ה"
       hebrew_verb[:me_past]           = _past_base + "תִי"
       hebrew_verb[:you_mas_sing_past] = _past_base + "תָ"
       hebrew_verb[:you_fem_sing_past] = _past_base + "תְ"
@@ -236,7 +237,7 @@ module VerbContructor::PaalHelper
       return hebrew_verb
     end
 
-    if ["ו", "י"].include?(root[1])
+    if ["ו", "י"].include?(root[1]) && root[2] != "ה"
       hebrew_verb[:infinitive] = "לָ#{root[0]}#{root[1]}#{root[2]}"
       return hebrew_verb
     end
@@ -309,7 +310,7 @@ module VerbContructor::PaalHelper
       return hebrew_verb
     end
 
-    if ["ו","י"].include?(root[1])
+    if ["ו","י"].include?(root[1]) && root[2] != "ה"
       hebrew_verb[:me_fut] = "אְַ" + future_base
       hebrew_verb[:you_mas_sing_she_fut] = "תַ" + future_base
       hebrew_verb[:he_fut] = "יַ" + future_base
