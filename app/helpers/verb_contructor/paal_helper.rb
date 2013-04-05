@@ -363,25 +363,26 @@ module VerbContructor::PaalHelper
     hebrew_verb
   end
 
-  def config_final_letters(hebrew_verb)
+  def config_final_letters(root_last, conjugated_verb)
     # FINAL LETTERS CONFIG
-    hebrew_verb.each do |key,value|
-      #if ["past_base".to_sym, "root".to_sym].include?(key)
-        case hebrew_verb[key][hebrew_verb[key].size - 1]
-          when "כ"
-            hebrew_verb[key][hebrew_verb[key].size - 1] = "ך"
-          when "מ"
-            hebrew_verb[key][hebrew_verb[key].size - 1] = "ם"
-          when "נִ"
-            hebrew_verb[key][hebrew_verb[key].size - 1] = "ן"
-          when "פ"
-            hebrew_verb[key][hebrew_verb[key].size - 1] = "ף"
-          when "צ"
-            hebrew_verb[key][hebrew_verb[key].size - 1] = "ץ"
-        end
-      #end
+    case root_last
+      when "כ"
+        last_letter = "ך"
+      when "מ"
+        last_letter = "ם"
+      when "נִ"
+        last_letter = "ן"
+      when "פ"
+        last_letter = "ף"
+      when "צ"
+        last_letter = "ץ"
     end
-    hebrew_verb
+
+    %w(mas_sing_pres infinitive he_past me_fut you_mas_sing_she_fut he_fut we_fut).each do |person|
+      conjugated_verb[person.to_sym][-1..-1] = last_letter
+    end
+
+    conjugated_verb
   end
 
   def pei_ha_poal_alef_future_case(root)

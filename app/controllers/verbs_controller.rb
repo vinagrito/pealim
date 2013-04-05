@@ -57,6 +57,7 @@ class VerbsController < ApplicationController
         hebrew_verb.merge!(future_tense(root, hebrew_verb[:infinitive]))
       # FIXES VERB WITH LAST ROOT COMPONENT -> ה
         hebrew_verb = lamed_ha_poal_future_case_fix(root, hebrew_verb) if root[2] == "ה"
+        hebrew_verb = config_final_letters(root.last, hebrew_verb) if %w(כ מ נ פ צ).include? root.last
       when '2' # *PIEL*
       when '3' # *HITPAEL*
     end
