@@ -20,3 +20,7 @@ $ ->
   $(".submit.btn-success").on "click", ->
     if $(".verb-fourth-root").is(":visible")
       fourthRootPresence.val("")
+
+  if $.cookie("index visited") is undefined
+    $("#help-link a").click()
+    $.cookie("index visited", true)
