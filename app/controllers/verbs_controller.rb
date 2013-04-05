@@ -15,7 +15,7 @@ class VerbsController < ApplicationController
   end
 
   def show
-    @hebrew_verb = HebrewVerb.find_by_id(params[:verb][:id])
+    @hebrew_verb ||= HebrewVerb.find_by_id(params[:verb][:id])
   end
 
   def new
@@ -61,8 +61,8 @@ class VerbsController < ApplicationController
       when '3' # *HITPAEL*
     end
 
-    @v = HebrewVerb.new(hebrew_verb)
-
+    @hebrew_verb = HebrewVerb.new(hebrew_verb)
+    render :show
     #@past_base = hebrew_verb[:past_base]
     #hebrew_verb.delete(:past_base)
 
