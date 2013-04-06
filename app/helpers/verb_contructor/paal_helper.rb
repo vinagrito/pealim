@@ -87,26 +87,9 @@ module VerbContructor::PaalHelper
       end
     end
 
-
-
     if hebrew_verb[:mas_sing_pres][hebrew_verb[:mas_sing_pres].length - 1] == "נ"
       hebrew_verb[:mas_sing_pres][hebrew_verb[:mas_sing_pres].length - 1] = "ן"
     end
-
-    # hebrew_verb.each do |key,value|
-    #   case hebrew_verb[key][hebrew_verb[key].size - 1]
-    #     when "כ"
-    #       hebrew_verb[key][hebrew_verb[key].size - 1] = "ך"
-    #     when "מ"
-    #       hebrew_verb[key][hebrew_verb[key].size - 1] = "ם"
-    #     when "נִ"
-    #       hebrew_verb[key][hebrew_verb[key].size - 1] = "ן"
-    #     when "פ"
-    #       hebrew_verb[key][hebrew_verb[key].size - 1] = "ף"
-    #     when "צ"
-    #       hebrew_verb[key][hebrew_verb[key].size - 1] = "ץ"
-    #   end
-    # end
 
     hebrew_verb
   end

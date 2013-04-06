@@ -8,6 +8,7 @@ $ ->
     else
       fourthRootUi.fadeOut()
 
+  $(".selectpicker").selectpicker()
   $("#hebrew_verb_building_id").on "change", ->
     selectedOption = "option[value='#{$(@).val()}']"
     selectedOptionText = $(@).find(selectedOption).text()

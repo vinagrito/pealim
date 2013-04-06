@@ -1,6 +1,6 @@
-// Place all the styles related to the verbs controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* Place all the styles related to the verbs controller here.
+ They will automatically be included in application.css.
+ You can use Sass (SCSS) here: http://sass-lang.com/*/
 
 body {
   font-family: Georgia, Serif;
@@ -22,7 +22,10 @@ UL.helper-link {
   height: 20px;
 }
 
-/*#helperModal { margin-top: 1px; }*/
+#helperModal {
+  width: 50%;
+  line-height: 1.3;
+}
 
 #main_page_inner_container {
   height: auto;
@@ -103,6 +106,28 @@ DIV.section               {
   margin-bottom: 10px;
 }
 
+.bootstrap-select.btn-group {
+  &.pull-right {
+    float: right;
+  }
+  &.letter {
+    margin-left: 5px;
+  }
+  ul.dropdown-menu {
+    max-height: 150px;
+    /*li {
+      height: 20px;
+      a {
+        line-height: 0.5;
+      }
+    }*/
+  }
+}
+
+SPAN.letter-space {
+  line-height: 2;
+  width: 1px;
+}
 .verb-fourth-root { display: none; }
 
 SPAN.small-top-btn-delete {

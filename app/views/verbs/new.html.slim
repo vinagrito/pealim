@@ -12,21 +12,22 @@ div#new_verb_form.row.span12
       p.lead.span2.pull-right
         b שורש
         div
-          =heb_verb.select :root_1, options_from_collection_for_select(@letters, :id, :name), {}, :class => "span1 pull-right btn bnt-small"
+          =heb_verb.select :root_1, options_from_collection_for_select(@letters, :id, :name), {}, :class => "span1 pull-right selectpicker letter"
 
-          =heb_verb.select :root_2, options_from_collection_for_select(@letters, :id, :name), {}, :class => "span1 pull-right btn bnt-small"
-
-          =heb_verb.select :root_3, options_from_collection_for_select(@letters, :id, :name), {}, :class => "span1 pull-right btn btn-small"
+          span.pull-right.letter-space .
+          =heb_verb.select :root_2, options_from_collection_for_select(@letters, :id, :name), {}, :class => "span1 pull-right selectpicker letter"
+          span.pull-right.letter-space .
+          =heb_verb.select :root_3, options_from_collection_for_select(@letters, :id, :name), {}, :class => "span1 pull-right selectpicker letter"
 
           div.verb-fourth-root
             = hidden_field_tag :hidden_root_4, value: "delete"
-            = heb_verb.select :root_4, options_from_collection_for_select(@letters, :id, :name), {}, :class => "span1 pull-right btn btn-small"
+            = heb_verb.select :root_4, options_from_collection_for_select(@letters, :id, :name), {}, :class => "span1 pull-right btn btn-small letter"
             span.small-top-btn-delete.pull-right
 
     div.row
       p.lead.span2.pull-right
         b בניין
-      =heb_verb.select :building_id, options_from_collection_for_select(@buildings, :id ,:name), {}, :class => "span2 pull-right btn btn-large"
+      =heb_verb.select :building_id, options_from_collection_for_select(@buildings, :id ,:name), {}, :class => "span2 pull-right selectpicker"
 
     div.row
       p.lead.span2.pull-right

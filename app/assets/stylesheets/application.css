@@ -5,5 +5,6 @@
  *= require bootstrap
  *= require_self
  *= require redmond/jquery-ui-1.10.0.custom
+ *= require bootstrap-select
  *= require_tree .
 */
