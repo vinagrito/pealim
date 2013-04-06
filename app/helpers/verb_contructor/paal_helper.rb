@@ -355,23 +355,18 @@ module VerbContructor::PaalHelper
 
     end
 
-    ## IMPERATIVE
-    @size_mas = hebrew_verb[:you_mas_sing_she_fut].size - 1
-    @size_fem = hebrew_verb[:you_fem_sing_fut].size - 1
-    @size_plu = hebrew_verb[:you_plu_fut].size - 1
-
-    if !["ו","י"].include?(root[1])
-      hebrew_verb[:mas_imp] = hebrew_verb[:you_mas_sing_she_fut][2..@size_mas]
-
-    else
-      hebrew_verb[:mas_imp] = hebrew_verb[:you_mas_sing_she_fut][2..@size_mas]
-      hebrew_verb[:fem_imp] = hebrew_verb[:you_fem_sing_fut][2..@size_fem]
-      hebrew_verb[:plural_imp] = hebrew_verb[:you_plu_fut][2..@size_plu]
-    end
-
     hebrew_verb.delete(:past_base)
     hebrew_verb
   end
+
+  def imperative(conjugated_verb)
+    hebrew_verb = Hash.new
+    hebrew_verb[:mas_imp]    = conjugated_verb[:you_mas_sing_she_fut][2..-1]
+    hebrew_verb[:fem_imp]    = conjugated_verb[:you_fem_sing_fut][2..-1]
+    hebrew_verb[:plural_imp] = conjugated_verb[:you_plu_fut][2..-1]
+    hebrew_verb
+  end
+
 
   def config_final_letters(root_last, conjugated_verb)
     # FINAL LETTERS CONFIG

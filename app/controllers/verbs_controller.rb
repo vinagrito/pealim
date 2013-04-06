@@ -48,15 +48,18 @@ class VerbsController < ApplicationController
     case hebrew_verb[:building_id]
       when "1" # *PAAL*
       # PRESENT TENSE
-        hebrew_verb.merge!(present_tense(root))
+        hebrew_verb.merge! present_tense(root)
       # PAST TENSE
-        hebrew_verb.merge!(past_tense(root, hebrew_verb[:past_base]))
+        hebrew_verb.merge! past_tense(root, hebrew_verb[:past_base])
       # INFINITIVE AND FUTURE BASE
-        hebrew_verb.merge!(infinitive(root))
+        hebrew_verb.merge! infinitive(root)
       # FUTURE TENSE
-        hebrew_verb.merge!(future_tense(root, hebrew_verb[:infinitive]))
+        hebrew_verb.merge! future_tense(root, hebrew_verb[:infinitive])
       # FIXES VERB WITH LAST ROOT COMPONENT -> ה
         hebrew_verb = lamed_ha_poal_future_case_fix(root, hebrew_verb) if root[2] == "ה"
+      # IMPERATIVE
+        hebrew_verb.merge! imperative(hebrew_verb)
+      # SETS ENDING CONSONANTS
         hebrew_verb = config_final_letters(root.last, hebrew_verb) if %w(כ מ נ פ צ).include? root.last
       when '2' # *PIEL*
       when '3' # *HITPAEL*
