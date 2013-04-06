@@ -1,0 +1,43 @@
+div#NewVerbModal.modal.hide.fade role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  div.new-verb-container
+    div.modal-header
+      h3#myModalLabel = t("verb.new_verb")
+
+    div.modal-body
+
+      div#new_verb_form.row
+        =form_for @heb_verb, :url => {:action => 'create'}, :remote => true do |heb_verb|
+          div.row
+            p.lead.span2.pull-right
+              b שורש
+              div
+                =select_tag :root_1, options_from_collection_for_select(@letters, :id, :name), :class => "span1 pull-right selectpicker letter"
+
+                span.pull-right.letter-space .
+                =select_tag :root_2, options_from_collection_for_select(@letters, :id, :name), :class => "span1 pull-right selectpicker letter"
+                span.pull-right.letter-space .
+                =select_tag :root_3, options_from_collection_for_select(@letters, :id, :name), :class => "span1 pull-right selectpicker letter"
+
+                div.verb-fourth-root
+                  =hidden_field_tag :hidden_root_4, value: "delete"
+                  =select_tag :root_4, options_from_collection_for_select(@letters, :id, :name), :class => "span1 pull-right btn btn-small letter"
+                  span.small-top-btn-delete.pull-right
+
+          div.row
+            p.lead.span2.pull-right
+              b בניין
+            =heb_verb.select :building_id, options_from_collection_for_select(@buildings, :id ,:name), {}, :class => "span2 pull-right selectpicker"
+
+          div.row
+            p.lead.span2.pull-right
+              b תירגום
+            p.span2.pull-right =text_field_tag :english,"",:placeholder => "English",:class => "pull-right"
+          div.row
+            p.lead.span2.pull-right
+            p.span2.pull-right =text_field_tag :russian,"",:placeholder => "Русский",:class => "pull-right"
+          div.row
+            p.lead.span2.pull-right
+            p.span2.pull-right =text_field_tag :spanish,"",:placeholder => "Español",:class => "pull-right"
+
+    div.modal-footer
+      div.offset2 =submit_tag t("button.submit"), :class => "span2 pull-right btn btn-success submit"

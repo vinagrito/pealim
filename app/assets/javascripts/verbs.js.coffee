@@ -22,6 +22,6 @@ $ ->
     if $(".verb-fourth-root").is(":visible")
       fourthRootPresence.val("")
 
-  if $.cookie("index visited") is undefined
+  if $.cookie("index visited") is null
     $("#help-link a").click()
     $.cookie("index visited", true)
