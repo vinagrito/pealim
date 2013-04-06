@@ -364,6 +364,8 @@ module VerbContructor::PaalHelper
     hebrew_verb[:mas_imp]    = conjugated_verb[:you_mas_sing_she_fut][2..-1]
     hebrew_verb[:fem_imp]    = conjugated_verb[:you_fem_sing_fut][2..-1]
     hebrew_verb[:plural_imp] = conjugated_verb[:you_plu_fut][2..-1]
+    # FIXES ה''ל SOUND
+    hebrew_verb[:mas_imp][-2..-2] = "ֵ" if hebrew_verb[:mas_imp][-2..-2] == "ֶ"
     hebrew_verb
   end
 
