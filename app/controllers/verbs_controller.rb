@@ -4,6 +4,7 @@ class VerbsController < ApplicationController
 
   before_filter :get_language
   before_filter :set_root, only: :create
+  before_filter :get_values_for_create
 
   def index
     @verbs = Verb.all
@@ -26,9 +27,9 @@ class VerbsController < ApplicationController
 
   def create
 
-    verb = Verb.new(english: params[:hebrew_verb][:english],
-                    russian: params[:hebrew_verb][:russian],
-                    spanish: params[:hebrew_verb][:spanish])
+    verb = Verb.new(english: params[:english],
+                    russian: params[:russian],
+                    spanish: params[:spanish])
 
     if verb.valid?
       verb.save
@@ -40,9 +41,9 @@ class VerbsController < ApplicationController
     hebrew_verb = {verb_id: verb.id, building_id: params[:hebrew_verb][:building_id]}
 
     root = [
-             Letter.find(params[:hebrew_verb][:root_1]).name,
-             Letter.find(params[:hebrew_verb][:root_2]).name,
-             Letter.find(params[:hebrew_verb][:root_3]).name
+             Letter.find(params[:root_1]).name,
+             Letter.find(params[:root_2]).name,
+             Letter.find(params[:root_3]).name
             ]
     hebrew_verb[:root] = root[0] + "." + root[1] + "." + root[2]
     case hebrew_verb[:building_id]
@@ -102,5 +103,10 @@ class VerbsController < ApplicationController
     end
   end
 
+  def get_values_for_create
+    @letters = Letter.where("num_value <= ? ", 400) # We don't query for ending letters
+    @buildings = *Building.first#Building.get_allowed_building_types
+    @heb_verb = HebrewVerb.new
+  end
 
 end

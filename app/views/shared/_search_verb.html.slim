@@ -11,7 +11,7 @@ div#add_missing_verb.span12.offset3
     a.btn.btn-link href="#NewVerbModal" data-toggle="modal" =t("intro.add_verb_action")
 
 
--@letters = Letter.where("num_value <= ? ", 400)
--@buildings = *Building.first
--@heb_verb = HebrewVerb.new
+/ -@letters = Letter.where("num_value <= ? ", 400)
+/ -@buildings = *Building.first
+/ -@heb_verb = HebrewVerb.new
 = render :partial => "new"

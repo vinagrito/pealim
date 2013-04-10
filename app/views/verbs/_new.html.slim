@@ -1,12 +1,12 @@
 div#NewVerbModal.modal.hide.fade role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
   div.new-verb-container
     div.modal-header
-      h3#myModalLabel = t("verb.new_verb")
+      h3#myModalLabel = t("intro.help")
 
     div.modal-body
 
       div#new_verb_form.row
-        =form_for @heb_verb, :url => {:action => 'create'}, :remote => true do |heb_verb|
+        =form_for @heb_verb, :url => {:action => 'create'} do |heb_verb|
           div.row
             p.lead.span2.pull-right
               b שורש
@@ -39,5 +39,5 @@ div#NewVerbModal.modal.hide.fade role="dialog" aria-labelledby="myModalLabel" ar
             p.lead.span2.pull-right
             p.span2.pull-right =text_field_tag :spanish,"",:placeholder => "Español",:class => "pull-right"
 
-    div.modal-footer
-      div.offset2 =submit_tag t("button.submit"), :class => "span2 pull-right btn btn-success submit"
+          div.row
+            div.offset2 =submit_tag t("button.submit"), :class => "span2 pull-right btn btn-success submit"
