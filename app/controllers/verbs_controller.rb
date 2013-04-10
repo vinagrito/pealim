@@ -4,7 +4,7 @@ class VerbsController < ApplicationController
 
   before_filter :get_language
   before_filter :set_root, only: :create
-  before_filter :get_values_for_create
+  before_filter :get_values_for_create, only: [:index, :show, :preview]
 
   def index
     @verbs = Verb.all
@@ -20,13 +20,12 @@ class VerbsController < ApplicationController
   end
 
   def new
-    @letters = Letter.where("num_value <= ? ", 400) # We don't query for ending letters
-    @buildings = *Building.first#Building.get_allowed_building_types
-    @heb_verb = HebrewVerb.new
+    # @letters = Letter.where("num_value <= ? ", 400) # We don't query for ending letters
+    # @buildings = Building.get_allowed_building_types
+    # @heb_verb = HebrewVerb.new
   end
 
-  def create
-
+  def preview
     verb = Verb.new(english: params[:english],
                     russian: params[:russian],
                     spanish: params[:spanish])
@@ -35,7 +34,7 @@ class VerbsController < ApplicationController
       verb.save
     else
       flash[:errors] = verb.errors.full_messages
-      render 'new'
+      render "index"
     end
 
     hebrew_verb = {verb_id: verb.id, building_id: params[:hebrew_verb][:building_id]}
@@ -62,12 +61,12 @@ class VerbsController < ApplicationController
         hebrew_verb.merge! imperative(hebrew_verb)
       # SETS ENDING CONSONANTS
         hebrew_verb = config_final_letters(root.last, hebrew_verb) if %w(כ מ נ פ צ).include? root.last
-      when '2' # *PIEL*
-      when '3' # *HITPAEL*
+      # when '2' # *PIEL*
+      # when '3' # *HITPAEL*
     end
 
     @hebrew_verb = HebrewVerb.new(hebrew_verb)
-    render :show
+
     #@past_base = hebrew_verb[:past_base]
     #hebrew_verb.delete(:past_base)
 
@@ -83,6 +82,9 @@ class VerbsController < ApplicationController
 
   end
 
+  def create
+    binding.pry
+  end
 
   private
 
@@ -106,7 +108,7 @@ class VerbsController < ApplicationController
   def get_values_for_create
     @letters = Letter.where("num_value <= ? ", 400) # We don't query for ending letters
     @buildings = *Building.first#Building.get_allowed_building_types
-    @heb_verb = HebrewVerb.new
+    @new_heb_verb = HebrewVerb.new
   end
 
 end

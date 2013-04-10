@@ -1,5 +1,5 @@
 -@page_title = @hebrew_verb.verb.send(@language) if @hebrew_verb
-div.container.verb-show-action
+div.container.verb-preview-action
   div.navbar
     div.nav-pills
       = render "/shared/helper_link"
@@ -8,8 +8,5 @@ div.container.verb-show-action
       = render "shared/languages_bar"
 
   = render :partial =>  "shared/search_verb"
-  - if @hebrew_verb.nil?
-  / Put this in the locales
-    p No verb was found by the name specified
-  - else
-    = render :partial => "form"
+
+  = render :partial => "form"

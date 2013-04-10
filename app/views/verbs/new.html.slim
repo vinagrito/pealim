@@ -1,8 +1,17 @@
--@page_title = t("verb.new_verb")
+/ -@page_title = t("verb.new_verb")
 
-div.navbar
-  div.nav-pills
-    =render "/shared/helper_link"
-    ul.nav.pull-right
-      li = link_to t("navigation.back"), verbs_path
+/ div.navbar
+/   div.nav-pills
+/     =render "/shared/helper_link"
+/     ul.nav.pull-right
+/       li = link_to t("navigation.back"), verbs_path
+
+<p><%#= params %></p>
+
+<%#= @v.attributes.each do |attribute| %>
+  <p style="font-size:24px;"><%#= attribute %></p>
+<%# end %>
+<p><%#= @hebrew_verb.attributes %></p>
+
+<h1><%#= @hebrew_verb[:past_base][0..2] %></h1>
 

@@ -71,7 +71,7 @@ UL.helper-link {
 }
 
 /*VERB SHOW ACTION */
-DIV.verb-show-action {
+div.verb-show-action, div.verb-preview-action {
   #search-section {
     margin-top: 0px;
   }
@@ -82,7 +82,12 @@ DIV.verb-show-action {
   margin-top: 10px;
   font-size: 20px;
 
-  TABLE.table {
+  #confirm-verb {
+    margin-right: 10px;
+    margin-bottom: 5px;
+  }
+
+  table.table {
     font-size: 24px;
     letter-spacing: 1px;
     thead th, tbody td {
