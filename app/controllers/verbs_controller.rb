@@ -19,12 +19,6 @@ class VerbsController < ApplicationController
     @hebrew_verb ||= HebrewVerb.find_by_id(params[:verb][:id])
   end
 
-  def new
-    # @letters = Letter.where("num_value <= ? ", 400) # We don't query for ending letters
-    # @buildings = Building.get_allowed_building_types
-    # @heb_verb = HebrewVerb.new
-  end
-
   def preview
     verb = Verb.new(english: params[:english],
                     russian: params[:russian],
