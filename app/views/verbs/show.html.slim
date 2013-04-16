@@ -12,4 +12,10 @@ div.container.verb-show-action
   / Put this in the locales
     p No verb was found by the name specified
   - else
-    = render :partial => "form"
+    =binding.pry
+    - if flash[:errors]
+      p.existing-verb
+       / ="#{flash[:errors][0]}, did you mean " link_to "#{@hebrew_verb.verb.send(@language)}", verb_path(@hebrew_verb.verb_id)
+       | #{flash[:errors][0]}, did you mean #{link_to @hebrew_verb.verb.send(@language), verb_path(@hebrew_verb.verb_id)}
+    - else
+      = render :partial => "form"

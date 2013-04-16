@@ -14,7 +14,16 @@ class VerbsController < ApplicationController
   end
 
   def show
-    @hebrew_verb ||= HebrewVerb.find_by_id(params[:verb][:id])
+    if params[:id]
+      verb = Verb.find(params[:id])
+      verb.check_for_existing
+      binding.pry
+      @hebrew_verb = HebrewVerb.find_by_root(verb.hebrew_verb.root)
+      flash[:errors] = verb.errors.full_messages
+      verb.destroy unless verb.errors.empty?
+    else
+      @hebrew_verb = HebrewVerb.find_by_id(params[:verb][:id])
+    end
   end
 
   def preview
@@ -29,10 +38,10 @@ class VerbsController < ApplicationController
 
     hebrew_verb = {verb_id: verb.id, building_id: params[:hebrew_verb][:building_id]}
     hebrew_verb.merge! Conjugations::Paal.conjugate_paal(params)
-    binding.pry
 
-    @hebrew_verb = HebrewVerb.new(hebrew_verb)
+    @hebrew_verb = HebrewVerb.create(hebrew_verb)
 
+    render :show
     #@past_base = hebrew_verb[:past_base]
     #hebrew_verb.delete(:past_base)
 
@@ -46,12 +55,6 @@ class VerbsController < ApplicationController
     #   render 'new'
     # end
 
-  end
-
-  def create
-    binding.pry
-    # @verb = Verb.find(params[:verb][:id])
-    # @verb.update_attribute(:confirmed, true)
   end
 
   private

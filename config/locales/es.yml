@@ -29,3 +29,4 @@ es:
   verb:
     new_verb: "Verbo nuevo"
     translation_missing: "Debe proveer por lo menos una traducción"
+    already_exists: "Ya existe un verbo con esa raiz"

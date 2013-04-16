@@ -29,3 +29,4 @@ en:
   verb:
     new_verb: "New verb"
     translation_missing: "You must provide at least one translation"
+    already_exists: "Already exists a verb with such root"

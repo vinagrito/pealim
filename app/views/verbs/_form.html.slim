@@ -2,8 +2,8 @@ div#verb-infinitive.row.section
     h3.span11
         | (#{@hebrew_verb.root}) #{@hebrew_verb.infinitive} - #{@hebrew_verb.verb.send(@language)}
         -if params[:action] == "preview"
-          =form_for @hebrew_verb, url: { controller: "verbs", action: "create" } do |verb|
-            =hidden_field_tag "verb", @hebrew_verb.verb_id
+          =form_for :hebrew_verb, url: { controller: "verbs", action: "show" }, method: :post do |verb|
+            =hidden_field_tag :id, @hebrew_verb.verb_id
             =submit_tag "Confirm", class: "btn small-btn btn-info btn-mini", action: "create"
 
     div.row
