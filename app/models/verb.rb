@@ -4,6 +4,10 @@ class Verb < ActiveRecord::Base
 
   #validate :has_translation
 
+  def self.new_preview_instance(params)
+    self.new(english: params[:english],russian: params[:russian], spanish: params[:spanish], confirmed: false)
+  end
+
   private
 
   def has_translation

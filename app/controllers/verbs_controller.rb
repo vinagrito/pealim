@@ -1,9 +1,7 @@
-# encoding: UTF-8
 class VerbsController < ApplicationController
-  include VerbContructor::PaalHelper
 
   before_filter :get_language
-  before_filter :set_root, only: :create
+  before_filter :set_root, only: :preview
   before_filter :get_values_for_create, only: [:index, :show, :preview]
 
   def index
@@ -11,7 +9,7 @@ class VerbsController < ApplicationController
 
     respond_to do |format|
         format.html
-        format.json { render :json => @verbs.to_json }
+        format.json { render json: @verbs.to_json }
     end
   end
 
@@ -20,9 +18,7 @@ class VerbsController < ApplicationController
   end
 
   def preview
-    verb = Verb.new(english: params[:english],
-                    russian: params[:russian],
-                    spanish: params[:spanish])
+    verb = Verb.new_preview_instance(params)
 
     if verb.valid?
       verb.save
@@ -32,32 +28,8 @@ class VerbsController < ApplicationController
     end
 
     hebrew_verb = {verb_id: verb.id, building_id: params[:hebrew_verb][:building_id]}
-
-    root = [
-             Letter.find(params[:root_1]).name,
-             Letter.find(params[:root_2]).name,
-             Letter.find(params[:root_3]).name
-            ]
-    hebrew_verb[:root] = root[0] + "." + root[1] + "." + root[2]
-    case hebrew_verb[:building_id]
-      when "1" # *PAAL*
-      # PRESENT TENSE
-        hebrew_verb.merge! present_tense(root)
-      # PAST TENSE
-        hebrew_verb.merge! past_tense(root, hebrew_verb[:past_base])
-      # INFINITIVE AND FUTURE BASE
-        hebrew_verb.merge! infinitive(root)
-      # FUTURE TENSE
-        hebrew_verb.merge! future_tense(root, hebrew_verb[:infinitive])
-      # FIXES VERB WITH LAST ROOT COMPONENT -> ה
-        hebrew_verb = lamed_ha_poal_future_case_fix(root, hebrew_verb) if root[2] == "ה"
-      # IMPERATIVE
-        hebrew_verb.merge! imperative(hebrew_verb)
-      # SETS ENDING CONSONANTS
-        hebrew_verb = config_final_letters(root.last, hebrew_verb) if %w(כ מ נ פ צ).include? root.last
-      # when '2' # *PIEL*
-      # when '3' # *HITPAEL*
-    end
+    hebrew_verb.merge! Conjugations::Paal.conjugate_paal(params)
+    binding.pry
 
     @hebrew_verb = HebrewVerb.new(hebrew_verb)
 
@@ -78,6 +50,8 @@ class VerbsController < ApplicationController
 
   def create
     binding.pry
+    # @verb = Verb.find(params[:verb][:id])
+    # @verb.update_attribute(:confirmed, true)
   end
 
   private
