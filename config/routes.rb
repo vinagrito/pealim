@@ -2,11 +2,15 @@ Pealim::Application.routes.draw do
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
+  match "application/set_session_locale" => "application#set_session_locale"
 
-  match "application/set_user_lang" => "application#set_user_lang"
-
-  resources :verbs
-  resources :comments, :only => [:index, :show, :new]
+  resources :verbs do
+    member do
+      post "preview"
+    end
+  end
+  resources :verb_searches, only: [:show, :new, :create]
+  resources :comments, only: [:index, :show, :new]
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
