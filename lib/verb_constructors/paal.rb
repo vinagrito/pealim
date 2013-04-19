@@ -245,7 +245,7 @@ module VerbConstructors
       hebrew_verb = Hash.new
       verb_exceptions = ["לִלְמוֹד","לִגְדוֹל","לִלְבוֹש"]
       future_base = infinitive[2..-1]
-      future_base = infinitive[4..-1] if root[0] == "נ"#.slice! future_base[0..1] if root[0] == "נ"
+      future_base = infinitive[4..-1] if root[0] == "נ"
       youfem_youplural_they_fut_base = future_base.delete future_base[3..4]
 
       if verb_exceptions.include?(infinitive)
