@@ -1,6 +1,7 @@
 class Verb < ActiveRecord::Base
 
-  has_one :hebrew_verb
+  has_one :hebrew_verb, dependent: :destroy
+  has_many :searches, class_name: "VerbSearch"
 
   #validate :has_translation
 
@@ -8,12 +9,19 @@ class Verb < ActiveRecord::Base
     self.new(english: params[:english],russian: params[:russian], spanish: params[:spanish], confirmed: false)
   end
 
-  def check_for_existing
-    binding.pry
-    root = hebrew_verb.root if hebrew_verb
+  def self.check_for_existing(added_id)
+    exists = false
+    msg = "verb.verb_added_thx"
+    recent_verb = find_by_id(added_id)
+    root = recent_verb && recent_verb.hebrew_verb ? recent_verb.hebrew_verb.root : ""
     if HebrewVerb.all.map(&:root).include? root
-       errors[:base] << I18n.t("verb.already_exists")
+      verb = HebrewVerb.where(root: recent_verb.hebrew_verb.root).first.verb
+      recent_verb.destroy
+      exists = true
+      msg = I18n.t("verb.already_exists")
     end
+    return_value = exists ? [verb, exists, msg] : [recent_verb, exists, msg]
+    return return_value
   end
 
   private
