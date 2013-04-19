@@ -109,6 +109,11 @@ div.verb-show-action, div.verb-preview-action {
     }
   }
 }
+// unscrollable body while modal open
+body.modal-open {
+  overflow: hidden;
+}
+//
 // New verb modal
 .new-verb-container {
   direction: ltr;
@@ -120,6 +125,7 @@ div.verb-show-action, div.verb-preview-action {
     }
   }
 }
+//
 
 DIV.section               {
   border-radius: 15px;
