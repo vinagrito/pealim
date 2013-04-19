@@ -18,7 +18,7 @@ class VerbsController < ApplicationController
       verb, _exists, msg = Verb.check_for_existing(params[:id])
 
       if _exists
-        flash[:errors] = msg
+        flash[:error] = msg
       else
         flash[:notice] = msg
       end
