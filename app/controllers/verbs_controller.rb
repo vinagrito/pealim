@@ -24,7 +24,7 @@ class VerbsController < ApplicationController
       end
       @hebrew_verb = verb.hebrew_verb
     else
-      flash.delete(:errors)
+      flash.delete(:error)
       @hebrew_verb = HebrewVerb.find_by_id(params[:id])
     end
   end
