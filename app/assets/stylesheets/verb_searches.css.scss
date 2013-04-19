@@ -1,0 +1,27 @@
+// Place all the styles related to the VerbSearches controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.ui-autocomplete  {
+  max-height: 200px;
+  overflow-y: auto;
+  width: 200px;
+}
+
+#search-section {
+  direction: ltr;
+  margin-top: 150px;
+}
+
+#search-btn {
+  width: 150px;
+  height: 40px;
+  font-size: 22px;
+}
+
+#verb_name {
+  width: 500px;
+  height: 30px;
+  font-size: 22px;
+  line-height: 1.5em;
+}

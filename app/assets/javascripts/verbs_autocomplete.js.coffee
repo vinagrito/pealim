@@ -1,4 +1,5 @@
 $ ->
+  verbInputField = $("#verb_name")
   setAutocompleteList = (verbList)->
     $("#verb_name").autocomplete
         source: verbList
@@ -15,7 +16,7 @@ $ ->
       dataType: 'json'
     )
 
-  $("#verb_name").on "click", ->
+  verbInputField.on "click", ->
     verbsRequest = fetchVerbs()
     $.Deferred (verbsRequestDeferred) ->
       verbsRequest.done (verbs) ->
@@ -23,7 +24,9 @@ $ ->
         verbsNameList = verbs.map (verb) ->
           label: verb[modelColumn]
           value: verb.id
-          # verbsNameList.push
+
         verbsRequestDeferred.resolve(verbsNameList)
         setAutocompleteList(verbsNameList)
 
+  $("#search-btn").click ->
+    if verbInputField.val() is "" then return false
