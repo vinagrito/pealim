@@ -1,4 +1,4 @@
--@page_title = @hebrew_verb.verb.send(@language) if @hebrew_verb
+-@page_title = @hebrew_verb.verb.send(session_language) if @hebrew_verb
 div.container.verb-show-action
   div.navbar
     div.nav-pills
@@ -10,12 +10,10 @@ div.container.verb-show-action
   = render :partial =>  "shared/search_verb"
   - if @hebrew_verb.nil?
   / Put this in the locales
-    p No verb was found by the name specified
+    p = t("verb.missing")
   - else
-    =binding.pry
-    - if flash[:errors]
+    - if flash[:error]
       p.existing-verb
-       / ="#{flash[:errors][0]}, did you mean " link_to "#{@hebrew_verb.verb.send(@language)}", verb_path(@hebrew_verb.verb_id)
-       | #{flash[:errors][0]}, did you mean #{link_to @hebrew_verb.verb.send(@language), verb_path(@hebrew_verb.verb_id)}
+       | #{flash[:error]}, did you mean #{link_to @hebrew_verb.verb.send(session_language), verb_path(@hebrew_verb.verb_id)}
     - else
       = render :partial => "form"
