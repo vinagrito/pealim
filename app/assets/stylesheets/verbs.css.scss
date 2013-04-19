@@ -109,6 +109,17 @@ div.verb-show-action, div.verb-preview-action {
     }
   }
 }
+// New verb modal
+.new-verb-container {
+  direction: ltr;
+  .modal-footer {
+    height: 0px;
+    .submit-controls {
+      float: left;
+      margin: 0 190px 0;
+    }
+  }
+}
 
 DIV.section               {
   border-radius: 15px;
