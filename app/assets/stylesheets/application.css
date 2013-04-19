@@ -8,3 +8,7 @@
  *= require bootstrap-select
  *= require_tree .
 */
+
+body .container {
+  overflow-x: hidden;
+}
