@@ -4,21 +4,26 @@ $ ->
         source: verbList
         focus: (event, ui) ->
           $(@).val(ui.item.label)
-          $("#verb_id").val(ui.item.value)
+          $("#verb_search_verb_id").val(ui.item.value)
           event.preventDefault()
         select: (event, ui) ->
           event.preventDefault()
 
-  $("#verb_name").on "click", ->
+  fetchVerbs = ->
     $.ajax(
       url: "/verbs"
       dataType: 'json'
-    ).done (verbs) ->
-      verbsNameList = []
-      modelColumn = $("#current_locale").attr("content")
+    )
 
-      verbs.map (verb) ->
-        verbsNameList.push
+  $("#verb_name").on "click", ->
+    verbsRequest = fetchVerbs()
+    $.Deferred (verbsRequestDeferred) ->
+      verbsRequest.done (verbs) ->
+        modelColumn = $("#current_locale").attr("content")
+        verbsNameList = verbs.map (verb) ->
           label: verb[modelColumn]
           value: verb.id
-      setAutocompleteList(verbsNameList)
+          # verbsNameList.push
+        verbsRequestDeferred.resolve(verbsNameList)
+        setAutocompleteList(verbsNameList)
+
