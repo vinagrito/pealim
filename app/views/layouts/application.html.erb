@@ -10,7 +10,7 @@
   <meta property="og:image" content="<%= image_path('/assets/pealim-logo.png')%>" />
   <meta property="og:site_name" content="pealim" />
   <meta property="fb:admins" content="539654413" />
-  <meta id="current_locale" content=<%= get_locale_name(I18n.locale) %>>
+  <meta id="current_locale" content=<%= locale_to_language(session[:locale]) %>>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>

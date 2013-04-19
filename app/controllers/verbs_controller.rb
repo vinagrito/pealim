@@ -1,8 +1,8 @@
 class VerbsController < ApplicationController
-
-  before_filter :get_language
+  before_filter :session_language, only: [:show, :preview]
+  before_filter :set_search_instance
   before_filter :set_root, only: :preview
-  before_filter :get_values_for_create, only: [:index, :show, :preview]
+  before_filter :get_values_for_new_verb, only: [:index, :show, :preview]
 
   def index
     @verbs = Verb.all
@@ -14,15 +14,18 @@ class VerbsController < ApplicationController
   end
 
   def show
-    if params[:id]
-      verb = Verb.find(params[:id])
-      verb.check_for_existing
-      binding.pry
-      @hebrew_verb = HebrewVerb.find_by_root(verb.hebrew_verb.root)
-      flash[:errors] = verb.errors.full_messages
-      verb.destroy unless verb.errors.empty?
+    if params[:commit] == "Confirm"
+      verb, _exists, msg = Verb.check_for_existing(params[:id])
+
+      if _exists
+        flash[:errors] = msg
+      else
+        flash[:notice] = msg
+      end
+      @hebrew_verb = verb.hebrew_verb
     else
-      @hebrew_verb = HebrewVerb.find_by_id(params[:verb][:id])
+      flash.delete(:errors)
+      @hebrew_verb = HebrewVerb.find_by_id(params[:id])
     end
   end
 
@@ -59,27 +62,10 @@ class VerbsController < ApplicationController
 
   private
 
-  def get_language
-    case I18n.locale
-    when :en
-      @language = "english"
-    when :es
-      @language = "spanish"
-    when :ru
-      @language = "russian"
-    end
-  end
-
   def set_root
     if params[:hidden_root_4] == "delete"
       params[:hebrew_verb].delete(:root_4)
     end
-  end
-
-  def get_values_for_create
-    @letters = Letter.where("num_value <= ? ", 400) # We don't query for ending letters
-    @buildings = *Building.first#Building.get_allowed_building_types
-    @new_heb_verb = HebrewVerb.new
   end
 
 end
