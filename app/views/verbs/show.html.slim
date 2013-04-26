@@ -1,7 +1,7 @@
 -@page_title = @hebrew_verb.verb.send(session_language) if @hebrew_verb
-div.container.verb-show-action
-  div.navbar
-    div.nav-pills
+.container.verb-show-action
+  .navbar
+    .nav-pills
       = render "/shared/helper_link"
       ul.nav
         li = link_to t("navigation.back"), verbs_path

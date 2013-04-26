@@ -1,5 +1,5 @@
-div.navbar
-  div.nav-pills
+.navbar
+  .nav-pills
     = render "/shared/helper_link"
     ul.nav
       li = link_to t("comments.link"), comments_path
@@ -7,12 +7,12 @@ div.navbar
 
 = render :partial => "shared/search_verb"
 
-div#fb-api.row
-  div.span2.offset4
+#fb-api.row
+  .span2.offset4
     iframe.fb-like-btn src="https://www.facebook.com/plugins/like.php?href=http://lit-ocean-7187.herokuapp.com/games" scrolling="no" frameborder="0" style="border:none; width:450px; height:80px"
 
-div#paypal-api.row-fluid
-  div.span2.offset
+#paypal-api.row-fluid
+  .span2.offset
     form action="https://www.paypal.com/cgi-bin/webscr" method="post"
     input type="hidden" name="cmd" value="_s-xclick"
 
