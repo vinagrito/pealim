@@ -1,12 +1,11 @@
-#verb-infinitive.row.section
-  .span11
-    .root-infinitive-relation
+#verb-result.row.section
+  .row
+    .span9.root-infinitive-translation
       h3 (#{@hebrew_verb.root.reverse}) #{@hebrew_verb.infinitive} -
       h3.translation #{@hebrew_verb.verb.send(session_language)}
     -if params[:action] == "preview"
-      =form_for :hebrew_verb, url: { controller: "verbs", action: "show" }, method: :post, html: {class: "confirm-button"} do |verb|
-        =hidden_field_tag :id, @hebrew_verb.verb_id
-        =submit_tag "Confirm", class: "btn small-btn btn-info btn-mini", action: "create"
+      - session[:ugc_verb] = true
+      a#confirm-btn.span1.btn.btn-small.btn-info href="/verbs/#{@hebrew_verb.verb_id}" Confirm
 
   .row
     .span11: h3 זמן הווה

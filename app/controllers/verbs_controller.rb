@@ -14,7 +14,7 @@ class VerbsController < ApplicationController
   end
 
   def show
-    if params[:commit] == "Confirm"
+    if session[:ugc_verb]
       verb, _exists, msg = Verb.check_for_existing(params[:id])
 
       if _exists
@@ -22,7 +22,9 @@ class VerbsController < ApplicationController
       else
         flash[:notice] = msg
       end
+
       @hebrew_verb = verb.hebrew_verb
+      session[:ugc_verb] = false
     else
       flash.delete(:error)
       @hebrew_verb = HebrewVerb.find_by_id(params[:id])
@@ -43,7 +45,6 @@ class VerbsController < ApplicationController
     hebrew_verb.merge! Conjugations::Paal.conjugate_paal(params)
 
     @hebrew_verb = HebrewVerb.create(hebrew_verb)
-
     render :show
     #@past_base = hebrew_verb[:past_base]
     #hebrew_verb.delete(:past_base)

@@ -3,10 +3,10 @@ class Verb < ActiveRecord::Base
   has_one :hebrew_verb, dependent: :destroy
   has_many :searches, class_name: "VerbSearch"
 
-  #validate :has_translation
+  #validate :has_at_least_translation
 
   def self.new_preview_instance(params)
-    self.new(english: params[:english],russian: params[:russian], spanish: params[:spanish], confirmed: false)
+    self.new(english: params[:english], russian: params[:russian], spanish: params[:spanish], confirmed: false)
   end
 
   def self.check_for_existing(added_id)
@@ -15,7 +15,7 @@ class Verb < ActiveRecord::Base
     recent_verb = find_by_id(added_id)
     root = recent_verb && recent_verb.hebrew_verb ? recent_verb.hebrew_verb.root : ""
     if HebrewVerb.all.map(&:root).include? root
-      verb = HebrewVerb.where(root: recent_verb.hebrew_verb.root).first.verb
+      verb = HebrewVerb.where(root: root).first.verb
       recent_verb.destroy
       exists = true
       msg = I18n.t("verb.already_exists")
