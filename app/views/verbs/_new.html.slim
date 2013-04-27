@@ -10,7 +10,7 @@
           .row
             p.lead.span2.pull-right
               b שורש
-
+              div
                 =select_tag :root_1, options_from_collection_for_select(@letters, :id, :name), :class => "span1 pull-right selectpicker letter"
 
                 span.pull-right.letter-space .
