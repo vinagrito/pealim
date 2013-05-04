@@ -16,7 +16,16 @@ $ ->
       dataType: 'json'
     )
 
+  loadindVerbsAjaxState = ->
+    $("#loading-area").removeClass "hidden"
+    $("#verb_name").attr "disabled", true
+
+  verbsLoadedAjaxState = ->
+    $("#loading-area").addClass "hidden"
+    $("#verb_name").removeAttr "disabled"
+
   verbInputField.on "click", ->
+    loadindVerbsAjaxState()
     verbsRequest = fetchVerbs()
     $.Deferred (verbsRequestDeferred) ->
       verbsRequest.done (verbs) ->
@@ -27,6 +36,7 @@ $ ->
 
         verbsRequestDeferred.resolve(verbsNameList)
         setAutocompleteList(verbsNameList)
+        verbsLoadedAjaxState()
 
   $("#search-btn").click ->
     if verbInputField.val() is "" then return false
