@@ -5,7 +5,7 @@ class VerbsController < ApplicationController
   before_filter :get_values_for_new_verb, only: [:index, :show, :preview]
 
   def index
-    @verbs = Verb.all
+    @verbs = Verb.all_reviewed
 
     respond_to do |format|
         format.html
