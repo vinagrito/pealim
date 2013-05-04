@@ -7,7 +7,7 @@
       - session[:ugc_verb] = true
       a#confirm-btn.span1.btn.btn-small.btn-info href="/verbs/#{@hebrew_verb.verb_id}" = t "verb.confirm"
 
-  .row
+  .row.table-row
     .span11: h3 זמן הווה
     .span7.offset4
       table.table.table-condensed.present-tense
@@ -29,7 +29,7 @@
     .span4: h3 זמן עתיד
     .span3: h3 זמן עבר
 
-  .row
+  .row.table-row
     / IMPERATIVE TENSE TABLE
     .span2.offset2
       table.table.table-hover.imperative-tense

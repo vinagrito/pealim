@@ -1,13 +1,9 @@
-#search-section.span12.offset2.row-fluid
-  =form_for @search, method: :post, html: {:class => "form-search"} do |v|
+#search-section.offset1.row-fluid
+  #loading-area.span1.hidden
+    .progress.progress-striped.active
+      .bar style="width: 100%;"
+  =form_for @search, method: :post, html: {:class => "form-search span8"} do |v|
     .input-append
       = v.hidden_field :verb_id
       = text_field_tag :verb_name,"", placeholder: t("intro.type_verb"), :class => "search-query"
       = v.submit t("intro.search"), name: nil, id: "search-btn", :class => "btn btn-success"
-
-#add_missing_verb.span12.offset3
-  p.text-info
-    =t("intro.verb_not_present")
-    a.btn.btn-link href="#NewVerbModal" data-toggle="modal" = t("intro.add_verb_action")
-
-= render :partial => "verbs/new"

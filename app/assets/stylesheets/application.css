@@ -12,3 +12,7 @@
 body .container {
   overflow-x: hidden;
 }
+
+#fb-api {
+  margin-left: 30%;
+}

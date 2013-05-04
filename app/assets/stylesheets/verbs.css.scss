@@ -11,7 +11,10 @@ body {
   overflow-y: auto;
   width: 200px;
 }
-.row    {
+#loading-area {
+  margin-top: 10px;
+}
+.row {
   margin-top: 0;
 }
 
@@ -67,11 +70,9 @@ UL.helper-link {
 
 /*VERB SHOW ACTION */
 div.verb-show-action, div.verb-preview-action {
-  #search-section {
-    margin-top: 0px;
-  }
   #verb-result {
     h3 {
+      direction: rtl;
       font-size: 26px;
       float: right;
       &.translation {
@@ -84,10 +85,11 @@ div.verb-show-action, div.verb-preview-action {
     }
   }
 
-  direction: rtl;
+  // direction: rtl;
   margin-top: 10px;
   font-size: 20px;
 
+  .table-row { direction: rtl; }
   table.table {
     font-size: 24px;
     letter-spacing: 1px;
@@ -108,6 +110,11 @@ div.verb-show-action, div.verb-preview-action {
         thead td, th { text-align: right;}
       }
     }
+  }
+
+  #search-section {
+    direction: ltr;
+    margin-top: 0px;
   }
 }
 // unscrollable body while modal open
@@ -133,7 +140,7 @@ body.modal-open {
 }
 //
 
-DIV.section               {
+DIV.section {
   border-radius: 15px;
   vertical-align: middle;
   margin-top: 10px;

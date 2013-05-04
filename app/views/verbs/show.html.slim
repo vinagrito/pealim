@@ -1,13 +1,13 @@
 -@page_title = @hebrew_verb.verb.send(session_language) if @hebrew_verb
-.container.verb-show-action
+.verb-show-action
   .navbar
     .nav-pills
       = render "/shared/helper_link"
       ul.nav
         li = link_to t("navigation.main"), verbs_path
       = render "shared/languages_bar"
-
   = render :partial =>  "shared/search_verb"
+  = render :partial =>  "shared/add_verb_link"
   - if @hebrew_verb.nil?
   / Put this in the locales
     p = t("verb.missing")

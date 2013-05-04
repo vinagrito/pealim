@@ -7,12 +7,15 @@
 
 = render :partial => "shared/search_verb"
 
-#fb-api.row
-  .span2.offset4
-    iframe.fb-like-btn src="https://www.facebook.com/plugins/like.php?href=http://lit-ocean-7187.herokuapp.com/games" scrolling="no" frameborder="0" style="border:none; width:450px; height:80px"
+.row
+  .span12
+    = render "/shared/add_verb_link"
+    #fb-api.span6.offset3
+      iframe.fb-like-btn src="https://www.facebook.com/plugins/like.php?href=http://lit-ocean-7187.herokuapp.com/games" scrolling="no" frameborder="0" style="border:none; width:450px; height:80px"
 
-#paypal-api.row-fluid
-  .span2.offset
+
+.row
+  #paypal-api.span2.offset
     form action="https://www.paypal.com/cgi-bin/webscr" method="post"
     input type="hidden" name="cmd" value="_s-xclick"
 
