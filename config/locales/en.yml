@@ -30,3 +30,4 @@ en:
     already_exists: "Already exists a verb with such root"
     verb_added_thx: "The verb's been sent for revision"
     missing: "Sorry, couldn't find such a verb"
+    confirm: "Confirm"

@@ -5,7 +5,7 @@
       h3.translation #{@hebrew_verb.verb.send(session_language)}
     -if params[:action] == "preview"
       - session[:ugc_verb] = true
-      a#confirm-btn.span1.btn.btn-small.btn-info href="/verbs/#{@hebrew_verb.verb_id}" Confirm
+      a#confirm-btn.span1.btn.btn-small.btn-info href="/verbs/#{@hebrew_verb.verb_id}" = t "verb.confirm"
 
   .row
     .span11: h3 זמן הווה
