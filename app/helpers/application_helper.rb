@@ -18,4 +18,12 @@ module ApplicationHelper
     locale_to_language(session_locale)
   end
 
+  # def redirect_back_link
+  #   key = session[:request_back].keys.last
+  #   url_to_redirect = session[:request_back][key]
+  #   session[:request_back].delete key
+
+  #   url_to_redirect
+  # end
+
 end
