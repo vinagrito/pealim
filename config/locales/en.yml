@@ -20,6 +20,7 @@ en:
         fields_required: "All fields are required"
   navigation:
     back: "Back"
+    main: "Home"
   button:
     submit: "Submit"
     close: "Close"

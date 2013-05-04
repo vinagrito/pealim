@@ -20,6 +20,7 @@ es:
         fields_required: "Todos los campos son obligatorios"
   navigation:
     back: "Volver"
+    main: "Principal"
   button:
     submit: "Enviar"
     close: "Cerrar"
