@@ -8,7 +8,7 @@ class Verb < ActiveRecord::Base
   scope :all_reviewed, where(reviewed: true)
 
   def self.new_preview_instance(params)
-    self.new(english: params[:english], russian: params[:russian], spanish: params[:spanish], confirmed: false)
+    self.new(english: params[:english], russian: params[:russian], spanish: params[:spanish], reviewed: false)
   end
 
   def self.check_for_existing(added_id)
