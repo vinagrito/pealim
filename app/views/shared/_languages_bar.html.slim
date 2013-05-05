@@ -1,0 +1,4 @@
+ul#language-nav.nav.pull-right
+  li = link_to "English", application_set_session_locale_url(locale: :en) if I18n.locale != :en
+  li = link_to "Español", application_set_session_locale_url(locale: :es) if I18n.locale != :es
+  li =link_to "Русский", application_set_session_locale_url(locale: :ru) if I18n.locale != :ru
