@@ -1,0 +1,15 @@
+ul#help-link.nav.pull-left data-toggle="modal"
+  li.text-info
+    a href="#helper-modal" role="button" data-toggle="modal" = t "intro.help"
+
+#helper-modal.modal.hide.fade role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  .modal-header
+    h3#myModalLabel = t "intro.help"
+
+  .modal-body
+    span
+      | Pealim is a tool made for those who have a basic understanding of Hebrew language and also
+      | for those who seek a way to improve their verb knowledge.
+
+  .modal-footer
+    button.btn data-dismiss="modal" aria-hidden="true" = t "button.close"
