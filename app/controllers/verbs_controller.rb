@@ -3,6 +3,7 @@ class VerbsController < ApplicationController
   before_filter :set_search_instance
   before_filter :set_root, only: :preview
   before_filter :get_values_for_new_verb, only: [:index, :show, :preview]
+  before_filter :remove_ugc_verb_if_not_confirmed, only: :index
 
   def index
     @verbs = Verb.all_reviewed
@@ -14,7 +15,7 @@ class VerbsController < ApplicationController
   end
 
   def show
-    if session[:ugc_verb]
+    if session[:ugc_verb] && session[:ugc_verb][:on]
       verb, _exists, msg = Verb.check_for_existing(params[:id])
 
       if _exists
@@ -24,7 +25,7 @@ class VerbsController < ApplicationController
       end
 
       @hebrew_verb = verb.hebrew_verb
-      session[:ugc_verb] = false
+      session.delete :ugc_verb
     else
       flash.delete(:error)
       @hebrew_verb = HebrewVerb.find_by_id(params[:id])

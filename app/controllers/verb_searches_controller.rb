@@ -1,6 +1,7 @@
 class VerbSearchesController < ApplicationController
   before_filter :set_search_instance
   before_filter :get_values_for_new_verb
+  before_filter :remove_ugc_verb_if_not_confirmed, only: :create
 
   def show
   end

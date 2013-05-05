@@ -3,8 +3,8 @@
     .span9.root-infinitive-translation
       h3 (#{@hebrew_verb.root.reverse}) #{@hebrew_verb.infinitive} -
       h3.translation #{@hebrew_verb.verb.send(session_language)}
-    -if params[:action] == "preview"
-      - session[:ugc_verb] = true
+    -if params[:action] == "preview" || (session[:ugc_verb] && session[:ugc_verb][:id])
+      - session[:ugc_verb] = {on: true, id: @hebrew_verb.id }
       a#confirm-btn.span1.btn.btn-small.btn-info href="/verbs/#{@hebrew_verb.verb_id}" = t "verb.confirm"
 
   .row.table-row
