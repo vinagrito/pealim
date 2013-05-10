@@ -345,11 +345,19 @@ module VerbConstructors
 
     def imperative(conjugated_verb)
       hebrew_verb = Hash.new
-      hebrew_verb[:mas_imp]    = conjugated_verb[:you_mas_sing_she_fut][2..-1]
-      hebrew_verb[:fem_imp]    = conjugated_verb[:you_fem_sing_fut][2..-1]
-      hebrew_verb[:plural_imp] = conjugated_verb[:you_plu_fut][2..-1]
-      # FIXES ה''ל SOUND
-      hebrew_verb[:mas_imp][-2..-2] = "ֵ" if hebrew_verb[:mas_imp][-2..-2] == "ֶ"
+      root_reversed = conjugated_verb[:root].split(".")
+      if root_reversed[2] == "א"
+        hebrew_verb[:mas_imp]    = "אֱ#{root_reversed[1]}ֹ#{root_reversed[0]}"
+        hebrew_verb[:fem_imp]    = "אֶ#{root_reversed[1]}ֱ#{root_reversed[0]}ִי"
+        hebrew_verb[:plural_imp] = "אֶ#{root_reversed[1]}ֱ#{root_reversed[0]}וּ"
+      else
+        hebrew_verb[:mas_imp]    = conjugated_verb[:you_mas_sing_she_fut][2..-1]
+        hebrew_verb[:fem_imp]    = conjugated_verb[:you_fem_sing_fut][2..-1]
+        hebrew_verb[:plural_imp] = conjugated_verb[:you_plu_fut][2..-1]
+        # FIXES ה''ל SOUND
+        hebrew_verb[:mas_imp][-2..-2] = "ֵ" if hebrew_verb[:mas_imp][-2..-2] == "ֶ"
+      end
+      binding.pry
       hebrew_verb
     end
 
@@ -397,7 +405,7 @@ module VerbConstructors
         hebrew_verb[:you_mas_sing_she_fut] = "תֶ" + "אֱ#{root[1]}ֹ#{root[2]}"
         hebrew_verb[:he_fut]               = "יֶ" + "אֱ#{root[1]}ֹ#{root[2]}"
         hebrew_verb[:we_fut]               = "נֶ" + "אֱ#{root[1]}ֹ#{root[2]}"
-        if root[1] == "ה"
+        if %w(ע ה ח א).include? root[1]
           hebrew_verb[:you_fem_sing_fut]     = "תֶ" + "אֱ#{root[1]}ֶ#{root[2]}י"
           hebrew_verb[:you_plu_fut]          = "תֶ" + "אֱ#{root[1]}ֶ#{root[2]}וּ"
           hebrew_verb[:they_fut]             = "יֶ" + "אֱ#{root[1]}ֶ#{root[2]}וּ"
