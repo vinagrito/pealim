@@ -11,7 +11,7 @@ class VerbSearchesController < ApplicationController
 
   def create
     @search = VerbSearch.create! params[:verb_search]
-    redirect_to verb_path(params[:verb_search][:verb_id])
+    redirect_to verb_path(@search.verb)
   end
 
 end
