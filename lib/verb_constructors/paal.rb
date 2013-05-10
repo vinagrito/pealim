@@ -180,8 +180,8 @@ module VerbConstructors
           _past_base.slice! 3
           _past_base.insert 3, "ְ"
         end
-        hebrew_verb[:she_past]          = _past_base + "ָה"
-        hebrew_verb[:they_past]         = _past_base + "וּ"
+        hebrew_verb[:she_past] = _past_base + "ָה"
+        hebrew_verb[:they_past] = _past_base + "וּ"
       end
       hebrew_verb
     end
