@@ -401,6 +401,8 @@ module VerbConstructors
         hebrew_verb[:he_fut]               = "יֹ" + "א#{root[1]}ַ#{root[2]}"
         hebrew_verb[:we_fut]               = "נֹ" + "א#{root[1]}ַ#{root[2]}"
         youfem_youplural_they_fut_base = root[1] == "ה" ? "א#{root[1]}ֲ#{root[2]}" : "א#{root[1]}ְ#{root[2]}"
+        youfem_youplural_they_fut_base.slice! 2
+        youfem_youplural_they_fut_base.insert 2, "ֲ"
         hebrew_verb[:you_fem_sing_fut]     = "תֹ" + youfem_youplural_they_fut_base + "ִי"
         hebrew_verb[:you_plu_fut]          = "תֹ" + youfem_youplural_they_fut_base + "וּ"
         hebrew_verb[:they_fut]             = "יֹ" + youfem_youplural_they_fut_base + "וּ"
