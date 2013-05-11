@@ -48,17 +48,6 @@ UL.helper-link {
   direction: ltr;
 }
 
-#verb_name {
-  width: 500px;
-  height: 30px;
-  font-size: 22px;
-  line-height: 1.5em;
-}
-#search-btn {
-  width: 150px;
-  height: 40px;
-  font-size: 22px;
-}
 #paypal-api { margin-top: 200px; }
 
 #new_verb_form  { margin-top: 50px; }
@@ -71,9 +60,11 @@ UL.helper-link {
 /*VERB SHOW ACTION */
 div.verb-show-action, div.verb-preview-action {
   #verb-result {
+    font-family: Raanana;
+    font-size: 30px;
     h3 {
       direction: rtl;
-      font-size: 26px;
+      font-size: 36px;
       float: right;
       &.translation {
         direction: ltr;
@@ -87,11 +78,11 @@ div.verb-show-action, div.verb-preview-action {
 
   // direction: rtl;
   margin-top: 10px;
-  font-size: 20px;
+  // font-size: 20px;
 
   .table-row { direction: rtl; }
   table.table {
-    font-size: 24px;
+    // font-size: 24px;
     letter-spacing: 1px;
     thead th, tbody td {
       line-height: 1;
