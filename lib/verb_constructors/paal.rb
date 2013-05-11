@@ -348,8 +348,13 @@ module VerbConstructors
       root_reversed = conjugated_verb[:root].split(".")
       if root_reversed[2] == "א"
         hebrew_verb[:mas_imp]    = "אֱ#{root_reversed[1]}ֹ#{root_reversed[0]}"
-        hebrew_verb[:fem_imp]    = "אֶ#{root_reversed[1]}ֱ#{root_reversed[0]}ִי"
-        hebrew_verb[:plural_imp] = "אֶ#{root_reversed[1]}ֱ#{root_reversed[0]}וּ"
+        if %w(ה ח).include? root_reversed[1]
+          hebrew_verb[:fem_imp]    = "אֶ#{root_reversed[1]}ֱ#{root_reversed[0]}ִי"
+          hebrew_verb[:plural_imp] = "אֶ#{root_reversed[1]}ֱ#{root_reversed[0]}וּ"
+        else
+          hebrew_verb[:fem_imp]    = "אִ#{root_reversed[1]}ְ#{root_reversed[0]}ִי"
+          hebrew_verb[:plural_imp] = "אִ#{root_reversed[1]}ְ#{root_reversed[0]}וּ"
+        end
       else
         hebrew_verb[:mas_imp]    = conjugated_verb[:you_mas_sing_she_fut][2..-1]
         hebrew_verb[:fem_imp]    = conjugated_verb[:you_fem_sing_fut][2..-1]
@@ -357,7 +362,6 @@ module VerbConstructors
         # FIXES ה''ל SOUND
         hebrew_verb[:mas_imp][-2..-2] = "ֵ" if hebrew_verb[:mas_imp][-2..-2] == "ֶ"
       end
-      binding.pry
       hebrew_verb
     end
 
