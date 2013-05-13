@@ -3,7 +3,7 @@ class VerbsController < ApplicationController
   before_filter :set_search_instance
   before_filter :set_root, only: :preview
   before_filter :get_values_for_new_verb, only: [:index, :show, :preview]
-  before_filter :remove_ugc_verb_if_not_confirmed
+  before_filter :remove_ugc_verb_if_not_confirmed, except: :show
 
   def index
     @verbs = Verb.all_reviewed
