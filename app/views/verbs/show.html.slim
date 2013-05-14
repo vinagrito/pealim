@@ -9,7 +9,6 @@
   = render :partial =>  "shared/search_verb"
   = render :partial =>  "shared/add_verb_link"
   - if @hebrew_verb.nil?
-  / Put this in the locales
     p = t("verb.missing")
   - else
     - if flash[:error]
