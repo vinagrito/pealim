@@ -31,7 +31,8 @@ class ApplicationController < ActionController::Base
   def remove_ugc_verb_if_not_confirmed
     return if request.xhr?
     if session[:ugc_verb] && session[:ugc_verb][:on]
-      HebrewVerb.find_by_id(session[:ugc_verb][:id]).verb.destroy
+      verb = HebrewVerb.find_by_id(session[:ugc_verb][:id])
+      verb.destroy if verb
       session.delete :ugc_verb
     end
   end
