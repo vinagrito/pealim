@@ -106,6 +106,12 @@ div.verb-show-action, div.verb-preview-action {
   #search-section {
     direction: ltr;
     margin-top: 0px;
+    .main-image {
+      position: relative;
+      top: 0;
+      margin-left: -5%;
+      height: 45px;
+    }
   }
 }
 // unscrollable body while modal open

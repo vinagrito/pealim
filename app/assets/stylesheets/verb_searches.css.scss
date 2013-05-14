@@ -11,6 +11,11 @@
 #search-section {
   direction: ltr;
   margin-top: 150px;
+  .main-image {
+    position: absolute;
+    top: 10%;
+    margin-left: 20%;
+  }
 }
 
 #search-btn {
