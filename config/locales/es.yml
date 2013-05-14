@@ -26,6 +26,9 @@ es:
     close: "Cerrar"
   verb:
     new_verb: "Verbo nuevo"
+    root: "Raiz"
+    structure: "Estructura"
+    translations: "Traducciones"
     translation_missing: "Debe proveer por lo menos una traducción"
     already_exists: "Ya existe un verbo con esa raíz"
     verb_added_thx: "El verbo a sido enviado a revisión"

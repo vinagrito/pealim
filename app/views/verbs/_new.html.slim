@@ -9,7 +9,7 @@
         =form_for @new_heb_verb, :url => {:action => "preview"} do |heb_verb|
           .row
             p.lead.span2.pull-right
-              b שורש
+              b = t "verb.root"
               div
                 =select_tag :root_1, options_from_collection_for_select(@letters, :id, :name), :class => "span1 pull-right selectpicker letter"
 
@@ -25,12 +25,12 @@
 
           .row
             p.lead.span2.pull-right
-              b בניין
+              b = t "verb.structure"
             =heb_verb.select :building_id, options_from_collection_for_select(@buildings, :id ,:name), {}, :class => "span2 pull-right selectpicker"
 
           .row
             p.lead.span2.pull-right
-              b תירגום
+              b = t "verb.translations"
             p.span2.pull-right =text_field_tag :english,"", :placeholder => "English", :class => "pull-right"
           .row
             p.lead.span2.pull-right

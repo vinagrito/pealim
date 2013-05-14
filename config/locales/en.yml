@@ -26,6 +26,9 @@ en:
     close: "Close"
   verb:
     new_verb: "New verb"
+    root: "Root"
+    structure: "Structure"
+    translations: "Translations"
     translation_missing: "You must provide at least one translation"
     already_exists: "Already exists a verb with such root"
     verb_added_thx: "The verb's been sent for revision"
