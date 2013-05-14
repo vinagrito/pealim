@@ -190,6 +190,7 @@ module VerbConstructors
       hebrew_verb = Hash.new
       infinitive_end = root[2] == "ה" ? "ת" : "#{root[2]}"
       hebrew_verb[:infinitive] = "לִ#{root[0]}ְ#{root[1]}וֹ" + infinitive_end
+      hebrew_verb[:infinitive] = "לִפֹל" if root[0] == "נ" && root[1] == "פ" && root[2] == "ל"
 
       if ["ח", "ע", "ה"].include?(root[0])
         infinitive_start = root[0] == "ח" ? "לַ#{root[0]}ְ#{root[1]}וֹ" : "לַ#{root[0]}ֲ#{root[1]}וֹ"
@@ -244,8 +245,9 @@ module VerbConstructors
     def future_tense(root, infinitive)
       hebrew_verb = Hash.new
       verb_exceptions = ["לִלְמוֹד","לִגְדוֹל","לִלְבוֹש"]
+      nun_exceptions = ["נ.פ.ל"]
       future_base = infinitive[2..-1]
-      future_base = infinitive[4..-1] if root[0] == "נ"
+      future_base = infinitive[4..-1] if nun_exceptions.include? root.join(".")
       youfem_youplural_they_fut_base = future_base.delete future_base[3..4]
 
       if verb_exceptions.include?(infinitive)
