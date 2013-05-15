@@ -2,6 +2,7 @@ Pealim::Application.routes.draw do
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
+  root :to => "verbs#index"
   match "application/set_session_locale" => "application#set_session_locale"
 
   resources :verbs do
