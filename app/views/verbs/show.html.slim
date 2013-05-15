@@ -13,6 +13,6 @@
   - else
     - if flash[:error]
       p.existing-verb
-       | #{flash[:error]}, did you mean #{link_to @hebrew_verb.verb.send(session_language), verb_path(@hebrew_verb.verb_id)}
+       | #{flash[:error]}. #{t "did_you_mean"} #{link_to @hebrew_verb.verb.send(session_language), verb_path(@hebrew_verb.verb_id)} ?
     - else
       = render :partial => "form"
