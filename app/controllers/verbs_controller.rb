@@ -16,7 +16,7 @@ class VerbsController < ApplicationController
 
   def show
     if session[:ugc_verb] && session[:ugc_verb][:on]
-      verb, _exists, msg = Verb.check_for_existing(params[:id])
+      verb, _exists, msg = Verb.check_for_existing(params[:id], false)
 
       if _exists
         flash[:error] = msg
@@ -60,6 +60,14 @@ class VerbsController < ApplicationController
     #   render 'new'
     # end
 
+  end
+
+  def report
+    if session[:ugc_verb] && session[:ugc_verb][:on]
+      Verb.check_for_existing(params[:id], true)
+      session[:ugc_verb] = true
+      render :index
+    end
   end
 
   private
