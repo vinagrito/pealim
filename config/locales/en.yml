@@ -34,3 +34,6 @@ en:
     verb_added_thx: "The verb's been sent for revision"
     missing: "Sorry, couldn't find such a verb"
     confirm: "Confirm"
+    report: "Report issue"
+  other:
+    did_you_mean: "Did you mean"

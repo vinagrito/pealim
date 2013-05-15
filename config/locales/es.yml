@@ -34,3 +34,6 @@ es:
     verb_added_thx: "El verbo a sido enviado a revisión"
     missing: "Disculpa, no pudimos encontrar este verbo"
     confirm: "Confirmar"
+    report: "Reportar error"
+  other:
+    did_you_mean: "Quisiste decir"
