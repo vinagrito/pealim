@@ -10,7 +10,7 @@
 */
 
 body .container {
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 #fb-api {
