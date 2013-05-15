@@ -222,6 +222,11 @@ module VerbConstructors
         return hebrew_verb
       end
 
+      if root.join(".") == "ל.ק.ח"
+        hebrew_verb[:infinitive] = "לָקחַת"
+        return hebrew_verb
+      end
+
       if ["ו", "י"].include?(root[1]) && root[2] != "ה"
         hebrew_verb[:infinitive] = "לָ#{root[0]}#{root[1]}#{root[2]}"
         return hebrew_verb
@@ -245,9 +250,9 @@ module VerbConstructors
     def future_tense(root, infinitive)
       hebrew_verb = Hash.new
       verb_exceptions = ["לִלְמוֹד","לִגְדוֹל","לִלְבוֹש"]
-      nun_exceptions = ["נ.פ.ל"]
+      nun_exceptions = ["נ.פ.ל", "נ.ש.א"]
       future_base = infinitive[2..-1]
-      future_base = infinitive[4..-1] if nun_exceptions.include? root.join(".")
+      future_base = infinitive[4..-1] if root[0] == "נ" && !nun_exceptions.include?(root.join("."))
       youfem_youplural_they_fut_base = future_base.delete future_base[3..4]
 
       if verb_exceptions.include?(infinitive)
@@ -282,6 +287,10 @@ module VerbConstructors
 
       if root[0] == "א"
         return pei_ha_poal_alef_future_case(root)
+      end
+
+      if root[0] == "נ"
+        #
       end
 
       if root[0] == "י" || (root[0] == "ה" && root[1] == "ל" && root[2]== "כ")
@@ -425,6 +434,12 @@ module VerbConstructors
           hebrew_verb[:they_fut]             = "יַ" + "אַ#{root[1]}ְ#{root[2]}וּ"
         end
       end
+      hebrew_verb
+    end
+
+    def pei_ha_poal_nun(root)
+      hebrew_verb = Hash.new
+
       hebrew_verb
     end
 
