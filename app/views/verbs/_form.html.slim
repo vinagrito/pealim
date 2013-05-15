@@ -5,7 +5,9 @@
       h3.translation #{@hebrew_verb.verb.send(session_language)}
     -if params[:action] == "preview" || (session[:ugc_verb] && session[:ugc_verb][:id])
       - session[:ugc_verb] = {on: true, id: @hebrew_verb.id }
-      a#confirm-btn.span1.btn.btn-small.btn-info href="/verbs/#{@hebrew_verb.verb_id}" = t "verb.confirm"
+      .span1#confirm-btn
+        = link_to t("verb.confirm"), verb_path(@hebrew_verb.verb_id), :class => "btn btn-small btn-info"
+        / = link_to t("verb.report"), report_verb_path(@hebrew_verb.verb), :class => "btn btn-small btn-danger"
 
   .row.table-row
     .span11: h3 זמן הווה
@@ -19,10 +21,10 @@
             th מין נקבה/רבות
         tbody
           tr
-            td =@hebrew_verb.mas_sing_pres
-            td =@hebrew_verb.fem_sing_pres
-            td =@hebrew_verb.mas_plu_pres
-            td =@hebrew_verb.fem_plu_pres
+            td = @hebrew_verb.mas_sing_pres
+            td = @hebrew_verb.fem_sing_pres
+            td = @hebrew_verb.mas_plu_pres
+            td = @hebrew_verb.fem_plu_pres
 
   .row
     .span4: h3 זמן ציווי
@@ -36,15 +38,15 @@
         thead
           tr
             th אתה
-            td =@hebrew_verb.mas_imp
+            td = @hebrew_verb.mas_imp
         thead
           tr
             th את
-            td =@hebrew_verb.fem_imp
+            td = @hebrew_verb.fem_imp
         thead
           tr
             th אתם-ן
-            td =@hebrew_verb.plural_imp
+            td = @hebrew_verb.plural_imp
 
     / FUTURE TENSE TABLE
     .span3.offset1
@@ -52,63 +54,63 @@
         thead
           tr
             th אנִי
-            td =@hebrew_verb.me_fut
+            td = @hebrew_verb.me_fut
         thead
           tr
             th אתָה - היא
-            td =@hebrew_verb.you_mas_sing_she_fut
+            td = @hebrew_verb.you_mas_sing_she_fut
         thead
           tr
             th הוא
-            td =@hebrew_verb.he_fut
+            td = @hebrew_verb.he_fut
         thead
           tr
             th אנַחְנו
-            td =@hebrew_verb.we_fut
+            td = @hebrew_verb.we_fut
         thead
           tr
             th את
-            td =@hebrew_verb.you_fem_sing_fut
+            td = @hebrew_verb.you_fem_sing_fut
         thead
           tr
             th אתֵם-ן
-            td =@hebrew_verb.you_plu_fut
+            td = @hebrew_verb.you_plu_fut
         thead
           tr
             th הֵם-ן
-            td =@hebrew_verb.they_fut
+            td = @hebrew_verb.they_fut
     / PAST TENSE TABLE
     .span1.offset2
       table.table.table-hover.past-tense
         thead
           tr
             th אנִי
-            td =@hebrew_verb.me_past
+            td = @hebrew_verb.me_past
         thead
           tr
             th אתָה
-            td =@hebrew_verb.you_mas_sing_past
+            td = @hebrew_verb.you_mas_sing_past
         thead
           tr
             th אתְ
-            td =@hebrew_verb.you_fem_sing_past
+            td = @hebrew_verb.you_fem_sing_past
         thead
           tr
             th אנַחְנו
-            td  =@hebrew_verb.we_past
+            td = @hebrew_verb.we_past
         thead
           tr
             th אתֵם-ן
-            td =@hebrew_verb.you_mas_plu_past + "-ן"
+            td = @hebrew_verb.you_mas_plu_past + "-ן"
         thead
           tr
             th הוא
-            td =@hebrew_verb.he_past
+            td = @hebrew_verb.he_past
         thead
           tr
             th היא
-            td =@hebrew_verb.she_past
+            td = @hebrew_verb.she_past
         thead
           tr
             th הֵם-ן
-            td =@hebrew_verb.they_past
+            td = @hebrew_verb.they_past
