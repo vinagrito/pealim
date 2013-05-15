@@ -15,7 +15,7 @@ class Verb < ActiveRecord::Base
     self.new(english: params[:english], russian: params[:russian], spanish: params[:spanish], reviewed: false)
   end
 
-  def self.check_for_existing(added_id)
+  def self.check_for_existing(added_id, with_errors=false)
     exists = false
     msg = "verb.verb_added_thx"
     recent_verb = find_by_id(added_id)
@@ -27,6 +27,8 @@ class Verb < ActiveRecord::Base
       recent_verb.destroy
       exists = true
       msg = I18n.t("verb.already_exists")
+    # elsif with_errors
+    #   return nil, false, I18n.t("verb.error_reported")
     end
     return_value = exists ? [verb, exists, msg] : [recent_verb, exists, msg]
     return return_value
