@@ -35,7 +35,7 @@ Letter.find_or_create_by_name(:name => "ר", :num_value => 200)
 Letter.find_or_create_by_name(:name => "ש", :num_value => 300)
 Letter.find_or_create_by_name(:name => "ת", :num_value => 400)
 
-puts "ABC created." 
+puts "ABC created."
 
 ['פָעַל','פִיעֵל','הִפְעִיל','הִתְפַעֵל','נִפְעַל','פועַל','הופְעַל'].each do |building|
   Building.find_or_create_by_name(:name => building)
@@ -43,34 +43,32 @@ end
 
 puts "buildings created."
 
-[
- ["Live", "Жить", "Vivir"],["Study", "Учиться", "Estudiar"],
- ["Work", "Работать", "Trabajar"],["Come", "Приходить/Наступать", "Venir"],
- ["Want", "Хотеть", "Querer"],["Love", "Любить", "Amar"],
- ["Say - 1", "Сказать - 1", "Decir - 1"],["Sing", "Петь", "Cantar"],
- ["Think", "Думать", "Pensar"],["Write", "Писать", "Escribir"],
- ["Do", "Делать", "Hacer"],["Walk/Leave", "Идти/Уходить", "Caminar/Irse"],
- ["Sit", "Сидеть", "Sentarse"],["Buy", "Покупать", "Comprar"],
- ["Ask", "Спрашивать", "Preguntar"],["Answer", "Отвечать", "Contestar"],
- ["Eat", "Кушать", "Comer"],["Dance", "Танцевать", "Bailar"],
- ["Drink", "Пить", "Tomar"],["Meet (Find)", "Встречать", "Recibir (A alguien)"],
- ["Hate", "Ненавидеть", "Odiar"],["Read/Call/Name", "Читать/Звать/Называть", "Leer/Nombrar"],
- ["Stand up/Arise", "Вставать/Возрождаться", "Levantarse"],
- ["Move(To a place)/Pass/Cross","Переежать/Проходить/Переходить","Mudarse/Pasar/Cruzar"],
- ["Cost/Ascend/Emigrate to Israel", "Стоить/Подниматься/Эмигрировать в Израиль", "Costar, Subir, Emigrar a Israel"],
- ["Stand", "Стоять", "Estar de pie"],["Open", "Открывать", "Abrir"],
- ["See", "Видеть", "Mirar"],["Rent(Hire)", "Снимать", "Arrendar(Tomar en arriendo)"],
- ["Hear", "Слышать", "Oir"],["Put", "Класть/Положить", "Colocar"],["Grow", "Ростить", "Crecer"],
- ["Descend/Emigrate from Israel", "Спускаться/Эмигрировать из Израиля", "Bajar/Emigrar de Israel"]
-].each do |verb|
-  conditions = { :english => verb[0], :russian => verb[1], :spanish => verb[2] }
+# [
+#  ["Live", "Жить", "Vivir"],["Study", "Учиться", "Estudiar"],
+#  ["Work", "Работать", "Trabajar"],["Come", "Приходить/Наступать", "Venir"],
+#  ["Want", "Хотеть", "Querer"],["Love", "Любить", "Amar"],
+#  ["Say - 1", "Сказать - 1", "Decir - 1"],["Sing", "Петь", "Cantar"],
+#  ["Think", "Думать", "Pensar"],["Write", "Писать", "Escribir"],
+#  ["Do", "Делать", "Hacer"],["Walk/Leave", "Идти/Уходить", "Caminar/Irse"],
+#  ["Sit", "Сидеть", "Sentarse"],["Buy", "Покупать", "Comprar"],
+#  ["Ask", "Спрашивать", "Preguntar"],["Answer", "Отвечать", "Contestar"],
+#  ["Eat", "Кушать", "Comer"],["Dance", "Танцевать", "Bailar"],
+#  ["Drink", "Пить", "Tomar"],["Meet (Find)", "Встречать", "Recibir (A alguien)"],
+#  ["Hate", "Ненавидеть", "Odiar"],["Read/Call/Name", "Читать/Звать/Называть", "Leer/Nombrar"],
+#  ["Stand up/Arise", "Вставать/Возрождаться", "Levantarse"],
+#  ["Move(To a place)/Pass/Cross","Переежать/Проходить/Переходить","Mudarse/Pasar/Cruzar"],
+#  ["Cost/Ascend/Emigrate to Israel", "Стоить/Подниматься/Эмигрировать в Израиль", "Costar, Subir, Emigrar a Israel"],
+#  ["Stand", "Стоять", "Estar de pie"],["Open", "Открывать", "Abrir"],
+#  ["See", "Видеть", "Mirar"],["Rent(Hire)", "Снимать", "Arrendar(Tomar en arriendo)"],
+#  ["Hear", "Слышать", "Oir"],["Put", "Класть/Положить", "Colocar"],["Grow", "Ростить", "Crecer"],
+#  ["Descend/Emigrate from Israel", "Спускаться/Эмигрировать из Израиля", "Bajar/Emigrar de Israel"]
+# ].each do |verb|
+#   conditions = { :english => verb[0], :russian => verb[1], :spanish => verb[2] }
 
-  v = Verb.find(:first, :conditions => conditions) || Verb.create(conditions)
-end
+#   v = Verb.find(:first, :conditions => conditions) || Verb.create(conditions)
+# end
 
-puts "vebs infinitives created."
-
-
+# puts "vebs infinitives created."
 
 
 
