@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130506203517) do
+ActiveRecord::Schema.define(:version => 20130515174005) do
 
   create_table "buildings", :force => true do |t|
     t.string   "name"
@@ -28,11 +28,10 @@ ActiveRecord::Schema.define(:version => 20130506203517) do
   end
 
   create_table "hebrew_verbs", :force => true do |t|
-    t.integer  "building_id"
     t.integer  "verb_id"
+    t.integer  "building_id"
     t.string   "root"
     t.string   "infinitive"
-    t.string   "past_base"
     t.string   "me_past"
     t.string   "you_mas_sing_past"
     t.string   "you_fem_sing_past"
@@ -58,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20130506203517) do
     t.string   "plural_imp"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "past_base"
   end
 
   add_index "hebrew_verbs", ["building_id", "verb_id"], :name => "index_hebrew_verbs_on_building_id_and_verb_id"
