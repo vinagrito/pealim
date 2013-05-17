@@ -2,29 +2,8 @@
  They will automatically be included in application.css.
  You can use Sass (SCSS) here: http://sass-lang.com/*/
 
-// @font-face{
-//   font-family: 'x_motek_regular';
-//   src: url('x_motek_regular/x_morg__-webfont.eot');
-//   src: url('x_motek_regular/x_morg__-webfont.eot?#iefix') format('embedded-opentype'),
-//        url('x_motek_regular/x_morg__-webfont.woff') format('woff'),
-//        url('x_motek_regular/x_morg__-webfont.ttf') format('truetype'),
-//        url('x_motek_regular/x_morg__-webfont.svg#webfont') format('svg');
-// }
-
-@font-face {
-    font-family: 'ezrasilsr';
-    src: url('ezrasilsr/ezrasilsr-webfont.eot');
-    src: url('ezrasilsr/ezrasilsr-webfont.eot?#iefix') format('embedded-opentype'),
-         url('ezrasilsr/ezrasilsr-webfont.woff') format('woff'),
-         url('ezrasilsr/ezrasilsr-webfont.ttf') format('truetype'),
-         url('ezrasilsr/ezrasilsr-webfont.svg#motekbold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
 body {
-  // font-family: Georgia, Serif;
+  font-family: Georgia, Serif;
   font-size: 20px;
 }
 .ui-autocomplete  {
@@ -62,7 +41,6 @@ UL.helper-link {
 
 #search-section {
   direction: ltr;
-  margin-top: 150px;
 }
 
 #add_missing_verb {
@@ -81,7 +59,6 @@ UL.helper-link {
 /*VERB SHOW ACTION */
 div.verb-show-action, div.verb-preview-action {
   #verb-result {
-    font-family: "ezrasilsr";
     font-size: 20px;
     h3 {
       direction: rtl;
@@ -100,13 +77,10 @@ div.verb-show-action, div.verb-preview-action {
     }
   }
 
-  // direction: rtl;
   margin-top: 10px;
-  // font-size: 20px;
 
   .table-row { direction: rtl; }
   table.table {
-    // font-size: 24px;
     letter-spacing: 1px;
     thead th, tbody td {
       line-height: 1;
