@@ -8,11 +8,13 @@
       = render "shared/languages_bar"
   = render :partial =>  "shared/search_verb"
   = render :partial =>  "shared/add_verb_link"
-  - if @hebrew_verb.nil?
-    p = t("verb.missing")
-  - else
-    - if flash[:error]
-      p.existing-verb
-       | #{flash[:error]}. #{t "did_you_mean"} #{link_to @hebrew_verb.verb.send(session_language), verb_path(@hebrew_verb.verb_id)} ?
+
+  .row
+    - if @hebrew_verb.nil?
+      p.span12 = t("verb.missing")
     - else
-      = render :partial => "form"
+      - if flash[:error]
+        p.existing-verb.span12
+         | #{flash[:error]}. #{t "did_you_mean"} #{link_to @hebrew_verb.verb.send(session_language), verb_path(@hebrew_verb.verb_id)} ?
+      - else
+        = render :partial => "form"
