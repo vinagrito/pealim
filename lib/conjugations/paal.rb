@@ -3,7 +3,7 @@ module Conjugations
   class Paal
     def self.conjugate_paal(params)
       temp_hebrew_verb = Hash.new
-      root = Letter.set_root(params)
+      root = Letter.create_root_from_letters(params)
       temp_hebrew_verb[:root] = root[2] + "." + root[1] + "." + root[0]
       paal = VerbConstructors::Paal.new
       # PRESENT TENSE
