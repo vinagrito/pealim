@@ -35,5 +35,11 @@ en:
     missing: "Sorry, couldn't find such a verb"
     confirm: "Confirm"
     report: "Report issue"
+  help:
+    parragraph1: "Do you have a hard time sometimes trying to remember how a verb is conjugated in hebrew? Pealim comes pretty handy."
+    parragraph2: "How to use?. Well, just type into the search field a verb and choose form the list the one you wish to check."
+    parragraph3: "Currently the list of verbs is reduced and only contains verbs belonging to the 'paal' structure. So if you see a verb missing help by clicklin the 'add it here' link right below the search field."
+    parragraph4: "Now, it is worth point out that this application has just been born so it's not perfect, so I kindly ask you to bare with me."
+    parragraph5: "In the mean time, enjoy!."
   other:
     did_you_mean: "Did you mean"

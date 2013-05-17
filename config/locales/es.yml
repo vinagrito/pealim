@@ -35,5 +35,11 @@ es:
     missing: "Disculpa, no pudimos encontrar este verbo"
     confirm: "Confirmar"
     report: "Reportar error"
+  help:
+    parragraph1: "Se te dificulta a veces recordar como se conjuga un verbo en Hebreo? Pealim resulta ser bastante útil."
+    parragraph2: "Como se usa?. Bien, pues simplemente digita en el campo de búsqueda un verbo y escoje de la lista aquél que quieras revisar."
+    parragraph3: "Actualmente la lista de verbos es bastante reducida y sólo contiene verbos del grupo 'paal'. Así que si notas la ausencia un verbo puedes agregarlo siguiendo el link 'agrégalo acá', el cual está bajo el campo de búsqueda."
+    parragraph4: "Vale la pena decir que esta herramienta apenas ha sido creada y no es perfecta, así que de manera muy gentil les pido que tengan un poco de paciencia."
+    parragraph5: "Mientras tanto, disfruten!."
   other:
     did_you_mean: "Quisiste decir"
