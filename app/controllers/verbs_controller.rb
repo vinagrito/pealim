@@ -44,8 +44,6 @@ class VerbsController < ApplicationController
 
     hebrew_verb = {verb_id: verb.id, building_id: params[:hebrew_verb][:building_id]}
     hebrew_verb.merge! Conjugations::Paal.conjugate_paal(params)
-    puts "***** HERE COMES THE LOG *******"
-    puts hebrew_verb
     @hebrew_verb = HebrewVerb.create(hebrew_verb)
     render :show
     #@past_base = hebrew_verb[:past_base]
