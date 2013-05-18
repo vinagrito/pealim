@@ -110,7 +110,9 @@ module VerbConstructor
 
       if root[0] == "י" || root.join(".") == "ה.ל.כ"
         hebrew_verb[:infinitive] = "לָ#{root[1]}ֶ#{root[2]}ֶת"
-        hebrew_verb[:infinitive] = "לָ#{root[1]}ֵאת" if root[2] == "א"
+        if root[2] == "א"
+          hebrew_verb[:infinitive] = root[1] == "ר" ? "לִירוֹא" : "לָ#{root[1]}ֵאת"
+        end
         hebrew_verb[:infinitive] = "לָ#{root[1]}ַעַת" if root[2] == "ע"
 
         if root.join(".") == "י.ג.ע"
@@ -132,6 +134,7 @@ module VerbConstructor
 
       if %w( ו י ).include?(root[1]) && root[2] != "ה"
         second_component = root[1] == "ו" ? "וּ" : "ִי"
+        second_component = root.join(".") == "ב.ו.א" ? "וֹ" : "וּ"
         third_component = root[2] == "ח" ? "חַ" : "#{root[2]}"
         hebrew_verb[:infinitive] = "לָ#{root[0]}#{second_component}#{third_component}"
       end
@@ -142,6 +145,21 @@ module VerbConstructor
 
       if root.join(".") == "ש.כ.ב"
         hebrew_verb[:infinitive] = "לִשְכַּב"
+      end
+
+      if EXCEPTION_ROOTS.include? root.join(".")
+        case root.join(".")
+        when "י.כ.ל"
+          hebrew_verb[:infinitive] = "----//----"
+        when "נ.ג.ש"
+          hebrew_verb[:infinitive] = "לָגֶשֶת"
+        when "נ.ת.נ"
+          hebrew_verb[:infinitive] = "לָתֵת"
+        when "ה.י.ה"
+          hebrew_verb[:infinitive] = "לִהְיוֹת"
+        when "ח.י.ה"
+          hebrew_verb[:infinitive] = "לִחְיוֹת"
+        end
       end
 
       hebrew_verb
