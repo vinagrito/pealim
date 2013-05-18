@@ -6,6 +6,8 @@
       ul.nav
         li = link_to t("navigation.main"), verbs_path
       = render "shared/languages_bar"
+  .row
+    = image_tag "verbs.png", class: "main-image span2 offset4"
   = render :partial =>  "shared/search_verb"
   = render :partial =>  "shared/add_verb_link"
 

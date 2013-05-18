@@ -8,5 +8,3 @@
         = v.hidden_field :verb_id
         = text_field_tag :verb_name,"", placeholder: t("intro.type_verb"), :class => "search-query"
         = v.submit t("intro.search"), name: nil, id: "search-btn", :class => "btn btn-success"
-  - if controller.action_name == "show"
-    = image_tag "verbs.png", class: "main-image span2"
