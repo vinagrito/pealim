@@ -69,6 +69,13 @@ module VerbConstructor
         hebrew_verb[:fem_plu_pres]  = "יְ#{root[1]}ֵ#{root[2]}וֹת"
       end
 
+      if %w( ג.ד.ל ד.ב.ק ).include? root.join(".")
+        hebrew_verb[:mas_sing_pres] = "#{root[0]}ָ#{root[1]}ֵ#{root[2]}"
+        hebrew_verb[:fem_sing_pres] = "#{root[0]}ְ#{root[1]}ֵ#{root[2]}ָה"
+        hebrew_verb[:mas_plu_pres] = "#{root[0]}ְ#{root[1]}ֵ#{root[2]}ִים"
+        hebrew_verb[:fem_plu_pres] ="#{root[0]}ְ#{root[1]}ֵ#{root[2]}וֹת"
+      end
+
       if EXCEPTION_ROOTS.include? root.join(".")
         hebrew_verb = conjugate_present_for_exception(root)
       end
