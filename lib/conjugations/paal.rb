@@ -14,6 +14,9 @@ module Conjugations
         temp_hebrew_verb.merge! paal.infinitive(root)
       # FUTURE TENSE
         temp_hebrew_verb.merge! paal.future_tense(root, temp_hebrew_verb[:infinitive])
+        binding.pry
+      # FIXES VERB WITH FIRST ROOT COMPONENT -> נ
+        temp_hebrew_verb.merge! paal.pei_ha_poal_nun_fix_for_last_three(temp_hebrew_verb) if root[0] == "נ" #&& VerbConstructors::Paal::NUN_EXCEPTIONS_IMPERATIVE.include?(root.join("."))
       # FIXES VERB WITH LAST ROOT COMPONENT -> ה
         temp_hebrew_verb = paal.lamed_ha_poal_future_case_fix(root, temp_hebrew_verb) if root[2] == "ה"
       # IMPERATIVE

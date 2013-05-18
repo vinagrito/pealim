@@ -1,6 +1,10 @@
 # encoding: UTF-8
 module VerbConstructors
   class Paal
+    NUN_EXCEPTIONS_INFINITIVE = ["נ.פ.ל", "נ.ש.א"]
+    NUN_EXCEPTIONS_IMPERATIVE = ["נ.פ.ל", "נ.ט.ר"]
+    NUN_EXCEPTIONS_A = ["", ""]
+
     def present_tense(root)
       # DEFAULT VERB CONJUGATION
       hebrew_verb = Hash.new
@@ -191,6 +195,7 @@ module VerbConstructors
       infinitive_end = root[2] == "ה" ? "ת" : "#{root[2]}"
       hebrew_verb[:infinitive] = "לִ#{root[0]}ְ#{root[1]}וֹ" + infinitive_end
       hebrew_verb[:infinitive] = "לִפֹל" if root[0] == "נ" && root[1] == "פ" && root[2] == "ל"
+      hebrew_verb[:infinitive] = "לָשֵׂאת" if root[0] == "נ" && root[1] == "ש" && root[2] == "א"
 
       if ["ח", "ע", "ה"].include?(root[0])
         infinitive_start = root[0] == "ח" ? "לַ#{root[0]}ְ#{root[1]}וֹ" : "לַ#{root[0]}ֲ#{root[1]}וֹ"
@@ -250,11 +255,11 @@ module VerbConstructors
     def future_tense(root, infinitive)
       hebrew_verb = Hash.new
       verb_exceptions = ["לִלְמוֹד","לִגְדוֹל","לִלְבוֹש"]
-      nun_exceptions = ["נ.פ.ל", "נ.ש.א"]
-      future_base = infinitive[2..-1]
-      future_base = infinitive[4..-1] if root[0] == "נ" && !nun_exceptions.include?(root.join("."))
-      youfem_youplural_they_fut_base = future_base.delete future_base[3..4]
 
+      future_base = infinitive[2..-1]
+      future_base = infinitive[4..-1] if root[0] == "נ" && !NUN_EXCEPTIONS_INFINITIVE.include?(root.join("."))
+      youfem_youplural_they_fut_base = future_base.delete future_base[3..4]
+      binding.pry
       if verb_exceptions.include?(infinitive)
         case infinitive
           when "לִלְבוֹש"
@@ -289,10 +294,6 @@ module VerbConstructors
         return pei_ha_poal_alef_future_case(root)
       end
 
-      if root[0] == "נ"
-        #
-      end
-
       if root[0] == "י" || (root[0] == "ה" && root[1] == "ל" && root[2]== "כ")
         future_base = ["ע", "ח"].include?(root[2]) ? "#{root[1]}ַ#{root[2]}" : "#{root[1]}ֵ#{root[2]}"
         youfem_youplural_they_fut_base = "#{root[1]}ְ#{root[2]}"
@@ -319,9 +320,16 @@ module VerbConstructors
         hebrew_verb[:you_mas_sing_she_fut] = "תִ" + "#{root[0]}ְ#{root[1]}ָא"
         hebrew_verb[:he_fut] = "יִ" + "#{root[0]}ְ#{root[1]}ָא"
         hebrew_verb[:we_fut] = "נִ" + "#{root[0]}ְ#{root[1]}ָא"
-        hebrew_verb[:you_fem_sing_fut] = "תִ" + "#{root[0]}ְ#{root[1]}אִי"
-        hebrew_verb[:you_plu_fut] = "תִ" + "#{root[0]}ְ#{root[1]}אוּ"
-        hebrew_verb[:they_fut] = "יִ" + "#{root[0]}ְ#{root[1]}אוּ"
+        if root[1] == "ח"
+          hebrew_verb[:you_fem_sing_fut] = "תִ" + "#{root[0]}ְ#{root[1]}ֲאִי"
+          hebrew_verb[:you_plu_fut] = "תִ" + "#{root[0]}ְ#{root[1]}ֲאוּ"
+          hebrew_verb[:they_fut] = "יִ" + "#{root[0]}ְ#{root[1]}ֲאוּ"
+        else
+          hebrew_verb[:you_fem_sing_fut] = "תִ" + "#{root[0]}ְ#{root[1]}ְאִי"
+          hebrew_verb[:you_plu_fut] = "תִ" + "#{root[0]}ְ#{root[1]}ְאוּ"
+          hebrew_verb[:they_fut] = "יִ" + "#{root[0]}ְ#{root[1]}ְאוּ"
+        end
+
       elsif ["ה","ע","ח","א"].include?(root[1])
         hebrew_verb[:me_fut] = "אֶ" + "#{root[0]}ְ" + "#{root[1]}ַ#{root[2]}"
         hebrew_verb[:you_mas_sing_she_fut] = "תִ" + "#{root[0]}ְ" + "#{root[1]}ַ#{root[2]}"
@@ -370,6 +378,12 @@ module VerbConstructors
         hebrew_verb[:mas_imp]    = conjugated_verb[:you_mas_sing_she_fut][2..-1]
         hebrew_verb[:fem_imp]    = conjugated_verb[:you_fem_sing_fut][2..-1]
         hebrew_verb[:plural_imp] = conjugated_verb[:you_plu_fut][2..-1]
+
+        if root_reversed[2] == "נ" && NUN_EXCEPTIONS_IMPERATIVE.include?(conjugated_verb[:root].reverse)
+          hebrew_verb[:mas_imp]    = "נְ" + hebrew_verb[:mas_imp]
+          hebrew_verb[:fem_imp]    = "נִ" + hebrew_verb[:fem_imp]
+          hebrew_verb[:plural_imp] = "נִ" + hebrew_verb[:plural_imp]
+        end
         # FIXES ה''ל SOUND
         hebrew_verb[:mas_imp][-2..-2] = "ֵ" if hebrew_verb[:mas_imp][-2..-2] == "ֶ"
       end
@@ -437,8 +451,10 @@ module VerbConstructors
       hebrew_verb
     end
 
-    def pei_ha_poal_nun(root)
-      hebrew_verb = Hash.new
+    def pei_ha_poal_nun_fix_for_last_three(hebrew_verb)
+      %w(me_fut you_mas_sing_she_fut he_fut we_fut you_fem_sing_fut you_plu_fut they_fut).each do |person|
+        hebrew_verb[person.to_sym].slice!(2..3)
+      end
 
       hebrew_verb
     end
