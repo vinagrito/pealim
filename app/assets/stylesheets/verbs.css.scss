@@ -102,15 +102,13 @@ div.verb-show-action, div.verb-preview-action {
     }
   }
 
+  .main-image {
+    position: absolute;
+    top: 0;
+  }
   #search-section {
     direction: ltr;
     margin-top: 0px;
-    .main-image {
-      position: absolute;
-      top: 0;
-      width: 15%;
-      margin-left: 30%;
-    }
   }
 }
 // unscrollable body while modal open
