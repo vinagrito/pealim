@@ -64,7 +64,7 @@
   ["See", "Видеть", "Mirar", ["ר","א","ה"]],["Rent(Hire)", "Снимать", "Arrendar(Tomar en arriendo)", ["ש","כ","ר"]],
   ["Hear", "Слышать", "Oir", ["ש","מ","ע"]],["Put", "Класть/Положить", "Colocar", ["ש","י","מ"]],["Grow", "Ростить", "Crecer", ["ג","ד","ל"]],
   ["Descend/Emigrate from Israel", "Спускаться/Эмигрировать из Израиля", "Bajar/Emigrar de Israel", ["י","ר","ד"]],
-  ["Go/Ride", "Ехать/Ездить", "Ir/viajar",["נ","ס"]]
+  ["Go/Ride", "Ехать/Ездить", "Ir/viajar",["נ","ס","ע"]]
 ].each do |verb|
   begin
     conditions = { :english => verb[0], :russian => verb[1], :spanish => verb[2] }
