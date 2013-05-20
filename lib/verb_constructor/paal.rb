@@ -174,23 +174,36 @@ module VerbConstructor
 
       if root[2] == "ה"
         _past_base.slice!(-2..-1)
+        _past_base += "ִי"
       end
 
-      hebrew_verb[:me_past]           = _past_base + "ְתִי"
-      hebrew_verb[:you_mas_sing_past] = _past_base + "ְתָ"
-      hebrew_verb[:you_fem_sing_past] = _past_base + "ְתְ"
-      hebrew_verb[:we_past]           = root[2] == "נ" ?  _past_base + "וּ" : _past_base + "ְנוּ"
-      hebrew_verb[:you_mas_plu_past]  = _past_base + "ְתֶם"
-      hebrew_verb[:you_fem_plu_past]  = _past_base + "ְתֶן"
-      hebrew_verb[:he_past]           = _past_base.clone
+      _past_base += "ְ" if root[2] != "ה"
+
+      hebrew_verb[:me_past]           = _past_base + "תִי"
+      hebrew_verb[:you_mas_sing_past] = _past_base + "תָ"
+      hebrew_verb[:you_fem_sing_past] = _past_base + "תְ"
+      hebrew_verb[:we_past]           = root[2] == "נ" ?  _past_base + "וּ" : _past_base + "נוּ"
+      hebrew_verb[:you_mas_plu_past]  = _past_base + "תֶם"
+      hebrew_verb[:you_fem_plu_past]  = _past_base + "תֶן"
+      hebrew_verb[:he_past]           = root[2] == "ה" ? past_base.clone : _past_base.clone
       _past_base.slice! 3
-      if GUTTURAL.include? _past_base[2]
-        _past_base.insert 3, "ֲ"
+      if GUTTURAL.include? root[2]
+        if root[2] == "ה"
+          _past_base.slice!(-1)
+        else
+          _past_base.insert 3, "ֲ"
+        end
       else
         _past_base.insert 3, "ְ"
       end
-      hebrew_verb[:she_past]          = _past_base + "ָה"
-      hebrew_verb[:they_past]         = _past_base + "וּ"
+
+      if root[2] == "ה"
+        hebrew_verb[:she_past] = _past_base + "ְתָה"
+        hebrew_verb[:they_past] = _past_base + "וּ "
+      else
+        hebrew_verb[:she_past]  =  _past_base + "ָה"
+        hebrew_verb[:they_past] = _past_base + "וּ"
+      end
 
       hebrew_verb
     end
