@@ -28,7 +28,7 @@ module VerbConstructor
         hebrew_verb[:fem_sing_pres] = "#{root[0]}ָ#{root[2]}ָה"
         hebrew_verb[:mas_plu_pres]  = "#{root[0]}ָ#{root[2]}ִים"
         hebrew_verb[:fem_plu_pres]  = "#{root[0]}ָ#{root[2]}וֹת"
-        hebrew_verb[:past_base]     = "#{root[0]}ָ#{root[1]}"
+        hebrew_verb[:past_base]     = "#{root[0]}ָ#{root[2]}ָ"
       end
 
       if %w( ח ע ).include? root[2]
@@ -36,7 +36,7 @@ module VerbConstructor
         hebrew_verb[:fem_sing_pres] = "#{root[0]}וֹ#{root[1]}ַ#{root[2]}ַת"
       end
 
-      if root[2] == "א"
+      if root[2] == "א" && (root[0] != "ב" && root[1] != "ו")
         hebrew_verb[:fem_sing_pres] = "#{root[0]}וֹ#{root[1]}ֵ#{root[2]}ת"
         hebrew_verb[:past_base]     = "#{root[0]}ָ#{root[1]}ָ#{root[2]}"
       end
@@ -58,7 +58,7 @@ module VerbConstructor
       end
 
       if root.join(".") == "י.ש.נ"
-        hebrew_verb[:mas_sing_pres] = "יָשֵׁן"
+        hebrew_verb[:mas_sing_pres] = "יָשֵׁנ"
         hebrew_verb[:fem_sing_pres] = "יְשֵׁנה"
         hebrew_verb[:mas_plu_pres]  = "יְשֵׁנִים"
         hebrew_verb[:fem_plu_pres]  = "יְשֵׁנוֹת"
@@ -110,6 +110,7 @@ module VerbConstructor
 
       if root[0] == "י" || root.join(".") == "ה.ל.כ"
         hebrew_verb[:infinitive] = "לָ#{root[1]}ֶ#{root[2]}ֶת"
+        hebrew_verb[:infinitive] = "לִ#{root[0]}#{root[1]}וֹ#{root[2]}" unless %w(ה.ל.כ י.ר.ד י.ד.ע י.ל.ד י.ש.ב).include? root.join(".")
         if root[2] == "א"
           hebrew_verb[:infinitive] = root[1] == "ר" ? "לִירוֹא" : "לָ#{root[1]}ֵאת"
         end
@@ -125,6 +126,8 @@ module VerbConstructor
           hebrew_verb[:infinitive] = "לָ#{root[1]}ַעֲת"
         elsif root[2] == "א"
           hebrew_verb[:infinitive] = "לָ#{root[1]}ֵאת"
+        elsif root.join(".") == "נ.פ.ל"
+          hebrew_verb[:infinitive] = "לִפוֹל"
         end
       end
 
@@ -161,6 +164,33 @@ module VerbConstructor
           hebrew_verb[:infinitive] = "לִחְיוֹת"
         end
       end
+
+      hebrew_verb
+    end
+
+    def past_tense(root, past_base)
+      hebrew_verb = Hash.new
+      _past_base = past_base.clone
+
+      if root[2] == "ה"
+        _past_base.slice!(-2..-1)
+      end
+
+      hebrew_verb[:me_past]           = _past_base + "ְתִי"
+      hebrew_verb[:you_mas_sing_past] = _past_base + "ְתָ"
+      hebrew_verb[:you_fem_sing_past] = _past_base + "ְתְ"
+      hebrew_verb[:we_past]           = root[2] == "נ" ?  _past_base + "וּ" : _past_base + "ְנוּ"
+      hebrew_verb[:you_mas_plu_past]  = _past_base + "ְתֶם"
+      hebrew_verb[:you_fem_plu_past]  = _past_base + "ְתֶן"
+      hebrew_verb[:he_past]           = _past_base.clone
+      _past_base.slice! 3
+      if GUTTURAL.include? _past_base[2]
+        _past_base.insert 3, "ֲ"
+      else
+        _past_base.insert 3, "ְ"
+      end
+      hebrew_verb[:she_past]          = _past_base + "ָה"
+      hebrew_verb[:they_past]         = _past_base + "וּ"
 
       hebrew_verb
     end
