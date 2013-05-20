@@ -122,7 +122,7 @@ module VerbConstructor
       end
 
       if root[0] == "נ"
-        if (root[2] == "ע" && root.join(".") != "נ.ס.ע")
+        if (root[2] == "ע" && root.join(".") == "נ.ג.ע")
           hebrew_verb[:infinitive] = "לָ#{root[1]}ַעֲת"
         elsif root[2] == "א"
           hebrew_verb[:infinitive] = "לָ#{root[1]}ֵאת"
