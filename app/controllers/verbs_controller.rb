@@ -44,7 +44,7 @@ class VerbsController < ApplicationController
 
     hebrew_verb = {verb_id: verb.id, building_id: params[:hebrew_verb][:building_id]}
     root = Letter.create_root_from_letters(params[:root_1], params[:root_2], params[:root_3])
-    binding.pry
+
     hebrew_verb.merge! Conjugations::Paal.conjugate_paal(root)
     @hebrew_verb = HebrewVerb.create(hebrew_verb)
     render :show
