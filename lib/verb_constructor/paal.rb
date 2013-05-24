@@ -23,15 +23,15 @@ module VerbConstructor
         hebrew_verb[:fem_plu_pres]  = "#{root[0]}ֲ#{root[1]}ֵ#{root[2]}וֹת"
       end
 
-      if %w( ו י ).include?(root[1]) || (root[1] == root[2] && !GUTTURAL.include?(root[0]) )
+      if (%w( ו י ).include?(root[1]) && root[2] != "ה") || (root.join(".") == "ת.מ.מ" )
         hebrew_verb[:mas_sing_pres] = "#{root[0]}ָ#{root[2]}"
         hebrew_verb[:fem_sing_pres] = "#{root[0]}ָ#{root[2]}ָה"
         hebrew_verb[:mas_plu_pres]  = "#{root[0]}ָ#{root[2]}ִים"
         hebrew_verb[:fem_plu_pres]  = "#{root[0]}ָ#{root[2]}וֹת"
-        hebrew_verb[:past_base]     = "#{root[0]}ָ#{root[2]}ָ"
+        hebrew_verb[:past_base]     = "#{root[0]}ָ#{root[2]}"
       end
 
-      if %w( ח ע ).include? root[2]
+      if %w( ח ע ).include?(root[2]) && %w("י ח").include?(root[1])
         hebrew_verb[:mas_sing_pres] += "ַ"
         hebrew_verb[:fem_sing_pres] = "#{root[0]}וֹ#{root[1]}ַ#{root[2]}ַת"
       end
@@ -69,6 +69,7 @@ module VerbConstructor
         hebrew_verb[:fem_sing_pres] = "יְ#{root[1]}ֵ#{root[2]}ָה"
         hebrew_verb[:mas_plu_pres]  = "יְ#{root[1]}ֵ#{root[2]}ִים"
         hebrew_verb[:fem_plu_pres]  = "יְ#{root[1]}ֵ#{root[2]}וֹת"
+        hebrew_verb[:past_base] = "יָרֵא" if root.join(".") == "י.ר.א"
       end
 
       if %w(ג.ד.ל ד.ב.ק).include? root.join(".")
@@ -177,7 +178,8 @@ module VerbConstructor
         _past_base += "ִי"
       end
 
-      _past_base += "ְ" if root[2] != "ה"
+      _past_base += "ְ" if root[2] != "ה" && root[2] != "א"
+      _past_base.slice!(-2..-1) if root[2] == "ת"
 
       hebrew_verb[:me_past]           = _past_base + "תִי"
       hebrew_verb[:you_mas_sing_past] = _past_base + "תָ"
@@ -185,17 +187,30 @@ module VerbConstructor
       hebrew_verb[:we_past]           = root[2] == "נ" ?  _past_base + "וּ" : _past_base + "נוּ"
       hebrew_verb[:you_mas_plu_past]  = _past_base + "תֶם"
       hebrew_verb[:you_fem_plu_past]  = _past_base + "תֶן"
-      hebrew_verb[:he_past]           = root[2] == "ה" ? past_base.clone : _past_base.clone
+      if root[2] == "ה"
+        hebrew_verb[:he_past] = past_base.clone
+      else
+        if %w(ת ע).include?(root[2])
+          hebrew_verb[:he_past] = past_base.clone
+          _past_base = past_base.clone if root[2] == "ת"
+        else
+          hebrew_verb[:he_past] =  _past_base.clone
+        end
+
+      end
+
       _past_base.slice! 3
+
       if GUTTURAL.include? root[2]
         if root[2] == "ה"
           _past_base.slice!(-1)
-        else
+        elsif root[2] == "ח"
           _past_base.insert 3, "ֲ"
         end
-      else
-        _past_base.insert 3, "ְ"
       end
+
+      _past_base.insert 3, "ְ" if root[1] != "ו"
+
 
       if root[2] == "ה"
         hebrew_verb[:she_past] = _past_base + "ְתָה"
@@ -205,6 +220,9 @@ module VerbConstructor
         hebrew_verb[:they_past] = _past_base + "וּ"
       end
 
+      if EXCEPTION_ROOTS.include? root.join(".")
+        hebrew_verb = conjugate_past_for_exceptions(root)
+      end
       hebrew_verb
     end
 
@@ -242,7 +260,7 @@ module VerbConstructor
         fem_sing_pres = "חַיָה"
         mas_plu_pres = "חַיִים"
         fem_plu_pres = "חַיות"
-        past_base = "הָיָה"
+        past_base = "חָיָה"
       when "מ.ו.ת"
         mas_sing_pres = "מֵת"
         fem_sing_pres = "מֵתָה"
@@ -257,6 +275,85 @@ module VerbConstructor
         mas_plu_pres: mas_plu_pres,
         fem_plu_pres: fem_plu_pres,
         past_base: past_base
+      }
+    end
+
+    def conjugate_past_for_exceptions(root)
+      case root.join(".")
+      when "י.כ.ל"
+        me_past           = "יָכֹלתִי"
+        you_mas_sing_past = "יָכֹלתָ"
+        you_fem_sing_past = "יָכֹלתְ"
+        we_past           = "יָכֹלנוּ"
+        you_mas_plu_past  = "יָכֹלתֶם"
+        he_past           = "היִיה יָכֹל"
+        she_past          = "יָכְלָה"
+        they_past         = "יָכְֹלוֹ"
+      when "י.ר.א"
+        me_past           = "יָרֵאתִי"
+        you_mas_sing_past = "יָרֵאתָ"
+        you_fem_sing_past = "יָרֵאתְ"
+        we_past           = "יָרֵאנוּ"
+        you_mas_plu_past  = "יָרֵאתֶם"
+        he_past           = "יָרֵא"
+        she_past          = "יָרֵאָה"
+        they_past         = "יָרְאוּ"
+      when "נ.ג.ש"
+        me_past           = "נִגַשְׂתִי"
+        you_mas_sing_past = "נִגַשְׂתָ"
+        you_fem_sing_past = "נִגַשְׂתְ"
+        we_past           = "נִגַשְׂנוּ"
+        you_mas_plu_past  = "נִגַשְׂתֶם"
+        he_past           = "נִגַשֹ"
+        she_past          = "נִגְשָׂה"
+        they_past         = "נִגְשׂוּ"
+      when "נ.ת.נ"
+        me_past           = "נָתַתִי"
+        you_mas_sing_past = "נָתַתָ"
+        you_fem_sing_past = "נָתַתְ"
+        we_past           = "נָתַנוּ"
+        you_mas_plu_past  = "נָתַתֶם"
+        he_past           = "נָתַנ"
+        she_past          = "נָתְנָה"
+        they_past         = "נָתְנוּ"
+      when "ה.י.ה"
+        me_past           = "הָיִיתִי"
+        you_mas_sing_past = "הָיִיתָ"
+        you_fem_sing_past = "הָיִיתְ"
+        we_past           = "הָיִינוּ"
+        you_mas_plu_past  = "הָיִיתֶם"
+        he_past           = "הָיָה"
+        she_past          = "הָיְתָה"
+        they_past         = "הָיוּ"
+      when "ח.י.ה"
+        me_past           = "חָָיִיתִי"
+        you_mas_sing_past = "חָָיִיתָ"
+        you_fem_sing_past = "חָָיִיתְ"
+        we_past           = "חָָיִינוּ"
+        you_mas_plu_past  = "חָָיִיתֶם"
+        he_past           = "חַָי"
+        she_past          = "חָָיְתָה"
+        they_past         = "חָָיוּ"
+      when "מ.ו.ת"
+        me_past           = "מֵתִי"
+        you_mas_sing_past = "מֵתָ"
+        you_fem_sing_past = "מֵתְ"
+        we_past           = "מַתְנוּ"
+        you_mas_plu_past  = "מַתֶם"
+        he_past           = "מֵת"
+        she_past          = "מֵתָה"
+        they_past         = "מֵתוּ"
+      end
+
+      {
+        me_past: me_past,
+        you_mas_sing_past: you_mas_sing_past,
+        you_fem_sing_past: you_fem_sing_past,
+        we_past: we_past,
+        you_mas_plu_past: you_mas_plu_past,
+        he_past: he_past,
+        she_past: she_past,
+        they_past: they_past
       }
     end
 
