@@ -60,6 +60,7 @@ UL.helper-link {
 /*VERB SHOW ACTION */
 div.verb-show-action, div.verb-preview-action {
   #verb-result {
+    font-family: "sefer_ahregular";
     font-size: 20px;
     h3 {
       direction: rtl;
@@ -74,6 +75,14 @@ div.verb-show-action, div.verb-preview-action {
       margin: 18px 0 0 30px;
       .btn-danger {
         margin-left: 10%;
+      }
+    }
+
+    .table {
+      &.past-tense, &.future-tense, &.imperative-tense {
+        td {
+          text-align: right;
+        }
       }
     }
   }

@@ -10,9 +10,10 @@
         / = link_to t("verb.report"), report_verb_path(@hebrew_verb.verb), :class => "btn btn-small btn-danger"
 
   .row.table-row
-    .span11: h3 זמן הווה
     .span7.offset4
       table.table.table-condensed.present-tense
+        thead
+          .span3.pull-right: h3 זמן הווה
         thead
           tr
             th מין זכר/יחיד
@@ -26,24 +27,23 @@
             td = @hebrew_verb.mas_plu_pres
             td = @hebrew_verb.fem_plu_pres
 
-  .row
-    .span4: h3 זמן ציווי
-    .span4: h3 זמן עתיד
-    .span3: h3 זמן עבר
 
   .row.table-row
     / IMPERATIVE TENSE TABLE
     .span2.offset2
       table.table.table-hover.imperative-tense
         thead
+          .span2
+            h3 זמן ציווי
+        tbody
           tr
             th אתה
             td = @hebrew_verb.mas_imp
-        thead
+        tbody
           tr
             th את
             td = @hebrew_verb.fem_imp
-        thead
+        tbody
           tr
             th אתם-ן
             td = @hebrew_verb.plural_imp
@@ -52,65 +52,71 @@
     .span3.offset1
       table.table.table-hover.future-tense
         thead
+          .span2
+            h3 זמן עתיד
+        tbody
           tr
             th אנִי
             td = @hebrew_verb.me_fut
-        thead
+        tbody
           tr
             th אתָה - היא
             td = @hebrew_verb.you_mas_sing_she_fut
-        thead
+        tbody
           tr
             th הוא
             td = @hebrew_verb.he_fut
-        thead
+        tbody
           tr
             th אנַחְנו
             td = @hebrew_verb.we_fut
-        thead
+        tbody
           tr
             th את
             td = @hebrew_verb.you_fem_sing_fut
-        thead
+        tbody
           tr
             th אתֵם-ן
             td = @hebrew_verb.you_plu_fut
-        thead
+        tbody
           tr
             th הֵם-ן
             td = @hebrew_verb.they_fut
     / PAST TENSE TABLE
-    .span1.offset2
+    .span3
       table.table.table-hover.past-tense
         thead
+          .span2
+            h3 זמן עבר
+        tbody
           tr
             th אנִי
             td = @hebrew_verb.me_past
-        thead
+        tbody
           tr
             th אתָה
             td = @hebrew_verb.you_mas_sing_past
-        thead
+        tbody
           tr
             th אתְ
             td = @hebrew_verb.you_fem_sing_past
-        thead
+        tbody
           tr
             th אנַחְנו
             td = @hebrew_verb.we_past
-        thead
+        tbody
           tr
             th אתֵם-ן
             td = @hebrew_verb.you_mas_plu_past + "-ן"
-        thead
+        tbody
           tr
             th הוא
             td = @hebrew_verb.he_past
-        thead
+        tbody
           tr
             th היא
             td = @hebrew_verb.she_past
-        thead
+        tbody
           tr
             th הֵם-ן
             td = @hebrew_verb.they_past
