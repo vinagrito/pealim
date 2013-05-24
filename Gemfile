@@ -30,4 +30,8 @@ gem 'unicorn'
 
 # To use debugger
 # gem 'ruby-debug'
-gem "debugger-pry", :require => "debugger/pry"
+
+group :development, :test do
+  gem "debugger-pry", :require => "debugger/pry"
+  gem 'rspec-rails', '~> 2.0'
+end
