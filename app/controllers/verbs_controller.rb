@@ -15,21 +15,21 @@ class VerbsController < ApplicationController
   end
 
   def show
-    if session[:ugc_verb] && session[:ugc_verb][:on]
-      verb, _exists, msg = Verb.check_for_existing(params[:id], false)
+    # if session[:ugc_verb] && session[:ugc_verb][:on]
+    #   verb, _exists, msg = Verb.check_for_existing(params[:id], false)
 
-      if _exists
-        flash[:error] = msg
-      else
-        flash[:notice] = msg
-      end
+    #   if _exists
+    #     flash[:error] = msg
+    #   else
+    #     flash[:notice] = msg
+    #   end
 
-      @hebrew_verb = verb.hebrew_verb
-      session.delete :ugc_verb
-    else
-      flash.delete(:error)
-      @hebrew_verb = Verb.find(params[:id]).hebrew_verb
-    end
+    #   @hebrew_verb = verb.hebrew_verb
+    #   session.delete :ugc_verb
+    # else
+    #   flash.delete(:error)
+    #   @hebrew_verb = Verb.find(params[:id]).hebrew_verb
+    # end
   end
 
   def preview
@@ -43,7 +43,9 @@ class VerbsController < ApplicationController
     end
 
     hebrew_verb = {verb_id: verb.id, building_id: params[:hebrew_verb][:building_id]}
-    hebrew_verb.merge! Conjugations::Paal.conjugate_paal(params)
+    root = Letter.create_root_from_letters(params[:root_1], params[:root_2], params[:root_3])
+    binding.pry
+    hebrew_verb.merge! Conjugations::Paal.conjugate_paal(root)
     @hebrew_verb = HebrewVerb.create(hebrew_verb)
     render :show
     #@past_base = hebrew_verb[:past_base]
