@@ -6,6 +6,7 @@ module VerbConstructor
     PEIL_HA_POAL_YUD_EXCEPTIONS_1 = %w( י.צ.ר י.ר.ק י.ר.ש י.ז.מ )
     PEIL_HA_POAL_YUD_EXCEPTIONS_2 = %w( י.ש.נ י.ע.צ )
     EXCEPTION_ROOTS = %w( י.כ.ל נ.ג.ש נ.ת.נ ה.י.ה ח.י.ה מ.ו.ת)
+    EXCEPTION_FUTURE_ROOTS = %w( ל.מ.ד ל.ב.ש ש.כ.ב ק.ר.נ ג.ד.ל ד.ב.ק)
 
     def present_tense(root)
       hebrew_verb = Hash.new
@@ -105,7 +106,11 @@ module VerbConstructor
             hebrew_verb[:infinitive] = "לֶ#{root[0]}ֱ#{root[1]}וֹ#{root[2]}"
           end
         else
-          hebrew_verb[:infinitive] = "לַ#{root[0]}ֲ#{root[1]}וֹ#{root[2]}"
+          if root.join(".") == "ח.נ.נ"
+            hebrew_verb[:infinitive] = "לָחוֹנ"
+          else
+            hebrew_verb[:infinitive] = "לַ#{root[0]}ֲ#{root[1]}וֹ#{root[2]}"
+          end
         end
       end
 
@@ -223,6 +228,43 @@ module VerbConstructor
       if EXCEPTION_ROOTS.include? root.join(".")
         hebrew_verb = conjugate_past_for_exceptions(root)
       end
+      hebrew_verb
+    end
+
+    def future_tense(root, infinitive)
+      hebrew_verb = Hash.new
+
+      prefix_sound_me = "ֶ"
+      prefix_sound_rest = "ִ"
+      future_baseֹ_me = future_baseֹ_you_us = "#{root[0]}ְ#{root[1]}וֹ#{root[2]}"
+      youfem_youplural_they_fut_base = "#{root[0]}ְ#{root[1]}ְ#{root[2]}"
+
+      if EXCEPTION_FUTURE_ROOTS.include? root.join(".")
+        future_baseֹ_me = future_baseֹ_you_us = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
+      elsif %w(ה ח ע).include? root[0]
+        if root.join(".") == "ח.נ.נ"
+          future_baseֹ_me = future_baseֹ_you_us = youfem_youplural_they_fut_base = infinitive.clone[2..-1]
+          prefix_sound_me = prefix_sound_rest = "ָ"
+        else
+          prefix_sound_me = "ֱ"
+          prefix_sound_rest = "ַ"
+
+          future_baseֹ_me = "#{root[0]}ֱ#{root[1]}וֹ#{root[2]}"
+          future_baseֹ_you_us = "#{root[0]}ֲ#{root[1]}וֹ#{root[2]}"
+          youfem_youplural_they_fut_base = "#{root[0]}ַ#{root[1]}ְ#{root[2]}"
+        end
+      end
+
+
+      hebrew_verb[:me_fut] = "א#{prefix_sound_me}" + future_baseֹ_me
+      hebrew_verb[:you_mas_sing_she_fut] = "ת#{prefix_sound_rest}" + future_baseֹ_you_us
+      hebrew_verb[:he_fut] = "י#{prefix_sound_rest}" + future_baseֹ_you_us
+      hebrew_verb[:we_fut] = "נ#{prefix_sound_rest}" + future_baseֹ_you_us
+      hebrew_verb[:you_fem_sing_fut] = "ת#{prefix_sound_rest}" + youfem_youplural_they_fut_base + "ִי"
+      hebrew_verb[:you_plu_fut] = "ת#{prefix_sound_rest}" + youfem_youplural_they_fut_base  + "וּ"
+      hebrew_verb[:they_fut] = "י#{prefix_sound_rest}" + youfem_youplural_they_fut_base  + "וּ"
+
+
       hebrew_verb
     end
 
