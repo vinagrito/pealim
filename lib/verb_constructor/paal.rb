@@ -32,7 +32,7 @@ module VerbConstructor
         hebrew_verb[:past_base]     = "#{root[0]}ָ#{root[2]}"
       end
 
-      if %w( ח ע ).include?(root[2]) && %w("י ח").include?(root[1])
+      if %w( ח ע ).include?(root[2]) && !%w("י ח").include?(root[1])
         hebrew_verb[:mas_sing_pres] += "ַ"
         hebrew_verb[:fem_sing_pres] = "#{root[0]}וֹ#{root[1]}ַ#{root[2]}ַת"
       end
