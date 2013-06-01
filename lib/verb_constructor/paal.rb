@@ -8,6 +8,7 @@ module VerbConstructor
     CONDITION_VERBS_AND_SIMILAR_PEIL_HA_POAL_YUD_EXCEPTIONS = %w( ר.ע.ב כ.מ.ה ש.מ.ח י.ג.ע י.ר.א )
     EXCEPTION_ROOTS = %w( י.כ.ל נ.ג.ש נ.ת.נ ה.י.ה ח.י.ה מ.ו.ת)
     EXCEPTION_FUTURE_ROOTS = %w( ל.מ.ד ל.ב.ש ש.כ.ב ק.ר.נ ג.ד.ל ד.ב.ק)
+    LETTERS_WITH_VISUAL_STRESS = %w( ב כ פ )
 
     def present_tense(root)
       hebrew_verb = Hash.new
@@ -175,6 +176,10 @@ module VerbConstructor
 
       if %w(ח ע).include? root[2]
         hebrew_verb[:infinitive] += "ַ"
+      end
+
+      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה).include?(root[0])
+        hebrew_verb[:infinitive].insert 5, "ּ"
       end
 
       hebrew_verb
