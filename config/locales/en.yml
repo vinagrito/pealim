@@ -25,6 +25,10 @@ en:
     submit: "Submit"
     close: "Close"
   verb:
+    present: "Present"
+    past: "Past"
+    future: "Future"
+    imperative: "Imperative"
     new_verb: "New verb"
     root: "Root"
     structure: "Structure"

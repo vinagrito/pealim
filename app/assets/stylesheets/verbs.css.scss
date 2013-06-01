@@ -71,6 +71,12 @@ div.verb-show-action, div.verb-preview-action {
         margin-right: 5px;
       }
     }
+    h4 {
+      float: right;
+    }
+    h5 {
+      line-height: 1.5em;
+    }
     #confirm-btn {
       margin: 18px 0 0 30px;
       .btn-danger {

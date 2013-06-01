@@ -13,7 +13,9 @@
     .span7.offset4
       table.table.table-condensed.present-tense
         thead
-          .span3.pull-right: h3 זמן הווה
+          .span3.pull-right
+            h4 זמן הווה
+            h5 (#{t("verb.present")})
         thead
           tr
             th מין זכר/יחיד
@@ -34,7 +36,8 @@
       table.table.table-hover.imperative-tense
         thead
           .span2
-            h3 זמן ציווי
+            h4 זמן ציווי
+            h5 (#{t("verb.imperative")})
         tbody
           tr
             th אתה
@@ -53,7 +56,8 @@
       table.table.table-hover.future-tense
         thead
           .span2
-            h3 זמן עתיד
+            h4 זמן עתיד
+            h5 (#{t("verb.future")})
         tbody
           tr
             th אנִי
@@ -87,7 +91,8 @@
       table.table.table-hover.past-tense
         thead
           .span2
-            h3 זמן עבר
+            h4 זמן עבר
+            h5 (#{t("verb.past")})
         tbody
           tr
             th אנִי

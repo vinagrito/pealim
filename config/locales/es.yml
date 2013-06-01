@@ -25,6 +25,10 @@ es:
     submit: "Enviar"
     close: "Cerrar"
   verb:
+    present: "Presente"
+    past: "Pasado"
+    future: "Futuro"
+    imperative: "Imperativo"
     new_verb: "Verbo nuevo"
     root: "Raiz"
     structure: "Estructura"

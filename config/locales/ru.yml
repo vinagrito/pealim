@@ -25,6 +25,10 @@ ru:
     submit: "Отправить"
     close: "Закрыть"
   verb:
+    present: "Настоящее"
+    past: "Прошедшее"
+    future: "Будущее"
+    imperative: "Повелительное"
     new_verb: "Новый глагол"
     root: "Корень"
     structure: "Бинъян"
