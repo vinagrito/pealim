@@ -249,7 +249,8 @@ module VerbConstructor
       prefix_sound_you_us = "ִ"
       prefix_sound_plural = "ִ"
 
-      future_base_me = future_base_you_us = "#{root[0]}ְ#{root[1]}וֹ#{root[2]}"
+      future_base_me = "#{root[0]}ְ#{root[1]}וֹ#{root[2]}"
+      future_base_you_us = "#{root[0]}ְ#{root[1]}וֹ#{root[2]}"
       youfem_youplural_they_fut_base = "#{root[0]}ְ#{root[1]}ְ#{root[2]}"
 
       if EXCEPTION_FUTURE_ROOTS.include? root.join(".")
