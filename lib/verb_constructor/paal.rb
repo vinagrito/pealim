@@ -243,7 +243,7 @@ module VerbConstructor
 
       if EXCEPTION_FUTURE_ROOTS.include? root.join(".")
         future_baseֹ_me = future_baseֹ_you_us = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
-      elsif %w(ה ח ע).include? root[0]
+      elsif %w(ה ח ע).include? root[0] && root.join(".") != "ה.ל.כ"
         if root.join(".") == "ח.נ.נ"
           future_baseֹ_me = future_baseֹ_you_us = youfem_youplural_they_fut_base = infinitive.clone[2..-1]
           prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ָ"
@@ -271,7 +271,7 @@ module VerbConstructor
           future_baseֹ_you_us = "אֱ#{root[1]}וֹ#{root[2]}"
           youfem_youplural_they_fut_base = "אַ#{root[1]}ְ#{root[2]}"
         end
-      elsif root[0] == "י"
+      elsif root[0] == "י" || root.join(".") == "ה.ל.כ"
         if infinitive[2..-1] == "#{root[1]}ֶ#{root[2]}ֶת" || root[2] == "א"
           prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ֵ"
 
@@ -282,6 +282,11 @@ module VerbConstructor
           prefix_sound_you_us = prefix_sound_plural = "ִ"
 
           future_baseֹ_me = future_baseֹ_you_us = "#{root[1]}וֹ#{root[2]}"
+          youfem_youplural_they_fut_base = "#{root[1]}ְ#{root[2]}"
+        elsif infinitive[2..-1] == "#{root[1]}ַ#{root[2]}ַת"
+          prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ֵ"
+
+          future_baseֹ_me = future_baseֹ_you_us = "#{root[1]}ַ#{root[2]}"
           youfem_youplural_they_fut_base = "#{root[1]}ְ#{root[2]}"
         else
           prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ִ"
