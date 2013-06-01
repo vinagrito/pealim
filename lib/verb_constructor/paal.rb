@@ -386,6 +386,16 @@ module VerbConstructor
         end
       end
 
+      if %w(ו י).include? root[1]
+        prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ָ"
+
+        if root[1] == "ו"
+          future_base_me = future_base_you_us = youfem_youplural_they_fut_base = "#{root[0]}וּ#{root[2]}"
+        else
+          future_base_me = future_base_you_us = youfem_youplural_they_fut_base = "#{root[0]}ִי#{root[2]}"
+        end
+      end
+
       if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה).include?(root[0])
         future_base_me.insert 3, "ּ"
         future_base_you_us.insert 3, "ּ"
