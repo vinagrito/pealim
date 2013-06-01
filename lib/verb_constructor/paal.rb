@@ -116,7 +116,7 @@ module VerbConstructor
 
       if root[0] == "י" || root.join(".") == "ה.ל.כ"
         hebrew_verb[:infinitive] = "לָ#{root[1]}ֶ#{root[2]}ֶת"
-        hebrew_verb[:infinitive] = "לִ#{root[0]}#{root[1]}וֹ#{root[2]}" unless %w(ה.ל.כ י.ר.ד י.ד.ע י.ל.ד י.ש.ב).include? root.join(".")
+        hebrew_verb[:infinitive] = "לִ#{root[0]}#{root[1]}וֹ#{root[2]}" unless %w(ה.ל.כ י.ר.ד י.ד.ע י.ל.ד י.ש.ב י.ר.ש).include? root.join(".")
         if root[2] == "א"
           hebrew_verb[:infinitive] = root[1] == "ר" ? "לִירוֹא" : "לָ#{root[1]}ֵאת"
         end
@@ -272,7 +272,7 @@ module VerbConstructor
           youfem_youplural_they_fut_base = "אַ#{root[1]}ְ#{root[2]}"
         end
       elsif root[0] == "י" || root.join(".") == "ה.ל.כ"
-        if infinitive[2..-1] == "#{root[1]}ֶ#{root[2]}ֶת" || root[2] == "א"
+        if (infinitive[2..-1] == "#{root[1]}ֶ#{root[2]}ֶת" || root[2] == "א") && root.join(".") != "י.ר.ש"
           prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ֵ"
 
           future_baseֹ_me = future_baseֹ_you_us = "#{root[1]}ֵ#{root[2]}"
