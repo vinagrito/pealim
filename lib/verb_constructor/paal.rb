@@ -355,6 +355,15 @@ module VerbConstructor
         youfem_youplural_they_fut_base = GUTTURAL.include?(root[1]) ? "#{root[0]}ְ#{root[1]}ֲא" : "#{root[0]}ְ#{root[1]}ְא"
       end
 
+      if root[2] == "ה"
+        prefix_sound_me = "ֶ"
+        prefix_sound_you_us = prefix_sound_plural = "ִ"
+
+        future_baseֹ_me = "#{root[0]}ְ#{root[1]}ֶה"
+        future_baseֹ_you_us = "#{root[0]}ְ#{root[1]}ֶה"
+        youfem_youplural_they_fut_base = "#{root[0]}ְ#{root[1]}"
+      end
+
       if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה).include?(root[0])
         future_baseֹ_me.insert 3, "ּ"
         future_baseֹ_you_us.insert 3, "ּ"
