@@ -304,6 +304,12 @@ module VerbConstructor
         if %w(נ.פ.ל נ.ט.ש נ.ט.ר).include? root.join(".")
           future_baseֹ_me = future_baseֹ_you_us = "#{root[1]}וֹ#{root[2]}"
         end
+      elsif GUTTURAL.include? root[1]
+        prefix_sound_me = "ֶ"
+        prefix_sound_you_us = prefix_sound_plural = "ִ"
+
+        future_baseֹ_me = future_baseֹ_you_us = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
+        youfem_youplural_they_fut_base = "#{root[0]}ְ#{root[1]}ֲ#{root[2]}"
       end
 
 
