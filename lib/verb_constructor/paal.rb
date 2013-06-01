@@ -5,6 +5,7 @@ module VerbConstructor
     PEIL_HA_POAL_XET_EXCEPTIONS = %w( ח.ד.ל ח.ס.ר ח.ר.ד )
     PEIL_HA_POAL_YUD_EXCEPTIONS_1 = %w( י.צ.ר י.ר.ק י.ר.ש י.ז.מ )
     PEIL_HA_POAL_YUD_EXCEPTIONS_2 = %w( י.ש.נ י.ע.צ )
+    CONDITION_VERBS_AND_SIMILAR_PEIL_HA_POAL_YUD_EXCEPTIONS = %w( ר.ע.ב כ.מ.ה ש.מ.ח י.ג.ע י.ר.א )
     EXCEPTION_ROOTS = %w( י.כ.ל נ.ג.ש נ.ת.נ ה.י.ה ח.י.ה מ.ו.ת)
     EXCEPTION_FUTURE_ROOTS = %w( ל.מ.ד ל.ב.ש ש.כ.ב ק.ר.נ ג.ד.ל ד.ב.ק)
 
@@ -32,7 +33,7 @@ module VerbConstructor
         hebrew_verb[:past_base]     = "#{root[0]}ָ#{root[2]}"
       end
 
-      if %w( ח ע ).include?(root[2]) && !%w("י ח").include?(root[1])
+      if %w( ח ע ).include?(root[2]) && !%w(ו ח י).include?(root[1])
         hebrew_verb[:mas_sing_pres] += "ַ"
         hebrew_verb[:fem_sing_pres] = "#{root[0]}וֹ#{root[1]}ַ#{root[2]}ַת"
       end
@@ -65,11 +66,13 @@ module VerbConstructor
         hebrew_verb[:fem_plu_pres]  = "יְשֵׁנוֹת"
       end
 
-      if %w(י.ג.ע י.ר.א).include? root.join(".")
-        hebrew_verb[:mas_sing_pres] = "יָ#{root[1]}ֵ#{root[2]}"
-        hebrew_verb[:fem_sing_pres] = "יְ#{root[1]}ֵ#{root[2]}ָה"
-        hebrew_verb[:mas_plu_pres]  = "יְ#{root[1]}ֵ#{root[2]}ִים"
-        hebrew_verb[:fem_plu_pres]  = "יְ#{root[1]}ֵ#{root[2]}וֹת"
+      if CONDITION_VERBS_AND_SIMILAR_PEIL_HA_POAL_YUD_EXCEPTIONS.include? root.join(".")
+        sound = root[0] == "י" ? "ָ" : "ַ"
+        hebrew_verb[:mas_sing_pres] = "#{root[0]}#{sound}#{root[1]}ֵ#{root[2]}"
+        hebrew_verb[:mas_sing_pres] += "ַ" if root[2] == "ח"
+        hebrew_verb[:fem_sing_pres] = "#{root[0]}ְ#{root[1]}ֵ#{root[2]}ָה"
+        hebrew_verb[:mas_plu_pres]  = "#{root[0]}ְ#{root[1]}ֵ#{root[2]}ִים"
+        hebrew_verb[:fem_plu_pres]  = "#{root[0]}ְ#{root[1]}ֵ#{root[2]}וֹת"
         hebrew_verb[:past_base] = "יָרֵא" if root.join(".") == "י.ר.א"
       end
 
@@ -144,8 +147,7 @@ module VerbConstructor
       if %w( ו י ).include?(root[1]) && root[2] != "ה"
         second_component = root[1] == "ו" ? "וּ" : "ִי"
         second_component = root.join(".") == "ב.ו.א" ? "וֹ" : "וּ"
-        third_component = root[2] == "ח" ? "חַ" : "#{root[2]}"
-        hebrew_verb[:infinitive] = "לָ#{root[0]}#{second_component}#{third_component}"
+        hebrew_verb[:infinitive] = "לָ#{root[0]}#{second_component}#{root[2]}"
       end
 
       if root.join(".") == "ל.ק.ח"
@@ -169,6 +171,10 @@ module VerbConstructor
         when "ח.י.ה"
           hebrew_verb[:infinitive] = "לִחְיוֹת"
         end
+      end
+
+      if %w(ח ע).include? root[2]
+        hebrew_verb[:infinitive] += "ַ"
       end
 
       hebrew_verb
