@@ -254,7 +254,9 @@ module VerbConstructor
 
       if EXCEPTION_FUTURE_ROOTS.include? root.join(".")
         future_baseֹ_me = future_baseֹ_you_us = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
-      elsif %w(ה ח ע).include? root[0] && root.join(".") != "ה.ל.כ"
+      end
+
+      if %w(ה ח ע).include?(root[0]) && root.join(".") != "ה.ל.כ"
         if root.join(".") == "ח.נ.נ"
           future_baseֹ_me = future_baseֹ_you_us = youfem_youplural_they_fut_base = infinitive.clone[2..-1]
           prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ָ"
@@ -266,7 +268,9 @@ module VerbConstructor
           future_baseֹ_you_us = "#{root[0]}ֲ#{root[1]}וֹ#{root[2]}"
           youfem_youplural_they_fut_base = "#{root[0]}ַ#{root[1]}ְ#{root[2]}"
         end
-      elsif root[0] == "א"
+      end
+
+      if root[0] == "א"
         if %w(א.ה.ב א.כ.ל א.ב.ד א.מ.ר א.ח.ז).include? root.join(".")
           prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ֹ"
 
@@ -282,7 +286,9 @@ module VerbConstructor
           future_baseֹ_you_us = "אֱ#{root[1]}וֹ#{root[2]}"
           youfem_youplural_they_fut_base = "אַ#{root[1]}ְ#{root[2]}"
         end
-      elsif root[0] == "י" || root.join(".") == "ה.ל.כ"
+      end
+
+      if root[0] == "י" || root.join(".") == "ה.ל.כ"
         if (infinitive[2..-1] == "#{root[1]}ֶ#{root[2]}ֶת" || root[2] == "א") && root.join(".") != "י.ר.ש"
           prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ֵ"
 
@@ -307,7 +313,9 @@ module VerbConstructor
           future_baseֹ_you_us = "#{root[0]}#{root[1]}ַ#{root[2]}"
           youfem_youplural_they_fut_base = "#{root[0]}#{root[1]}ְ#{root[2]}"
         end
-      elsif (root[0] == "נ" || root.join(".") == "ל.ק.ח") && !GUTTURAL.include?(root[1])
+      end
+
+      if (root[0] == "נ" || root.join(".") == "ל.ק.ח") && !GUTTURAL.include?(root[1])
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
@@ -318,20 +326,33 @@ module VerbConstructor
         if %w(נ.פ.ל נ.ט.ש נ.ט.ר).include? root.join(".")
           future_baseֹ_me = future_baseֹ_you_us = "#{root[1]}וֹ#{root[2]}"
         end
-      elsif GUTTURAL.include? root[1]
+      end
+
+      if GUTTURAL.include? root[1]
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
         future_baseֹ_me = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
         future_baseֹ_you_us = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
         youfem_youplural_they_fut_base = "#{root[0]}ְ#{root[1]}ֲ#{root[2]}"
-      elsif %w(ח ע).include? root[2]
+      end
+
+      if %w(ח ע).include? root[2]
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
         future_baseֹ_me = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
         future_baseֹ_you_us = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
         youfem_youplural_they_fut_base = "#{root[0]}ְ#{root[1]}ְ#{root[2]}"
+      end
+
+      if root[2] == "א"
+        prefix_sound_me = "ֶ"
+        prefix_sound_you_us = prefix_sound_plural = "ִ"
+
+        future_baseֹ_me = "#{root[0]}ְ#{root[1]}ָא"
+        future_baseֹ_you_us = "#{root[0]}ְ#{root[1]}ָא"
+        youfem_youplural_they_fut_base = GUTTURAL.include?(root[1]) ? "#{root[0]}ְ#{root[1]}ֲא" : "#{root[0]}ְ#{root[1]}ְא"
       end
 
       if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה).include?(root[0])
