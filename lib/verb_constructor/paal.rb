@@ -292,7 +292,8 @@ module VerbConstructor
           prefix_sound_me = "ֶ"
           prefix_sound_you_us = prefix_sound_plural = "ִ"
 
-          future_baseֹ_me = future_baseֹ_you_us = "#{root[1]}וֹ#{root[2]}"
+          future_baseֹ_me = "#{root[1]}וֹ#{root[2]}"
+          future_baseֹ_you_us = "#{root[1]}וֹ#{root[2]}"
           youfem_youplural_they_fut_base = "#{root[1]}ְ#{root[2]}"
         elsif infinitive[2..-1] == "#{root[1]}ַ#{root[2]}ַת"
           prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ֵ"
@@ -302,14 +303,16 @@ module VerbConstructor
         else
           prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ִ"
 
-          future_baseֹ_me = future_baseֹ_you_us = "#{root[0]}#{root[1]}ַ#{root[2]}"
+          future_baseֹ_me = "#{root[0]}#{root[1]}ַ#{root[2]}"
+          future_baseֹ_you_us = "#{root[0]}#{root[1]}ַ#{root[2]}"
           youfem_youplural_they_fut_base = "#{root[0]}#{root[1]}ְ#{root[2]}"
         end
       elsif (root[0] == "נ" || root.join(".") == "ל.ק.ח") && !GUTTURAL.include?(root[1])
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
-        future_baseֹ_me = future_baseֹ_you_us = "#{root[1]}ַ#{root[2]}"
+        future_baseֹ_me = "#{root[1]}ַ#{root[2]}"
+        future_baseֹ_you_us = "#{root[1]}ַ#{root[2]}"
         youfem_youplural_they_fut_base = "#{root[1]}ְ#{root[2]}"
 
         if %w(נ.פ.ל נ.ט.ש נ.ט.ר).include? root.join(".")
@@ -319,16 +322,23 @@ module VerbConstructor
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
-        future_baseֹ_me = future_baseֹ_you_us = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
+        future_baseֹ_me = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
+        future_baseֹ_you_us = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
         youfem_youplural_they_fut_base = "#{root[0]}ְ#{root[1]}ֲ#{root[2]}"
       elsif %w(ח ע).include? root[2]
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
-        future_baseֹ_me = future_baseֹ_you_us = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
+        future_baseֹ_me = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
+        future_baseֹ_you_us = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
         youfem_youplural_they_fut_base = "#{root[0]}ְ#{root[1]}ְ#{root[2]}"
       end
 
+      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה).include?(root[0])
+        future_baseֹ_me.insert 3, "ּ"
+        future_baseֹ_you_us.insert 3, "ּ"
+        youfem_youplural_they_fut_base.insert 3, "ּ"
+      end
 
       hebrew_verb[:me_fut] = "א#{prefix_sound_me}" + future_baseֹ_me
       hebrew_verb[:you_mas_sing_she_fut] = "ת#{prefix_sound_you_us}" + future_baseֹ_you_us
@@ -337,7 +347,6 @@ module VerbConstructor
       hebrew_verb[:you_fem_sing_fut] = "ת#{prefix_sound_plural}" + youfem_youplural_they_fut_base + "ִי"
       hebrew_verb[:you_plu_fut] = "ת#{prefix_sound_plural}" + youfem_youplural_they_fut_base  + "וּ"
       hebrew_verb[:they_fut] = "י#{prefix_sound_plural}" + youfem_youplural_they_fut_base  + "וּ"
-
 
       hebrew_verb
     end
