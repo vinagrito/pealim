@@ -419,6 +419,10 @@ module VerbConstructor
       hebrew_verb[:you_plu_fut] = "ת#{prefix_sound_plural}" + youfem_youplural_they_fut_base  + "וּ"
       hebrew_verb[:they_fut] = "י#{prefix_sound_plural}" + youfem_youplural_they_fut_base  + "וּ"
 
+      if EXCEPTION_ROOTS.reject{|r| r == "מ.ו.ת"}.include? root.join(".")
+        hebrew_verb = conjugate_future_for_exceptions(root)
+      end
+
       hebrew_verb
     end
 
@@ -569,6 +573,68 @@ module VerbConstructor
     end
 
     def conjugate_future_for_exceptions(root)
+      base = ""
+      case root.join(".")
+      when "ת.מ.מ"
+        base = "תַם"
+        me_fut = "אֶ#{base}"
+        you_mas_sing_she_fut = "תִ#{base}"
+        he_fut = "יִ#{base}"
+        we_fut = "נִ#{base}"
+        you_fem_sing_fut = "תִ#{base}ִי"
+        you_plu_fut = "תִ#{base}וּ"
+        they_fut = "יִ#{base}וּ"
+      when "י.כ.ל"
+        me_fut = "אוּכַל"
+        you_mas_sing_she_fut = "תוּכַל"
+        he_fut = "יוּכַל"
+        we_fut = "נוּכַל"
+        you_fem_sing_fut = "תוּכְלִי"
+        you_plu_fut = "תוּכְלוּ"
+        they_fut = "יוּכְלוּ"
+      when "נ.ג.ש"
+        me_fut = "אֶגַשׂ"
+        you_mas_sing_she_fut = "תִגַשׂ"
+        he_fut = "יִגַשׂ"
+        we_fut = "נִגַשׂ"
+        you_fem_sing_fut = "תִגְשִׂי"
+        you_plu_fut = "תִגְשׂוּ"
+        they_fut = "יִגְשׂוּ"
+      when "נ.ת.נ"
+        me_fut = "אֶתֵנ"
+        you_mas_sing_she_fut = "תִתֵנ"
+        he_fut = "יִתֵנ"
+        we_fut = "נִתֵנ"
+        you_fem_sing_fut = "תִתְנִי"
+        you_plu_fut = "תִתְנוּ"
+        they_fut = "יִתְנוּ"
+      when "ה.י.ה"
+        me_fut = "אֶהֱיֶה"
+        you_mas_sing_she_fut = "תִהְיֶה"
+        he_fut = "יִהְיֶה"
+        we_fut = "נִהְיֶה"
+        you_fem_sing_fut = "תִהְיִי"
+        you_plu_fut = "תִהְיִוּ"
+        they_fut = "יִהְיוּ"
+      when "ח.י.ה"
+        me_fut = "אֶחְיֶה"
+        you_mas_sing_she_fut = "תִחְיֶה"
+        he_fut = "יִחְיֶה"
+        we_fut = "נִחְיֶה"
+        you_fem_sing_fut = "תִחְיִי"
+        you_plu_fut = "תִחְיִוּ"
+        they_fut = "יִחְיוּ"
+      end
+
+      {
+        me_fut: me_fut,
+        you_mas_sing_she_fut: you_mas_sing_she_fut,
+        he_fut: he_fut,
+        we_fut: we_fut,
+        you_fem_sing_fut: you_fem_sing_fut,
+        you_plu_fut: you_plu_fut,
+        they_fut: they_fut,
+      }
     end
 
   end
