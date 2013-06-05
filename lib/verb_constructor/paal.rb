@@ -161,6 +161,8 @@ module VerbConstructor
 
       if EXCEPTION_ROOTS.include? root.join(".")
         case root.join(".")
+        when "ת.מ.מ"
+          hebrew_verb[:infinitive] = "לָתֹמ"
         when "י.כ.ל"
           hebrew_verb[:infinitive] = "----//----"
         when "נ.ג.ש"
@@ -405,7 +407,7 @@ module VerbConstructor
         end
       end
 
-      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה).include?(root[0])
+      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה י).include?(root[0])
         future_base_me.insert 3, "ּ"
         future_base_you_us.insert 3, "ּ"
         youfem_youplural_they_fut_base.insert 3, "ּ"
