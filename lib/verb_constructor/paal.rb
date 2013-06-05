@@ -180,7 +180,7 @@ module VerbConstructor
         hebrew_verb[:infinitive] += "ַ"
       end
 
-      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה).include?(root[0])
+      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה).include?(root[0]) && hebrew_verb[:infinitive] != "----//----"
         hebrew_verb[:infinitive].insert 5, "ּ"
       end
 
