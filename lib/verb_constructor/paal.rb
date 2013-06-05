@@ -428,6 +428,16 @@ module VerbConstructor
       hebrew_verb
     end
 
+    def imperative_tense(conjugated_verb)
+      hebrew_verb = Hash.new
+      _conjugated_verb = conjugated_verb.clone
+      hebrew_verb[:mas_imp] = _conjugated_verb[:you_mas_sing_she_fut][2..-1]
+      hebrew_verb[:fem_imp] = _conjugated_verb[:you_fem_sing_fut][2..-1]
+      hebrew_verb[:plural_imp] = _conjugated_verb[:you_plu_fut][2..-1]
+
+      hebrew_verb
+    end
+
     private
 
     def conjugate_present_for_exception(root)

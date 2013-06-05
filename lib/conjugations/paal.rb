@@ -36,6 +36,8 @@ module Conjugations
       temp_hebrew_verb.merge! paal.past_tense(root, temp_hebrew_verb[:past_base])
       # FUTURE TENSE
       temp_hebrew_verb.merge! paal.future_tense(root, temp_hebrew_verb[:infinitive])
+      # INFINITIVE TENSE
+      temp_hebrew_verb.merge! paal.imperative_tense(temp_hebrew_verb)
 
       temp_hebrew_verb
     end
