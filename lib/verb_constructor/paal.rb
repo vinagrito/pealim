@@ -332,7 +332,7 @@ module VerbConstructor
         end
       end
 
-      if GUTTURAL.include? root[1]
+      if GUTTURAL.reject{|letter| letter == "ה"}.include? root[1]
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
@@ -440,6 +440,28 @@ module VerbConstructor
         hebrew_verb[:mas_imp].slice! 3
         hebrew_verb[:fem_imp].slice! 3
         hebrew_verb[:plural_imp].slice! 3
+      end
+
+      if %w(ה ח ע).include?(root[0]) && !%w(ה.ל.כ ח.נ.נ).include?(root.join("."))
+        hebrew_verb[:mas_imp][1] = "ֲ"
+        hebrew_verb[:fem_imp][1] = "ִ"
+        hebrew_verb[:plural_imp][1] = "ִ"
+      end
+
+      if root[0] == "א" && root.join(".") != "א.ה.ד"
+        if root.join(".") == "א.ה.ב"
+          hebrew_verb[:mas_imp].insert 1, "ֱ"
+          hebrew_verb[:fem_imp].insert 1, "ַ"
+          hebrew_verb[:plural_imp].insert 1, "ַ"
+        elsif %w(א.כ.ל א.ב.ד א.מ.ר א.ח.ז).include? root.join(".")
+          hebrew_verb[:mas_imp].insert 1, "ֱ"
+          hebrew_verb[:mas_imp][3] = "ֹ"
+          hebrew_verb[:fem_imp].insert 1, "ִ"
+          hebrew_verb[:plural_imp].insert 1, "ִ"
+        else
+          hebrew_verb[:fem_imp][1] = "ִ"
+          hebrew_verb[:plural_imp][1] = "ִ"
+        end
       end
 
       hebrew_verb
