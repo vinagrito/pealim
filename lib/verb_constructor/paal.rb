@@ -183,7 +183,7 @@ module VerbConstructor
         end
       end
 
-      if %w(ח ע).include? root[2] && root[0] != "י"
+      if %w(ח ע).include?(root[2]) && root[0] != "י"
         hebrew_verb[:infinitive] += "ַ"
       end
 
