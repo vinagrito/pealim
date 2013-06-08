@@ -533,7 +533,7 @@ module VerbConstructor
         hebrew_verb[:plural_imp][1] = "ַ"
       end
 
-      if GUTTURAL.include?(root[2]) && !%w(י נ).include?(root[0]) || %w(י.ר.ה נ.ט.ה).include?(root.join("."))
+      if GUTTURAL.include?(root[2]) && root.join(".") != "ב.ו.א" &&!%w(י נ).include?(root[0]) || %w(י.ר.ה נ.ט.ה).include?(root.join("."))
         if root[2] == "ה" && !%w(כ.מ.ה ג.ב.ה).include?(root.join("."))
           if root[0] == "נ"
             hebrew_verb[:mas_imp] = "נְ" + hebrew_verb[:mas_imp]
@@ -844,6 +844,10 @@ module VerbConstructor
         fem_imp = "הֲיִי"
         plural_imp = "הֱיוּ"
       when "ח.י.ה"
+        mas_imp = hebrew_verb[:mas_imp]
+        fem_imp = hebrew_verb[:fem_imp]
+        plural_imp = hebrew_verb[:plural_imp]
+      when "מ.ו.ת"
         mas_imp = hebrew_verb[:mas_imp]
         fem_imp = hebrew_verb[:fem_imp]
         plural_imp = hebrew_verb[:plural_imp]
