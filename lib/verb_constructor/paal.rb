@@ -530,6 +530,11 @@ module VerbConstructor
           hebrew_verb[:fem_imp][1] = "ִ"
           hebrew_verb[:plural_imp][1] = "ִ"
         end
+
+        if root[1] == "ח"
+          hebrew_verb[:fem_imp][3] = "ְ"
+          hebrew_verb[:plural_imp][3] = "ְ"
+        end
       end
 
 
