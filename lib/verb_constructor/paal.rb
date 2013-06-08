@@ -328,7 +328,8 @@ module VerbConstructor
         youfem_youplural_they_fut_base = "#{root[1]}ְ#{root[2]}"
 
         if %w(נ.פ.ל נ.ט.ש נ.ט.ר).include? root.join(".")
-          future_base_me = future_base_you_us = "#{root[1]}וֹ#{root[2]}"
+          future_base_me = "#{root[1]}וֹ#{root[2]}"
+          future_base_you_us = "#{root[1]}וֹ#{root[2]}"
         end
       end
 
@@ -409,9 +410,10 @@ module VerbConstructor
       end
 
       if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה י).include?(root[0])
-        future_base_me.insert 3, "ּ"
-        future_base_you_us.insert 3, "ּ"
-        youfem_youplural_they_fut_base.insert 3, "ּ"
+        stress_position = root[0] == "נ" ? 1 : 3
+        future_base_me.insert stress_position, "ּ"
+        future_base_you_us.insert stress_position, "ּ"
+        youfem_youplural_they_fut_base.insert stress_position, "ּ"
       end
 
       hebrew_verb[:me_fut] = "א#{prefix_sound_me}" + future_base_me
