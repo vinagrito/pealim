@@ -370,7 +370,8 @@ module VerbConstructor
         youfem_youplural_they_fut_base = "#{root[0]}ְ#{root[1]}ֲ#{root[2]}"
       end
 
-      if (%w(ח ע).include?(root[2]) && root[0] != "י") || root.join(".") == "כ.מ.ה"
+      if (%w(ח ע).include?(root[2]) && !%w(י נ).include?(root[0])) || root.join(".") == "כ.מ.ה"
+        binding.pry
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
