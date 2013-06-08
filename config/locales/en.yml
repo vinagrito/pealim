@@ -41,8 +41,9 @@ en:
     report: "Report issue"
   help:
     parragraph1: "Pealim - the Hebrew conjugation tool!"
-    parragraph2: "You understand Hebrew, you may be just beginning or already advanced, yet at times you find yourself no knowing how to conjugate that verb.... Happy to announce:"
-    parragraph3: "we are here for you!!!"
+    parragraph2: "You understand Hebrew, you may be just beginning or already advanced, yet at times you find yourself no knowing how to conjugate that verb...."
+    parragraph3: "Happy to announce:"
+    parragraph4: "We are here for you!!!"
 
     # parragraph1: "Do you have a hard time sometimes trying to remember how a verb is conjugated in hebrew? Pealim comes pretty handy."
     # parragraph2: "How to use?. Well, just type into the search field a verb and choose form the list the one you wish to check."
