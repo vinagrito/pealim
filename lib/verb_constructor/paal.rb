@@ -94,6 +94,13 @@ module VerbConstructor
         hebrew_verb[:fem_plu_pres]  = "#{root[0]}וֹ#{root[1]}ֲ#{root[2]}וֹת"
       end
 
+      if LETTERS_WITH_VISUAL_STRESS.include? root[0]
+        hebrew_verb[:mas_sing_pres].insert 1, "ּ"
+        hebrew_verb[:fem_sing_pres].insert 1, "ּ"
+        hebrew_verb[:mas_plu_pres].insert 1, "ּ"
+        hebrew_verb[:fem_plu_pres].insert 1, "ּ"
+      end
+
       hebrew_verb
     end
 
