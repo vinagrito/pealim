@@ -225,12 +225,14 @@ module VerbConstructor
       end
 
       _past_base.slice! 3
+      _past_base.slice! 4
 
       if GUTTURAL.include? root[2]
         if root[2] == "ה"
           _past_base.slice!(-1)
-        elsif root[2] == "ח"
-          _past_base.insert 3, "ֲ"
+        # elsif root[2] == "ח"
+        #   binding.pry
+        #   _past_base.insert 3, "ֲ"
         end
       end
 
@@ -243,6 +245,18 @@ module VerbConstructor
       else
         hebrew_verb[:she_past]  =  _past_base + "ָה"
         hebrew_verb[:they_past] = _past_base + "וּ"
+      end
+
+      if LETTERS_WITH_VISUAL_STRESS.include? root[0]
+        hebrew_verb[:me_past].insert 1, "ּ"
+        hebrew_verb[:you_mas_sing_past].insert 1, "ּ"
+        hebrew_verb[:you_fem_sing_past].insert 1, "ּ"
+        hebrew_verb[:we_past].insert 1, "ּ"
+        hebrew_verb[:you_mas_plu_past].insert 1, "ּ"
+        hebrew_verb[:you_fem_plu_past].insert 1, "ּ"
+        hebrew_verb[:he_past].insert 1, "ּ"
+        hebrew_verb[:she_past].insert 1, "ּ"
+        hebrew_verb[:they_past].insert 1, "ּ"
       end
 
       if EXCEPTION_ROOTS.include? root.join(".")
