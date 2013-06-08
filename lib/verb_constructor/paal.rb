@@ -416,7 +416,7 @@ module VerbConstructor
         end
       end
 
-      if %w(ו י).include? root[1]
+      if %w(ו י).include?(root[1]) && root[2] != "ה"
         prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ָ"
 
         if root[1] == "ו"
