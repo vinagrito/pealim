@@ -532,9 +532,13 @@ module VerbConstructor
             hebrew_verb[:mas_imp] = "נְ" + hebrew_verb[:mas_imp]
             hebrew_verb[:fem_imp] = "נְ" + hebrew_verb[:fem_imp]
             hebrew_verb[:plural_imp] = "נְ" + hebrew_verb[:plural_imp]
+          elsif %w(ה ח ע).include? root[0]
+            hebrew_verb[:fem_imp][1] = "ֲ"
+            hebrew_verb[:plural_imp][1] = "ֲ"
+          else
+            hebrew_verb[:fem_imp][1] = "ְ"
+            hebrew_verb[:plural_imp][1] = "ְ"
           end
-          hebrew_verb[:fem_imp][1] = "ְ"
-          hebrew_verb[:plural_imp][1] = "ְ"
           tsere_position =  LETTERS_WITH_VISUAL_STRESS.include?(root[1]) ? 4 : 3
           hebrew_verb[:mas_imp][tsere_position] = "ֵ"
         else
