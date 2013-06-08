@@ -409,6 +409,10 @@ module VerbConstructor
             future_base_me = "#{root[0]}#{root[1]}ֶה"
             future_base_you_us = "#{root[0]}#{root[1]}ֶה"
             youfem_youplural_they_fut_base = "#{root[0]}#{root[1]}"
+          elsif root[0] == "נ"
+            future_base_me = "#{root[1]}ֶה"
+            future_base_you_us = "#{root[1]}ֶה"
+            youfem_youplural_they_fut_base = "#{root[1]}"
           else
             future_base_me = "#{root[0]}ְ#{root[1]}ֶה"
             future_base_you_us = "#{root[0]}ְ#{root[1]}ֶה"
@@ -522,10 +526,17 @@ module VerbConstructor
         hebrew_verb[:plural_imp][1] = "ַ"
       end
 
-      if GUTTURAL.include?(root[2]) && !%w(י נ).include?(root[0])
+      if GUTTURAL.include?(root[2]) && !%w(י נ).include?(root[0]) || %w(י.ר.ה נ.ט.ה).include?(root.join("."))
         if root[2] == "ה" && !%w(כ.מ.ה ג.ב.ה).include?(root.join("."))
+          if root[0] == "נ"
+            hebrew_verb[:mas_imp] = "נְ" + hebrew_verb[:mas_imp]
+            hebrew_verb[:fem_imp] = "נְ" + hebrew_verb[:fem_imp]
+            hebrew_verb[:plural_imp] = "נְ" + hebrew_verb[:plural_imp]
+          end
           hebrew_verb[:fem_imp][1] = "ְ"
           hebrew_verb[:plural_imp][1] = "ְ"
+          tsere_position =  LETTERS_WITH_VISUAL_STRESS.include?(root[1]) ? 4 : 3
+          hebrew_verb[:mas_imp][tsere_position] = "ֵ"
         else
           hebrew_verb[:fem_imp][1] = "ִ"
           hebrew_verb[:plural_imp][1] = "ִ"
