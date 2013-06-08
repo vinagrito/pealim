@@ -481,7 +481,7 @@ module VerbConstructor
         hebrew_verb[:plural_imp][1] = "ִ"
       end
 
-      if root[0] == "א" && root.join(".") != "א.ה.ד"
+      if root[0] == "א" && root.join(".") != "א.ה.ד" && root[2] != "ה"
         if root.join(".") == "א.ה.ב"
           hebrew_verb[:mas_imp].insert 1, "ֱ"
           hebrew_verb[:fem_imp].insert 1, "ַ"
@@ -541,11 +541,16 @@ module VerbConstructor
           elsif %w(ה ח ע).include? root[0]
             hebrew_verb[:fem_imp][1] = "ֲ"
             hebrew_verb[:plural_imp][1] = "ֲ"
+          elsif root[0] == "א"
+            hebrew_verb[:mas_imp].insert 1, "ֱ"
+            hebrew_verb[:fem_imp].insert 1, "ֱ"
+            hebrew_verb[:plural_imp].insert 1, "ֱ"
           else
             hebrew_verb[:fem_imp][1] = "ְ"
             hebrew_verb[:plural_imp][1] = "ְ"
           end
-          tsere_position =  LETTERS_WITH_VISUAL_STRESS.include?(root[1]) ? 4 : 3
+
+          tsere_position =  LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && root.join(".") != "א.פ.ה" ? 4 : 3
           hebrew_verb[:mas_imp][tsere_position] = "ֵ"
         else
           hebrew_verb[:fem_imp][1] = "ִ"
@@ -563,6 +568,12 @@ module VerbConstructor
         hebrew_verb[:mas_imp].slice! 3
         hebrew_verb[:fem_imp].slice! 3
         hebrew_verb[:plural_imp].slice! 3
+      end
+
+      if LETTERS_WITH_VISUAL_STRESS.include?(root[0])
+        hebrew_verb[:mas_imp].insert 1, "ּ"
+        hebrew_verb[:fem_imp].insert 1, "ּ"
+        hebrew_verb[:plural_imp].insert 1, "ּ"
       end
 
       hebrew_verb
