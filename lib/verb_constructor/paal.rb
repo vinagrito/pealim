@@ -6,7 +6,7 @@ module VerbConstructor
     PEIL_HA_POAL_YUD_EXCEPTIONS_1 = %w( י.צ.ר י.ר.ק י.ר.ש י.ז.מ )
     PEIL_HA_POAL_YUD_EXCEPTIONS_2 = %w( י.ש.נ י.ע.צ )
     CONDITION_VERBS_AND_SIMILAR_PEIL_HA_POAL_YUD_EXCEPTIONS = %w( ר.ע.ב כ.מ.ה ש.מ.ח י.ג.ע י.ר.א צ.מ.א )
-    EXCEPTION_ROOTS = %w( ת.מ.מ י.כ.ל נ.ג.ש נ.ת.נ ה.י.ה ח.י.ה מ.ו.ת)
+    EXCEPTION_ROOTS = %w( ג.ב.ה ת.מ.מ י.כ.ל נ.ג.ש נ.ת.נ ה.י.ה ח.י.ה מ.ו.ת)
     EXCEPTION_FUTURE_ROOTS = %w( ל.מ.ד ל.ב.ש ש.כ.ב ק.ר.נ ג.ד.ל ד.ב.ק)
     LETTERS_WITH_VISUAL_STRESS = %w( ב כ פ )
 
@@ -50,11 +50,11 @@ module VerbConstructor
         hebrew_verb[:mas_plu_pres]  = "#{root[0]}וֹ#{root[1]}ִים"
         hebrew_verb[:fem_plu_pres]  = root[1] == "ו" ? "#{root[0]}ֹוֹות" : "#{root[0]}וֹ#{root[1]}וֹת"
 
-        if root[0] == "כ" && root [1] == "ב"
-          hebrew_verb[:mas_sing_pres] = "כּבֶה"
-          hebrew_verb[:fem_sing_pres] = "כּבָה"
-          hebrew_verb[:mas_plu_pres]  = "כּבִים"
-          hebrew_verb[:fem_plu_pres]  = "כּבוֹת"
+        if root.join(".") == "כ.ב.ה"
+          hebrew_verb[:mas_sing_pres] = "כבֶה"
+          hebrew_verb[:fem_sing_pres] = "כבָה"
+          hebrew_verb[:mas_plu_pres]  = "כבִים"
+          hebrew_verb[:fem_plu_pres]  = "כבוֹת"
         end
 
         hebrew_verb[:past_base]     = "#{root[0]}ָ#{root[1]}ָה"
@@ -523,7 +523,7 @@ module VerbConstructor
       end
 
       if GUTTURAL.include?(root[2]) && !%w(י נ).include?(root[0])
-        if root[2] == "ה" && root.join(".") != "כ.מ.ה"
+        if root[2] == "ה" && !%w(כ.מ.ה ג.ב.ה).include?(root.join("."))
           hebrew_verb[:fem_imp][1] = "ְ"
           hebrew_verb[:plural_imp][1] = "ְ"
         else
@@ -546,6 +546,12 @@ module VerbConstructor
 
     def conjugate_present_for_exception(root)
       case root.join(".")
+      when "ג.ב.ה"
+        mas_sing_pres = "גָבוֹהַ"
+        fem_sing_pres = "גְבוֹהָה"
+        mas_plu_pres = "גְבוֹהִים"
+        fem_plu_pres = "גְבוֹהֹת"
+        past_base = "גָבַה"
       when "ת.מ.מ"
         mas_sing_pres = "תַמ"
         fem_sing_pres = "תַמָה"
@@ -602,6 +608,15 @@ module VerbConstructor
 
     def conjugate_past_for_exceptions(root)
       case root.join(".")
+      when "ג.ב.ה"
+        me_past           = "גָבַתִי"
+        you_mas_sing_past = "גָבַתָ"
+        you_fem_sing_past = "גָבַתְ"
+        we_past           = "גָבַנוּ"
+        you_mas_plu_past  = "גָבַתֶם"
+        he_past           = "גָבַה"
+        she_past          = "גָבְהָה"
+        they_past         = "גָבְהוּ"
       when "ת.מ.מ"
         me_past           = "תַמוֹתִי"
         you_mas_sing_past = "תַמוֹתָ"
@@ -691,6 +706,14 @@ module VerbConstructor
     def conjugate_future_for_exceptions(root)
       base = ""
       case root.join(".")
+      when "ג.ב.ה"
+        me_fut = "אֶגְבַּה"
+        you_mas_sing_she_fut = "תִגְבַּה"
+        he_fut = "יִגְבַּה"
+        we_fut = "נִגְבַּה"
+        you_fem_sing_fut = "תִגְבְּהִי"
+        you_plu_fut = "תִגְבְּהוּ"
+        they_fut = "יִגְבְּהוּ"
       when "ת.מ.מ"
         base = "תַם"
         me_fut = "אֶ#{base}"
