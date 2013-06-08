@@ -347,6 +347,7 @@ module VerbConstructor
         if root[2] == "א"
           future_base_me = "#{root[1]}ָא"
           future_base_you_us = "#{root[1]}ָא"
+          youfem_youplural_they_fut_base = "#{root[1]}ְא"
         else
           future_base_me = "#{root[1]}ַ#{root[2]}"
           future_base_you_us = "#{root[1]}ַ#{root[2]}"
@@ -368,7 +369,7 @@ module VerbConstructor
         youfem_youplural_they_fut_base = "#{root[0]}ְ#{root[1]}ֲ#{root[2]}"
       end
 
-      if %w(ח ע).include?(root[2]) && root[0] != "י"
+      if (%w(ח ע).include?(root[2]) && root[0] != "י") || root.join(".") == "כ.מ.ה"
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
@@ -386,7 +387,7 @@ module VerbConstructor
         youfem_youplural_they_fut_base = GUTTURAL.include?(root[1]) ? "#{root[0]}ְ#{root[1]}ֲא" : "#{root[0]}ְ#{root[1]}ְא"
       end
 
-      if root[2] == "ה"
+      if root[2] == "ה" && root.join(".") != "כ.מ.ה"
         if %w(ה ע).include?(root[0])
           prefix_sound_me = "ֶ"
           prefix_sound_you_us = prefix_sound_plural = "ַ"
@@ -521,11 +522,15 @@ module VerbConstructor
         hebrew_verb[:plural_imp][1] = "ַ"
       end
 
-      if GUTTURAL.include?(root[2])
-        hebrew_verb[:fem_imp][1] = "ִ"
-        hebrew_verb[:plural_imp][1] = "ִ"
+      if GUTTURAL.include?(root[2]) && !%w(י נ).include?(root[0])
+        if root[2] == "ה" && root.join(".") != "כ.מ.ה"
+          hebrew_verb[:fem_imp][1] = "ְ"
+          hebrew_verb[:plural_imp][1] = "ְ"
+        else
+          hebrew_verb[:fem_imp][1] = "ִ"
+          hebrew_verb[:plural_imp][1] = "ִ"
+        end
       end
-
 
 
       if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה י).include?(root[0])
