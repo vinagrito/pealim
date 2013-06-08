@@ -1,6 +1,7 @@
 # encoding: UTF-8
 module VerbConstructor
   class Paal
+    UNEXISTING = "-----//-----"
     GUTTURAL = %w( א ה ח ע )
     PEIL_HA_POAL_XET_EXCEPTIONS = %w( ח.ד.ל ח.ס.ר ח.ר.ד )
     PEIL_HA_POAL_YUD_EXCEPTIONS_1 = %w( י.צ.ר י.ר.ק י.ר.ש י.ז.מ )
@@ -134,7 +135,7 @@ module VerbConstructor
         hebrew_verb[:infinitive] = "לָ#{root[1]}ַעַת" if root[2] == "ע"
 
         if root.join(".") == "י.ג.ע"
-          hebrew_verb[:infinitive] = "----//----"
+          hebrew_verb[:infinitive] = UNEXISTING
         end
       end
 
@@ -171,7 +172,7 @@ module VerbConstructor
         when "ת.מ.מ"
           hebrew_verb[:infinitive] = "לָתֹמ"
         when "י.כ.ל"
-          hebrew_verb[:infinitive] = "----//----"
+          hebrew_verb[:infinitive] = UNEXISTING
         when "נ.ג.ש"
           hebrew_verb[:infinitive] = "לָגֶשֶת"
         when "נ.ת.נ"
@@ -187,7 +188,7 @@ module VerbConstructor
         hebrew_verb[:infinitive] += "ַ"
       end
 
-      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה).include?(root[0]) && hebrew_verb[:infinitive] != "----//----"
+      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה).include?(root[0]) && hebrew_verb[:infinitive] != UNEXISTING
         hebrew_verb[:infinitive].insert 5, "ּ"
       end
 
@@ -563,7 +564,6 @@ module VerbConstructor
         end
       end
 
-
       if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה י).include?(root[0])
         hebrew_verb[:mas_imp].slice! 3
         hebrew_verb[:fem_imp].slice! 3
@@ -574,6 +574,10 @@ module VerbConstructor
         hebrew_verb[:mas_imp].insert 1, "ּ"
         hebrew_verb[:fem_imp].insert 1, "ּ"
         hebrew_verb[:plural_imp].insert 1, "ּ"
+      end
+
+      if EXCEPTION_ROOTS.include? root.join(".")
+        hebrew_verb = conjugate_imperative_for_exception(root, hebrew_verb)
       end
 
       hebrew_verb
@@ -615,10 +619,10 @@ module VerbConstructor
         fem_plu_pres = "נוֹתְנוֹת"
         past_base = "נָתַנ"
       when "ה.י.ה"
-        mas_sing_pres = "----//----"
-        fem_sing_pres = "----//----"
-        mas_plu_pres = "----//----"
-        fem_plu_pres = "----//----"
+        mas_sing_pres = UNEXISTING
+        fem_sing_pres = UNEXISTING
+        mas_plu_pres = UNEXISTING
+        fem_plu_pres = UNEXISTING
         past_base = "הָיָה"
       when "ח.י.ה"
         mas_sing_pres = "חַי"
@@ -810,6 +814,44 @@ module VerbConstructor
         you_fem_sing_fut: you_fem_sing_fut,
         you_plu_fut: you_plu_fut,
         they_fut: they_fut,
+      }
+    end
+
+    def conjugate_imperative_for_exception(root, hebrew_verb)
+      case root.join(".")
+      when "ג.ב.ה"
+        mas_imp = hebrew_verb[:mas_imp]
+        fem_imp = hebrew_verb[:fem_imp]
+        plural_imp = hebrew_verb[:plural_imp]
+      when "ת.מ.מ"
+        mas_imp = "תֹמ"
+        fem_imp = "תֹמִי"
+        plural_imp = "תֹמוּ"
+      when "י.כ.ל"
+        mas_imp = UNEXISTING
+        fem_imp = UNEXISTING
+        plural_imp = UNEXISTING
+      when "נ.ג.ש"
+        mas_imp = hebrew_verb[:mas_imp]
+        fem_imp = hebrew_verb[:fem_imp]
+        plural_imp = hebrew_verb[:plural_imp]
+      when "נ.ת.נ"
+        mas_imp = hebrew_verb[:mas_imp]
+        fem_imp = hebrew_verb[:fem_imp]
+        plural_imp = hebrew_verb[:plural_imp]
+      when "ה.י.ה"
+        mas_imp = "הֱיֵה"
+        fem_imp = "הֲיִי"
+        plural_imp = "הֱיוּ"
+      when "ח.י.ה"
+        mas_imp = hebrew_verb[:mas_imp]
+        fem_imp = hebrew_verb[:fem_imp]
+        plural_imp = hebrew_verb[:plural_imp]
+      end
+      {
+        mas_imp: mas_imp,
+        fem_imp: fem_imp,
+        plural_imp: plural_imp
       }
     end
 
