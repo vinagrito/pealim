@@ -347,7 +347,7 @@ module VerbConstructor
         youfem_youplural_they_fut_base = "#{root[0]}ְ#{root[1]}ֲ#{root[2]}"
       end
 
-      if %w(ח ע).include? root[2] && root[0] != "י"
+      if %w(ח ע).include?(root[2]) && root[0] != "י"
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
@@ -494,6 +494,18 @@ module VerbConstructor
           hebrew_verb[:plural_imp] = "נִ" + hebrew_verb[:plural_imp]
         end
       end
+
+      if GUTTURAL.include?(root[1])
+        hebrew_verb[:fem_imp][1] = "ַ"
+        hebrew_verb[:plural_imp][1] = "ַ"
+      end
+
+      if GUTTURAL.include?(root[2])
+        hebrew_verb[:fem_imp][1] = "ִ"
+        hebrew_verb[:plural_imp][1] = "ִ"
+      end
+
+
 
       if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה י).include?(root[0])
         hebrew_verb[:mas_imp].slice! 3
