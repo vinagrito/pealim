@@ -38,6 +38,8 @@ module Conjugations
       temp_hebrew_verb.merge! paal.future_tense(root, temp_hebrew_verb[:infinitive])
       # INFINITIVE TENSE
       temp_hebrew_verb.merge! paal.imperative_tense(root, temp_hebrew_verb)
+      # SETS ENDING CONSONANTS
+      temp_hebrew_verb = paal.config_final_letters(root.last, temp_hebrew_verb) if %w(כ מ נ פ צ).include? root.last
 
       temp_hebrew_verb
     end

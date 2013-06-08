@@ -583,6 +583,28 @@ module VerbConstructor
       hebrew_verb
     end
 
+    def config_final_letters(root_last, conjugated_verb)
+      # FINAL LETTERS CONFIG
+      case root_last
+        when "כ"
+          last_letter = "ך"
+        when "מ"
+          last_letter = "ם"
+        when "נ"
+          last_letter = "ן"
+        when "פ"
+          last_letter = "ף"
+        when "צ"
+          last_letter = "ץ"
+      end
+
+      %w(mas_sing_pres infinitive he_past me_fut you_mas_sing_she_fut he_fut we_fut mas_imp).each do |person|
+        conjugated_verb[person.to_sym][-1] = last_letter if conjugated_verb[person.to_sym][-1] == root_last
+      end
+
+      conjugated_verb
+    end
+
     private
 
     def conjugate_present_for_exception(root)
@@ -858,6 +880,5 @@ module VerbConstructor
         plural_imp: plural_imp
       }
     end
-
   end
 end
