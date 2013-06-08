@@ -371,7 +371,6 @@ module VerbConstructor
       end
 
       if (%w(ח ע).include?(root[2]) && !%w(י נ).include?(root[0])) || root.join(".") == "כ.מ.ה"
-        binding.pry
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
