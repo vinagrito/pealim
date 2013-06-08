@@ -256,7 +256,8 @@ module VerbConstructor
       youfem_youplural_they_fut_base = "#{root[0]}ְ#{root[1]}ְ#{root[2]}"
 
       if EXCEPTION_FUTURE_ROOTS.include? root.join(".")
-        future_base_me = future_base_you_us = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
+        future_base_me = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
+        future_base_you_us = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
       end
 
       if %w(ה ח ע).include?(root[0]) && root.join(".") != "ה.ל.כ"
@@ -428,12 +429,18 @@ module VerbConstructor
       hebrew_verb
     end
 
-    def imperative_tense(conjugated_verb)
+    def imperative_tense(root, conjugated_verb)
       hebrew_verb = Hash.new
       _conjugated_verb = conjugated_verb.clone
       hebrew_verb[:mas_imp] = _conjugated_verb[:you_mas_sing_she_fut][2..-1]
       hebrew_verb[:fem_imp] = _conjugated_verb[:you_fem_sing_fut][2..-1]
       hebrew_verb[:plural_imp] = _conjugated_verb[:you_plu_fut][2..-1]
+
+      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה י).include?(root[0])
+        hebrew_verb[:mas_imp].slice! 3
+        hebrew_verb[:fem_imp].slice! 3
+        hebrew_verb[:plural_imp].slice! 3
+      end
 
       hebrew_verb
     end
