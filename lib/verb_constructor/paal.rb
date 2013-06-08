@@ -388,13 +388,19 @@ module VerbConstructor
       end
 
       if root[2] == "ה" && root.join(".") != "כ.מ.ה"
-        if %w(ה ע).include?(root[0])
+        if root[0] == "ע"
           prefix_sound_me = "ֶ"
           prefix_sound_you_us = prefix_sound_plural = "ַ"
 
           future_base_me = "#{root[0]}ֱ#{root[1]}ֶה"
           future_base_you_us = "#{root[0]}ֲ#{root[1]}ֶה"
           youfem_youplural_they_fut_base = "#{root[0]}ֲ#{root[1]}"
+        elsif root[0] == "ה"
+          prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ֶ"
+
+          future_base_me = "הֱ#{root[1]}ֶה"
+          future_base_you_us = "הֱ#{root[1]}ֶה"
+          youfem_youplural_they_fut_base = "הֱ#{root[1]}"
         elsif root[0] == "א"
           prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ֹ"
 
