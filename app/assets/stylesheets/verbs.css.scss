@@ -71,11 +71,14 @@ div.verb-show-action, div.verb-preview-action {
         margin-right: 5px;
       }
     }
-    h4 {
-      float: right;
-    }
+    // h4 {
+    //   float: right;
+    // }
     h5 {
-      line-height: 1.5em;
+      line-height: 1em;
+      direction: ltr;
+      text-align: center;
+      float: right;
     }
     #confirm-btn {
       margin: 18px 0 0 30px;
@@ -88,6 +91,12 @@ div.verb-show-action, div.verb-preview-action {
       &.past-tense, &.future-tense, &.imperative-tense {
         td {
           text-align: right;
+        }
+      }
+      &.imperative-tense {
+        .row.table-row div.imperative-header {
+          width: 176px;
+          text-align: center;
         }
       }
     }
