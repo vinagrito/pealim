@@ -323,9 +323,14 @@ module VerbConstructor
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
-        future_base_me = "#{root[1]}ַ#{root[2]}"
-        future_base_you_us = "#{root[1]}ַ#{root[2]}"
-        youfem_youplural_they_fut_base = "#{root[1]}ְ#{root[2]}"
+        if root[2] == "א"
+          future_base_me = "#{root[1]}ָא"
+          future_base_you_us = "#{root[1]}ָא"
+        else
+          future_base_me = "#{root[1]}ַ#{root[2]}"
+          future_base_you_us = "#{root[1]}ַ#{root[2]}"
+          youfem_youplural_they_fut_base = "#{root[1]}ְ#{root[2]}"
+        end
 
         if %w(נ.פ.ל נ.ט.ש נ.ט.ר).include? root.join(".")
           future_base_me = "#{root[1]}וֹ#{root[2]}"
@@ -351,7 +356,7 @@ module VerbConstructor
         youfem_youplural_they_fut_base = "#{root[0]}ְ#{root[1]}ְ#{root[2]}"
       end
 
-      if root[2] == "א" && root[0] != "י"
+      if root[2] == "א" && !%w(י נ).include?(root[0])
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
@@ -438,12 +443,6 @@ module VerbConstructor
       hebrew_verb[:fem_imp] = _conjugated_verb[:you_fem_sing_fut][2..-1]
       hebrew_verb[:plural_imp] = _conjugated_verb[:you_plu_fut][2..-1]
 
-      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה י).include?(root[0])
-        hebrew_verb[:mas_imp].slice! 3
-        hebrew_verb[:fem_imp].slice! 3
-        hebrew_verb[:plural_imp].slice! 3
-      end
-
       if %w(ה ח ע).include?(root[0]) && !%w(ה.ל.כ ח.נ.נ).include?(root.join("."))
         hebrew_verb[:mas_imp][1] = "ֲ"
         hebrew_verb[:fem_imp][1] = "ִ"
@@ -486,6 +485,20 @@ module VerbConstructor
             hebrew_verb[:plural_imp].insert 1, "ִ"
           end
         end
+      end
+
+      if root[0] == "נ"
+        if conjugated_verb[:me_fut][-2] == "ֹ"
+          hebrew_verb[:mas_imp] = "נְ" + hebrew_verb[:mas_imp]
+          hebrew_verb[:fem_imp] = "נִ" + hebrew_verb[:fem_imp]
+          hebrew_verb[:plural_imp] = "נִ" + hebrew_verb[:plural_imp]
+        end
+      end
+
+      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה י).include?(root[0])
+        hebrew_verb[:mas_imp].slice! 3
+        hebrew_verb[:fem_imp].slice! 3
+        hebrew_verb[:plural_imp].slice! 3
       end
 
       hebrew_verb
