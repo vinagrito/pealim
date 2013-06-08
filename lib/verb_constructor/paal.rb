@@ -176,7 +176,7 @@ module VerbConstructor
         end
       end
 
-      if %w(ח ע).include? root[2]
+      if %w(ח ע).include? root[2] && root[0] != "י"
         hebrew_verb[:infinitive] += "ַ"
       end
 
@@ -303,8 +303,8 @@ module VerbConstructor
           prefix_sound_you_us = prefix_sound_plural = "ִ"
 
           future_base_me = "#{root[1]}וֹ#{root[2]}"
-          future_base_you_us = "#{root[1]}וֹ#{root[2]}"
-          youfem_youplural_they_fut_base = "#{root[1]}ְ#{root[2]}"
+          future_base_you_us = "י#{root[1]}וֹ#{root[2]}"
+          youfem_youplural_they_fut_base = "י#{root[1]}ְ#{root[2]}"
         elsif infinitive[2..-1] == "#{root[1]}ַ#{root[2]}ַת"
           prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ֵ"
 
@@ -341,7 +341,7 @@ module VerbConstructor
         youfem_youplural_they_fut_base = "#{root[0]}ְ#{root[1]}ֲ#{root[2]}"
       end
 
-      if %w(ח ע).include? root[2]
+      if %w(ח ע).include? root[2] && root[0] != "י"
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
@@ -350,7 +350,7 @@ module VerbConstructor
         youfem_youplural_they_fut_base = "#{root[0]}ְ#{root[1]}ְ#{root[2]}"
       end
 
-      if root[2] == "א"
+      if root[2] == "א" && root[0] != "י"
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
@@ -461,6 +461,28 @@ module VerbConstructor
         else
           hebrew_verb[:fem_imp][1] = "ִ"
           hebrew_verb[:plural_imp][1] = "ִ"
+        end
+      end
+
+      if root[0] == "י"
+        if conjugated_verb[:infinitive] != "#{root[0]}ֶ#{root[1]}ֶת" || root.join(".") == "י.ר.ש"
+          if %w(י.צ.ר י.ש.נ י.ר.ש ).include? root.join(".")
+            hebrew_verb[:mas_imp].slice! 0
+            hebrew_verb[:fem_imp].slice! 0
+            hebrew_verb[:plural_imp].slice! 0
+          elsif GUTTURAL.include? root[1]
+            hebrew_verb[:mas_imp][1] = "ְ"
+            hebrew_verb[:fem_imp][1] = "ַ"
+            hebrew_verb[:plural_imp][1] = "ַ"
+          elsif %w(ז ר).include?(root[1])
+            hebrew_verb[:mas_imp].insert 1, "ְ"
+            hebrew_verb[:fem_imp].insert 1, "ִ"
+            hebrew_verb[:plural_imp].insert 1, "ִ"
+          elsif root.join(".") == "י.ג.ע"
+            hebrew_verb[:mas_imp].insert 1, "ְ"
+            hebrew_verb[:fem_imp].insert 1, "ִ"
+            hebrew_verb[:plural_imp].insert 1, "ִ"
+          end
         end
       end
 
