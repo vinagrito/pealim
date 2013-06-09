@@ -20,8 +20,9 @@ class Verb < ActiveRecord::Base
     msg = "verb.verb_added_thx"
     recent_verb = find_by_id(added_id)
     root = recent_verb && recent_verb.hebrew_verb ? recent_verb.hebrew_verb.root : ""
-    all_hebrew_verbs = HebrewVerb.all
-    all_roots_without_last_added = all_hebrew_verbs.map(&:root)[0..-2]
+
+    all_roots_without_last_added =  HebrewVerb.all.reject{|h_verb| h_verb.verb_id == added_id.to_i }.map(&:root)
+
     if all_roots_without_last_added.include? root
       verb = HebrewVerb.where(root: root).first.verb
       recent_verb.destroy
