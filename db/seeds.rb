@@ -63,7 +63,19 @@ puts "buildings created."
   ["See", "Видеть", "Mirar", ["ר","א","ה"]],["Rent(Hire)", "Снимать", "Arrendar(Tomar en arriendo)", ["ש","כ","ר"]],
   ["Hear", "Слышать", "Oir", ["ש","מ","ע"]],["Put", "Класть/Положить", "Colocar", ["ש","י","מ"]],["Grow", "Ростить", "Crecer", ["ג","ד","ל"]],
   ["Descend/Emigrate from Israel", "Спускаться/Эмигрировать из Израиля", "Bajar/Emigrar de Israel", ["י","ר","ד"]],
-  ["Go/Ride", "Ехать/Ездить", "Ir/viajar",["נ","ס","ע"]]
+  ["Go/Ride", "Ехать/Ездить", "Ir/viajar",["נ","ס","ע"]],
+  ["Finish", "Заканчивать/Кончать", "Terminar", ["ג","מ","ר"]],
+  ["Steal", "Воровать/Красть", "Robar", ["ג", "נ", "ב"]],
+  ["Cause", "Причинить", "Causar", ["ג", "ר", "מ"]],
+  ["Run over", "Переехать/Разадавить", "Atropellar", ["ד", "ר", "ס"]],
+  ["Demand/Require", "Требовать", "Demandar/Exigir", ["ד", "ר", "ש"]],
+  ["Throw", "Бросать", "Lanzar/Tirar", ["ז", "ר", "ק"]],
+  ["Measure", "Мерить", "Medir", ["מ", "ד", "ד"]],
+  ["Pour/Decant", "Наливать", "Demarrar/Servir", ["מ", "ז", "ג"]],
+  ["Hand over", "Передать", "Dar-2", ["מ", "ס", "ר"]],
+  ["Protest", "Восставать", "Protestar", ["מ", "ר", "ד"]],
+  ["Atract/Withdraw", "Тянуть/Снимать деньги", "Atraer/Retirar dinero", ["מ", "ש", "כ"]],
+  ["Close", "Закрыть", "Cerrar", ["ס", "ג", "ר"]]
 ].each do |verb|
   begin
     conditions = { :english => verb[0], :russian => verb[1], :spanish => verb[2] }
