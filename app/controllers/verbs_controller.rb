@@ -17,7 +17,6 @@ class VerbsController < ApplicationController
   def show
     if session[:ugc_verb] && session[:ugc_verb][:on]
       verb, _exists, msg = Verb.check_for_existing(params[:id], false)
-      puts "it's UGC - verb: #{verb} - exists: #{_exists}"
       if _exists
         flash[:error] = msg
       else
