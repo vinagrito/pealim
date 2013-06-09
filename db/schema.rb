@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(:version => 20130515174005) do
   end
 
   create_table "hebrew_verbs", :force => true do |t|
-    t.integer  "verb_id"
     t.integer  "building_id"
+    t.integer  "verb_id"
     t.string   "root"
     t.string   "infinitive"
     t.string   "me_past"
@@ -78,11 +78,11 @@ ActiveRecord::Schema.define(:version => 20130515174005) do
 
   create_table "verbs", :force => true do |t|
     t.string   "english"
-    t.string   "russian"
-    t.string   "spanish"
     t.text     "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "russian"
+    t.string   "spanish"
     t.boolean  "reviewed"
     t.string   "slug"
   end
