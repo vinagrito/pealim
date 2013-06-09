@@ -39,6 +39,7 @@ en:
     missing: "Sorry, couldn't find such a verb"
     confirm: "Confirm"
     report: "Report issue"
+    waiting_review: "The verb %{unreviewed} is already waiting for review"
   help:
     parragraph1: "Pealim - the Hebrew conjugation tool!"
     parragraph2: "You understand Hebrew, you may be just beginning or already advanced, yet at times you find yourself no knowing how to conjugate that verb...."

@@ -39,6 +39,7 @@ es:
     missing: "Disculpa, no pudimos encontrar este verbo"
     confirm: "Confirmar"
     report: "Reportar error"
+    waiting_review: "El verbo %{unreviewed} ya está esperando ser aprovado"
   help:
     parragraph1: "Pealim - la herramienta de conjugación de verbos en hebreo!"
     parragraph2: "Usted entiende hebreo, puede que apenas lo este empezando a estudiar o ya sea un estudiante avanzado, no a veces simplemente no logra recordar ése verbo ...."
