@@ -477,8 +477,8 @@ module VerbConstructor
       hebrew_verb[:plural_imp] = _conjugated_verb[:you_plu_fut][2..-1]
 
       unless %w(ו י).include?(root[1])
-        hebrew_verb[:fem_imp].insert 1, "ִ"
-        hebrew_verb[:plural_imp].insert 1, "ִ"
+        hebrew_verb[:fem_imp][1] = "ִ"
+        hebrew_verb[:plural_imp][1] = "ִ"
       end
 
       if %w(ה ח ע).include?(root[0]) && !%w(ה.ל.כ ח.נ.נ).include?(root.join("."))
