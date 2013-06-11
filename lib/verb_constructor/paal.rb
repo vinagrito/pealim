@@ -432,9 +432,9 @@ module VerbConstructor
         prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ָ"
 
         if root[1] == "ו"
-          future_base_me = "#{root[0]}וּ#{root[2]}"
-          future_base_you_us = "#{root[0]}וּ#{root[2]}"
-          youfem_youplural_they_fut_base = "#{root[0]}וּ#{root[2]}"
+          future_base_me = "#{root[0]}ו#{infinitive[4]}#{root[2]}"
+          future_base_you_us = "#{root[0]}ו#{infinitive[4]}#{root[2]}"
+          youfem_youplural_they_fut_base = "#{root[0]}ו#{infinitive[4]}#{root[2]}"
         else
           future_base_me = "#{root[0]}ִי#{root[2]}"
           future_base_you_us = "#{root[0]}ִי#{root[2]}"
@@ -476,8 +476,10 @@ module VerbConstructor
       hebrew_verb[:fem_imp] = _conjugated_verb[:you_fem_sing_fut][2..-1]
       hebrew_verb[:plural_imp] = _conjugated_verb[:you_plu_fut][2..-1]
 
-      hebrew_verb[:fem_imp][1] = "ִ"
-      hebrew_verb[:plural_imp][1] = "ִ"
+      unless %w(ו י).include?(root[1])
+        hebrew_verb[:fem_imp].insert 1, "ִ"
+        hebrew_verb[:plural_imp].insert 1, "ִ"
+      end
 
       if %w(ה ח ע).include?(root[0]) && !%w(ה.ל.כ ח.נ.נ).include?(root.join("."))
         hebrew_verb[:mas_imp][1] = "ֲ"
