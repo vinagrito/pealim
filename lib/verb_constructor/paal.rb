@@ -188,7 +188,7 @@ module VerbConstructor
         hebrew_verb[:infinitive] += "ַ"
       end
 
-      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה).include?(root[0]) && hebrew_verb[:infinitive] != UNEXISTING
+      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה י ע).include?(root[0]) && hebrew_verb[:infinitive] != UNEXISTING
         hebrew_verb[:infinitive].insert 5, "ּ"
       end
 
@@ -447,7 +447,7 @@ module VerbConstructor
         end
       end
 
-      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה י).include?(root[0])
+      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה י ע).include?(root[0])
         stress_position = root[0] == "נ" ? 1 : 3
         future_base_me.insert stress_position, "ּ"
         future_base_you_us.insert stress_position, "ּ"
@@ -569,7 +569,7 @@ module VerbConstructor
         end
       end
 
-      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה י).include?(root[0])
+      if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה י ע).include?(root[0])
         hebrew_verb[:mas_imp].slice! 3
         hebrew_verb[:fem_imp].slice! 3
         hebrew_verb[:plural_imp].slice! 3
