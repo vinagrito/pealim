@@ -4,23 +4,40 @@
 
 
 
-DIV#comments                        { height: 60%; }
-DIV#comments #comment_author        { margin-right: 15px; }
-DIV#comments #comment_text  { max-width: 205px; height: 70px; max-height: 210px; }
+DIV#comments   { 
+  height: 60%;
+  #comment_author { margin-right: 15px; }
+  #comment_text  { 
+    max-width: 205px; 
+    height: 70px; 
+    max-height: 210px; }
+}
 
-DIV#list_of_comments .comment-holder  {
-                                        display: inline;
-                                        height: auto;
-                                        width: 300px;
-                                        border: 1px solid #eeeeee;
-                                        border-radius: 5px;
-                                      }
 
-DIV#list_of_comments .comment-header  {
-                                        border-top: 2px solid #eeeeee;
-                                        border-bottom: 2px solid #eeeeee;
-                                        background-color: #eeeeee;
-                                      }
+.comment-header  {
+                    padding: 0.1em;
+                    height: 1.7em;
+                    display: block;
+                    border: 1px solid #CFC9C9;
+                    border-bottom: none;
+                    font-size: 15px;
+                    font-weight: bold;
+                    background-color: #eee;
+                  }
 
-DIV#list_of_comments .posted-time     { float: right; }
-DIV#list_of_comments .posted-content  { vertical-align: text-top; }
+.posted-author   {
+  margin: 3px 0 0 5px;
+  float: left;
+}
+.posted-time     { 
+  float: right;
+  margin: 3px 5px 0 0;
+ }
+.posted-content  { 
+  padding: 0.4em;
+  border: #CFC9C9 solid 1px;
+  height: auto;
+  display: block;
+  font-size: 0.8em;
+  vertical-align: text-top;
+}
