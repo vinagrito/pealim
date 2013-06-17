@@ -1,0 +1,23 @@
+#comments
+  h3
+    = t('comments.title')
+  = form_for :comment do |c|
+    .row
+      p.span2 = c.text_field :author, :placeholder => t('comments.name')
+    .row
+      p.span2 = c.text_field :email, :placeholder => t('comments.email')
+    .row
+      p.span4 = c.text_area :text, :placeholder => t('comments.text')
+    .row
+      .span1 = c.submit t('button.submit'), :id => 'add-comment', :class => 'btn btn-primary'
+
+  #list_of_comments.container
+   -@comments.each do |comment|
+      .row
+        .span3.comment-holder
+          span.comment-header
+            p.posted-author = comment.author
+            p.posted-time = comment.created_at.to_s(:short)
+          span.posted-content
+            p = comment.text
+      br
