@@ -14,9 +14,6 @@ body {
 #loading-area {
   margin-top: 10px;
 }
-.row {
-  margin-top: 0;
-}
 
 UL.helper-link {
   position: relative;
@@ -25,24 +22,21 @@ UL.helper-link {
   height: 20px;
 }
 
+.site-logo {
+  .main-image {
+    position: absolute;
+    top: 0;
+    height: 3em;
+    width: 9em;
+  }
+}
+
 #helper-modal {
   direction: ltr;
   width: 50%;
   line-height: 1.3;
 }
 
-#main_page_inner_container {
-  height: auto;
-  margin-top: 25px;
-  margin-left: 50px;
-}
-
-.start-image  { vertical-align: middle; }
-
-#search-section {
-  direction: ltr;
-  margin-left: 5%;
-}
 
 #add_missing_verb {
   direction: ltr;
@@ -71,9 +65,7 @@ div.verb-show-action, div.verb-preview-action {
         margin-right: 5px;
       }
     }
-    // h4 {
-    //   float: right;
-    // }
+
     h5 {
       line-height: 1em;
       direction: ltr;
@@ -125,22 +117,13 @@ div.verb-show-action, div.verb-preview-action {
       }
     }
   }
-
-  .main-image {
-    position: absolute;
-    top: 0;
-  }
-  #search-section {
-    direction: ltr;
-    margin-top: 0px;
-  }
 }
-// unscrollable body while modal open
+/*// unscrollable body while modal open*/
 body.modal-open {
   overflow: hidden;
 }
-//
-// New verb modal
+/*//
+// New verb modal*/
 #new-verb-modal {
   height: 60%;
 }

@@ -1,10 +1,8 @@
 .row-fluid
-  #loading-area.span1.offset1.hidden
-    .progress.progress-striped.active
-      .bar style="width: 100%;"
-  #search-section.span7
+  .row.loader-and-search-elemets
+    .span1.offset2.ajaxSpinner
     =form_for @search, method: :post, html: {:class => "form-search"} do |v|
-      .input-append
-        = v.hidden_field :verb_id
+      = v.hidden_field :verb_id
+      .input-append.span5
         = text_field_tag :verb_name,"", placeholder: t("intro.type_verb"), :class => "search-query"
-        = v.submit t("intro.search"), name: nil, id: "search-btn", :class => "btn btn-success"
+        = v.submit t("intro.search"), name: nil, id: "search-btn", :class => "btn btn-success span2"

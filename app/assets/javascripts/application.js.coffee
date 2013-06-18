@@ -11,6 +11,7 @@
 #= require jquery-ui-1.10.0.custom
 #= require bootstrap
 #= require bootstrap-select
+#= require spin.min
 #= require_tree .
 
 $ ->

@@ -17,11 +17,11 @@ $ ->
     )
 
   loadindVerbsAjaxState = ->
-    $("#loading-area").removeClass "hidden"
+    $(".ajaxSpinner").children(":first").removeClass "hidden"
     $("#verb_name").attr "disabled", true
 
   verbsLoadedAjaxState = ->
-    $("#loading-area").addClass "hidden"
+    $(".ajaxSpinner").children(":first").addClass "hidden"
     $("#verb_name").removeAttr "disabled"
 
   verbInputField.on "click", ->
