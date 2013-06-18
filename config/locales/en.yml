@@ -9,6 +9,7 @@ en:
     search: "Search"
     verb_not_present: "Didn't find the verb you were looking for?,"
     add_verb_action: "add it here"
+    language: "Language"
     help: "Help"
   comments:
       link: "Comments"

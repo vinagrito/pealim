@@ -9,6 +9,7 @@ ru:
     search: "Поиск"
     verb_not_present: "Не нашел глагол, который искал?,"
     add_verb_action: "добавь его здесь"
+    language: "Язык"
     help: "Помощь"
   comments:
       link: "Коментарии"
