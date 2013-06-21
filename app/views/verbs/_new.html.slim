@@ -1,43 +1,43 @@
-#NewVerbModal.modal.hide.fade role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+#new-verb-modal.modal.hide.fade role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
   .new-verb-container
     .modal-header
       button.close data-dismiss="modal" aria-hidden="true" &times;
-      h3#myModalLabel = t("verb.new_verb")
+      h3#myModalLabel פּוֹעַל חָדָש
 
     .modal-body
-      #new_verb_form.row
+      #new_verb_form.row-fluid
         =form_for @new_heb_verb, :url => {:action => "preview"} do |heb_verb|
           .row
-            p.lead.span2.pull-right
-              b = t "verb.root"
-              div
-                =select_tag :root_1, options_from_collection_for_select(@letters, :id, :name), :class => "span1 pull-right selectpicker letter"
+            p.lead.pull-right.form-label
+              b.root-label שוֹרֶש
 
-                span.pull-right.letter-space .
-                =select_tag :root_2, options_from_collection_for_select(@letters, :id, :name), :class => "span1 pull-right selectpicker letter"
-                span.pull-right.letter-space .
-                =select_tag :root_3, options_from_collection_for_select(@letters, :id, :name), :class => "span1 pull-right selectpicker letter"
+            = select_tag :root_1, options_from_collection_for_select(@letters, :id, :name), :class => "pull-right selectpicker letter"
 
-                .verb-fourth-root
-                  =hidden_field_tag :hidden_root_4, value: "delete"
-                  =select_tag :root_4, options_from_collection_for_select(@letters, :id, :name), :class => "span1 pull-right btn btn-small letter"
-                  span.small-top-btn-delete.pull-right
+            span.pull-right.letter-space .
+            = select_tag :root_2, options_from_collection_for_select(@letters, :id, :name), :class => "pull-right selectpicker letter"
+            span.pull-right.letter-space .
+            = select_tag :root_3, options_from_collection_for_select(@letters, :id, :name), :class => "pull-right selectpicker letter"
 
-          .row
-            p.lead.span2.pull-right
-              b = t "verb.structure"
-            =heb_verb.select :building_id, options_from_collection_for_select(@buildings, :id ,:name), {}, :class => "span2 pull-right selectpicker"
+            .verb-fourth-root
+              = hidden_field_tag :hidden_root_4, value: "delete"
+              = select_tag :root_4, options_from_collection_for_select(@letters, :id, :name), :class => "pull-right btn btn-small letter"
+              span.small-top-btn-delete.pull-right
 
           .row
-            p.lead.span2.pull-right
-              b = t "verb.translations"
-            p.span2.pull-right =text_field_tag :english,"", :placeholder => "English", :class => "pull-right"
+            p.lead.pull-right.form-label
+              b.structure-label בניין
+            =heb_verb.select :building_id, options_from_collection_for_select(@buildings, :id ,:name), {}, :class => "pull-right selectpicker"
+
           .row
-            p.lead.span2.pull-right
-            p.span2.pull-right =text_field_tag :russian,"", :placeholder => "Русский", :class => "pull-right"
+            p.lead.pull-right.form-label
+              b.translations-label תרגוּמִים
+            p.pull-right.translation-input =text_field_tag :english,"", :placeholder => "English", :class => "pull-right"
           .row
-            p.lead.span2.pull-right
-            p.span2.pull-right =text_field_tag :spanish,"", :placeholder => "Español", :class => "pull-right"
+            p.lead.pull-right.form-label
+            p.pull-right.translation-input.no-label =text_field_tag :russian,"", :placeholder => "Русский", :class => "pull-right"
+          .row
+            p.lead.pull-right.form-label
+            p.pull-right.translation-input.no-label =text_field_tag :spanish,"", :placeholder => "Español", :class => "pull-right"
 
           .submit-controls
-            =submit_tag t("button.submit"), :class => "span2 btn btn-success submit"
+            =submit_tag t("button.submit"), :class => "btn btn-success submit"

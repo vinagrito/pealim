@@ -45,9 +45,20 @@ UL.helper-link {
   direction: ltr;
 }
 
-#paypal-api { margin-top: 200px; }
+form.new_hebrew_verb {
+  .form-label {
+    margin-right: 4em;
+    b {
+      margin-left: 2.5em;
+      &.structure-label { margin-left: 2.7em; }
+      &.translations-label { margin-left: 1em; }
+    }
+  }
+  .translation-input.no-label { margin-right: 5em; }
+  .submit { width: 100px; }
+}
 
-#new_verb_form  { margin-top: 50px; }
+#paypal-api { margin-top: 200px; }
 
 #footer {
   padding-top: 10px;
@@ -125,11 +136,7 @@ div.verb-show-action, div.verb-preview-action {
 body.modal-open {
   overflow: hidden;
 }
-/*//
-// New verb modal*/
-#new-verb-modal {
-  height: 60%;
-}
+
 .new-verb-container {
   direction: ltr;
 
@@ -157,6 +164,7 @@ DIV.section {
   }
   &.letter {
     margin-left: 5px;
+    width: 60px;
   }
   ul.dropdown-menu {
     max-height: 150px;
@@ -178,3 +186,10 @@ SPAN.small-top-btn-delete {
   top: -5px;
   left: 10px;
 }
+
+@media (max-width: 480px) and (max-height: 320px) {
+  .modal.fade.in {
+    top: 20px;
+  }
+}
+
