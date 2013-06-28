@@ -14,6 +14,7 @@ es:
   comments:
       link: "Comentarios"
       title: "Ideas?"
+      clue: "Expresa cualquier clase de dudas, recomendaciones, correcciones (cuantas quieras)"
       name: "Nombre"
       email: "Correo electrónico"
       text: "Sus comentarios..."

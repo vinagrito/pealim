@@ -4,36 +4,39 @@
 
 
 
-DIV#comments   { 
+DIV#comments   {
   height: 60%;
   #comment_author { margin-right: 15px; }
-  #comment_text  { 
-    max-width: 205px; 
-    height: 70px; 
+  #comment_text  {
+    max-width: 205px;
+    height: 70px;
     max-height: 210px; }
 }
 
+.comment-header {
+                  padding: 0.1em;
+                  height: 1.7em;
+                  display: block;
+                  border: 1px solid #CFC9C9;
+                  border-bottom: none;
+                  font-size: 15px;
+                  font-weight: bold;
+                  background-color: #eee;
+                }
 
-.comment-header  {
-                    padding: 0.1em;
-                    height: 1.7em;
-                    display: block;
-                    border: 1px solid #CFC9C9;
-                    border-bottom: none;
-                    font-size: 15px;
-                    font-weight: bold;
-                    background-color: #eee;
-                  }
+.comment-clue {
+  font-size: 16px;
+}
 
 .posted-author   {
   margin: 3px 0 0 5px;
   float: left;
 }
-.posted-time     { 
+.posted-time     {
   float: right;
   margin: 3px 5px 0 0;
  }
-.posted-content  { 
+.posted-content  {
   padding: 0.4em;
   border: #CFC9C9 solid 1px;
   height: auto;

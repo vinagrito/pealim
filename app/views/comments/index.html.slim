@@ -1,15 +1,21 @@
+.navbar
+  .nav-pills
+    ul.nav
+      li = link_to t("navigation.main"), verbs_path
+    = render "shared/languages_bar"
 #comments
-  h3
-    = t('comments.title')
+  h3 = t("comments.title")
+  p.comment-clue = t("comments.clue")
+
   = form_for :comment do |c|
     .row
-      p.span2 = c.text_field :author, :placeholder => t('comments.name')
+      p.span2 = c.text_field :author, :placeholder => t("comments.name")
     .row
-      p.span2 = c.text_field :email, :placeholder => t('comments.email'), :type => "email", :required => true
+      p.span2 = c.text_field :email, :placeholder => t("comments.email"), :type => "email", :required => true
     .row
-      p.span4 = c.text_area :text, :placeholder => t('comments.text')
+      p.span4 = c.text_area :text, :placeholder => t("comments.text")
     .row
-      .span1 = c.submit t('button.submit'), :id => 'add-comment', :class => 'btn btn-primary'
+      .span1 = c.submit t("button.submit"), :id => "add-comment", :class => "btn btn-primary"
 
   #list_of_comments.container
    -@comments.each do |comment|
