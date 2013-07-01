@@ -22,7 +22,7 @@ ru:
         fields_required: "Все поля обязательные"
   navigation:
     back: "Назад"
-    main: "Главное"
+    main: "Главная"
   button:
     submit: "Отправить"
     close: "Закрыть"
