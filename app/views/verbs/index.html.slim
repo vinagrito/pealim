@@ -4,15 +4,15 @@
       = render "/shared/helper_link"
       = render "shared/comments_link"
       = render "shared/languages_bar"
-.row-fluid.site-logo
-    = image_tag "verbs.png", class: "main-image span2 offset4"
+.row-fluid
+    = image_tag "verbs.png", class: "main-image img-rounded span2 offset4", style: "float: none; margin: 0 auto;"
 = render :partial => "shared/search_verb"
 
 .row-fluid.add-verb-row.hidden-phone
   = render "/shared/add_verb_link"
 
-.row-fluid.fb-like-row
-  #fb-api.span6.offset3
+.row-fluid
+  .span6 style="float: none; margin: 0 auto;"
     iframe.fb-like-btn src="https://www.facebook.com/plugins/like.php?href=http://www.pealim.com" scrolling="no" frameborder="0" style="border:none; width:450px; height:80px"
 
 / .row

@@ -1,8 +1,7 @@
-.row-fluid
-  .row.loader-and-search-elemets
-    .span1.offset2.ajaxSpinner
-    =form_for @search, method: :post, html: {:class => "form-search"} do |v|
-      = v.hidden_field :verb_id
-      .input-append.span5
-        = text_field_tag :verb_name,"", placeholder: t("intro.type_verb"), :class => "search-query"
-        = v.submit t("intro.search"), name: nil, id: "search-btn", :class => "btn btn-success span3"
+.row-fluid.loader-and-search-elemets
+  .span1.offset2.ajaxSpinner
+  =form_for @search, method: :post, html: {:class => "form-search"} do |v|
+    = v.hidden_field :verb_id
+    .input-append.span5
+      = text_field_tag :verb_name,"", placeholder: t("intro.type_verb"), :class => "search-query"
+      = v.submit t("intro.search"), name: nil, id: "search-btn", :class => "btn btn-success span3"
