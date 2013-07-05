@@ -10,6 +10,7 @@ module VerbConstructor
     EXCEPTION_ROOTS = %w( ג.ב.ה ת.מ.מ י.כ.ל נ.ג.ש נ.ת.נ ה.י.ה ח.י.ה מ.ו.ת)
     EXCEPTION_FUTURE_ROOTS = %w( ל.מ.ד ל.ב.ש ש.כ.ב ק.ר.נ ג.ד.ל ד.ב.ק)
     LETTERS_WITH_VISUAL_STRESS = %w( ב כ פ )
+    PEI_HA_POAL_NUN_NORMAL_ALIKE = %w( נ.ק.מ נ.ש.מ)
 
     def present_tense(root)
       hebrew_verb = Hash.new
@@ -341,7 +342,7 @@ module VerbConstructor
         end
       end
 
-      if (root[0] == "נ" || root.join(".") == "ל.ק.ח") && !GUTTURAL.include?(root[1])
+      if ((root[0] == "נ" && !PEI_HA_POAL_NUN_NORMAL_ALIKE.include?(root.join("."))) || root.join(".") == "ל.ק.ח") && !GUTTURAL.include?(root[1])
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
@@ -525,7 +526,7 @@ module VerbConstructor
         end
       end
 
-      if root[0] == "נ"
+      if root[0] == "נ" && !PEI_HA_POAL_NUN_NORMAL_ALIKE.include?(root.join("."))
         if conjugated_verb[:me_fut][-2] == "ֹ"
           hebrew_verb[:mas_imp] = "נְ" + hebrew_verb[:mas_imp]
           hebrew_verb[:fem_imp] = "נִ" + hebrew_verb[:fem_imp]
