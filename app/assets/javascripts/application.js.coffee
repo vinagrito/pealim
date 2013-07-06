@@ -12,6 +12,7 @@
 #= require bootstrap
 #= require bootstrap-select
 #= require spin.min
+#= require google-analytics
 #= require_tree .
 
 $ ->
