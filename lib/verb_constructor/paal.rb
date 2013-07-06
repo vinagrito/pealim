@@ -3,10 +3,11 @@ module VerbConstructor
   class Paal
     UNEXISTING = "-----//-----"
     GUTTURAL = %w( א ה ח ע )
-    PEIL_HA_POAL_XET_EXCEPTIONS = %w( ח.ד.ל ח.ס.ר ח.ר.ד )
-    PEIL_HA_POAL_YUD_EXCEPTIONS_1 = %w( י.צ.ר י.ר.ק י.ר.ש י.ז.מ )
-    PEIL_HA_POAL_YUD_EXCEPTIONS_2 = %w( י.ש.נ י.ע.צ )
-    CONDITION_VERBS_AND_SIMILAR_PEIL_HA_POAL_YUD_EXCEPTIONS = %w( ר.ע.ב כ.מ.ה ש.מ.ח י.ג.ע י.ר.א צ.מ.א )
+    PEI_HA_POAL_XET_EXCEPTIONS_PRESENT = %w( ח.ד.ל ח.ס.ר ח.ר.ד ח.פ.צ )
+    PEI_HA_POAL_XET_EXCEPTIONS_PRESENT_AND_FUT = %w( ח.ד.ל ח.ס.ר ח.ר.ד )
+    # PEI_HA_POAL_YUD_EXCEPTIONS_1 = %w( י.צ.ר י.ר.ק י.ר.ש י.ז.מ )
+    # PEI_HA_POAL_YUD_EXCEPTIONS_2 = %w( י.ש.נ י.ע.צ )
+    CONDITION_VERBS_AND_SIMILAR_PEI_HA_POAL_YUD_EXCEPTIONS = %w( ר.ע.ב כ.מ.ה ש.מ.ח י.ג.ע י.ר.א צ.מ.א )
     EXCEPTION_ROOTS = %w( ג.ב.ה ת.מ.מ י.כ.ל נ.ג.ש נ.ת.נ ה.י.ה ח.י.ה מ.ו.ת)
     EXCEPTION_FUTURE_ROOTS = %w( ל.מ.ד ל.ב.ש ש.כ.ב ק.ר.נ ג.ד.ל ד.ב.ק)
     LETTERS_WITH_VISUAL_STRESS = %w( ב כ פ )
@@ -21,7 +22,7 @@ module VerbConstructor
       hebrew_verb[:fem_plu_pres]  = "#{root[0]}וֹ#{root[1]}ְ#{root[2]}וֹת"
       hebrew_verb[:past_base]     = "#{root[0]}ָ#{root[1]}ַ#{root[2]}"
 
-      if PEIL_HA_POAL_XET_EXCEPTIONS.include? root.join(".")
+      if PEI_HA_POAL_XET_EXCEPTIONS_PRESENT.include? root.join(".")
         hebrew_verb[:mas_sing_pres] = "#{root[0]}ָ#{root[1]}ֵ#{root[2]}"
         hebrew_verb[:fem_sing_pres] = "#{root[0]}ֲ#{root[1]}ֵ#{root[2]}ָה"
         hebrew_verb[:mas_plu_pres]  = "#{root[0]}ֲ#{root[1]}ֵ#{root[2]}ִים"
@@ -69,7 +70,7 @@ module VerbConstructor
         hebrew_verb[:fem_plu_pres]  = "יְשֵׁנוֹת"
       end
 
-      if CONDITION_VERBS_AND_SIMILAR_PEIL_HA_POAL_YUD_EXCEPTIONS.include? root.join(".")
+      if CONDITION_VERBS_AND_SIMILAR_PEI_HA_POAL_YUD_EXCEPTIONS.include? root.join(".")
         sound = (root[0] == "י" || root.join(".") == "צ.מ.א") ? "ָ" : "ַ"
         hebrew_verb[:mas_sing_pres] = "#{root[0]}#{sound}#{root[1]}ֵ#{root[2]}"
         hebrew_verb[:mas_sing_pres] += "ַ" if root[2] == "ח"
@@ -287,6 +288,9 @@ module VerbConstructor
         if root.join(".") == "ח.נ.נ"
           future_base_me = future_base_you_us = youfem_youplural_they_fut_base = infinitive.clone[2..-1]
           prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ָ"
+        elsif PEI_HA_POAL_XET_EXCEPTIONS_PRESENT_AND_FUT.include? root.join(".")
+          prefix_sound_me = prefix_sound_you_us = prefix_sound_plural = "ֶ"
+          future_base_me = future_base_you_us = youfem_youplural_they_fut_base = "#{root[0]}ְ#{root[1]}ַ#{root[2]}"
         else
           prefix_sound_me = "ֶ"
           prefix_sound_you_us = prefix_sound_plural = "ַ"
