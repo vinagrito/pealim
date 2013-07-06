@@ -14,7 +14,8 @@ en:
   comments:
       link: "Comments"
       title: "Any thoughts?"
-      clue: "Feel free to express doubts, suggestions, corrections (as many as you want)"
+      clue: "Feel free to express doubts, suggestions, corrections (as many as you want)."
+      comment_email_no_reveal: "*Your email won't be revealed."
       name: "Name"
       email: "Email"
       text: "Your comments..."
