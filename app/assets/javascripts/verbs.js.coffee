@@ -1,9 +1,9 @@
 $ ->
   if $(".verb-show-action").length isnt -1
     googleAnalyticsInstance = new window.Pealim.GoogleAnalytics()
-    verbName = $(".root-infinitive-translation h3").text().match /-(\S+)/
-
-    googleAnalyticsInstance.trackEvent("VerbSearch", "Show Conjugated verb", verbName[1] || "Not found")
+    verbName = $(".root-infinitive-translation h3").text().match(/-(\S+)/)
+    verbName = if verbName then verbName[1] else "Not found"
+    googleAnalyticsInstance.trackEvent("VerbSearch", "Show Conjugated verb", verbName)
 
   fourthRootUi       = $(".verb-fourth-root")
   fourthRootPresence = $("#hidden_root_4")
