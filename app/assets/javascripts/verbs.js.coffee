@@ -1,5 +1,5 @@
 $ ->
-  if $(".verb-show-action").length isnt -1
+  if $(".verb-show-action").length isnt 0
     window.Pealim.GoogleAnalyticsInstance ||= new window.Pealim.GoogleAnalytics()
     
     verbMatch = $(".root-infinitive-translation h3").text().match(/(\S+)/g)
@@ -8,7 +8,7 @@ $ ->
     else 
       [verbRoot, verbName] = ["Not found", ""]
 
-    window.Pealim.GoogleAnalyticsInstance.trackEvent("VerbSearch", "Show Conjugated verb", "#{verbRoot - verbName}")
+    window.Pealim.GoogleAnalyticsInstance.trackEvent("VerbSearch", "Show Conjugated verb", "#{verbRoot} - {verbName}")
 
   fourthRootUi       = $(".verb-fourth-root")
   fourthRootPresence = $("#hidden_root_4")
