@@ -482,11 +482,6 @@ module VerbConstructor
       hebrew_verb[:fem_imp] = _conjugated_verb[:you_fem_sing_fut][2..-1]
       hebrew_verb[:plural_imp] = _conjugated_verb[:you_plu_fut][2..-1]
 
-      unless %w(ו י).include?(root[1]) || (root.join(".") == "ח.נ.נ")
-        hebrew_verb[:fem_imp][1] = "ִ"
-        hebrew_verb[:plural_imp][1] = "ִ"
-      end
-
       if %w(ה ח ע).include?(root[0]) && !%w(ה.ל.כ ח.נ.נ).include?(root.join("."))
         hebrew_verb[:mas_imp][1] = "ֲ"
         hebrew_verb[:fem_imp][1] = "ִ"
@@ -544,7 +539,7 @@ module VerbConstructor
         hebrew_verb[:plural_imp][1] = "ַ"
       end
 
-      if GUTTURAL.include?(root[2]) && root.join(".") != "ב.ו.א" &&!%w(י נ).include?(root[0]) || %w(י.ר.ה נ.ט.ה).include?(root.join("."))
+      if GUTTURAL.include?(root[2]) && root.join(".") != "ב.ו.א" && !%w(י נ).include?(root[0]) || %w(י.ר.ה נ.ט.ה).include?(root.join("."))
         if root[2] == "ה" && !%w(כ.מ.ה ג.ב.ה).include?(root.join("."))
           if root[0] == "נ"
             hebrew_verb[:mas_imp] = "נְ" + hebrew_verb[:mas_imp]
@@ -573,6 +568,12 @@ module VerbConstructor
           hebrew_verb[:fem_imp][3] = "ְ"
           hebrew_verb[:plural_imp][3] = "ְ"
         end
+      end
+
+      is_verb_with_no_guttural = root.select{|_root| GUTTURAL.include?(_root)}.empty?
+      if (%w(י נ).include?(root[0]) && hebrew_verb[:fem_imp][0] == root[0]) || (is_verb_with_no_guttural && root[1] != "ו")
+        hebrew_verb[:fem_imp][1] = "ִ"
+        hebrew_verb[:plural_imp][1] = "ִ"
       end
 
       if LETTERS_WITH_VISUAL_STRESS.include?(root[1]) && !%w(א ה י ע).include?(root[0])
