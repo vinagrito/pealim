@@ -8,7 +8,7 @@ $ ->
     else 
       [verbRoot, verbName] = ["Not found", ""]
 
-    window.Pealim.GoogleAnalyticsInstance.trackEvent("VerbSearch", "Show Conjugated verb", "#{verbRoot} - {verbName}")
+    window.Pealim.GoogleAnalyticsInstance.trackEvent("VerbSearch", "Show Conjugated verb", "#{verbRoot} - #{verbName}")
 
   fourthRootUi       = $(".verb-fourth-root")
   fourthRootPresence = $("#hidden_root_4")
