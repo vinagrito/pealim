@@ -571,7 +571,13 @@ module VerbConstructor
       end
 
       is_verb_with_no_guttural = root.select{|_root| GUTTURAL.include?(_root)}.empty?
-      if (%w(י נ).include?(root[0]) && hebrew_verb[:fem_imp][0] == root[0]) || (is_verb_with_no_guttural && root[1] != "ו")
+      
+      if %w(י נ).include?(root[0]) && hebrew_verb[:fem_imp][0] == root[0]
+        hebrew_verb[:fem_imp][1] = "ִ"
+        hebrew_verb[:plural_imp][1] = "ִ"
+      end
+
+      if is_verb_with_no_guttural && root[1] != "ו" && hebrew_verb[:fem_imp][1] != "ְ"
         hebrew_verb[:fem_imp][1] = "ִ"
         hebrew_verb[:plural_imp][1] = "ִ"
       end
