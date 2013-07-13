@@ -1,11 +1,10 @@
 $ ->
   if $(".verb-show-action").length isnt 0
     window.Pealim.GoogleAnalyticsInstance ||= new window.Pealim.GoogleAnalytics()
-    debugger
-    verbMatch = $(".root-infinitive-translation h3").text().match(/(\S+)/g)
+    verbMatch = $(".root-infinitive-translation h3").text().match(/(\(.+\))+\s(.+)-+(.+)/)
     if verbMatch
-      [verbRoot, verbInfinitive, verbName] = [verbMatch[1][1...verbMatch[1].length-1], verbMatch[2], verbMatch[3].slice(1)]
-    else 
+      [verbRoot, verbInfinitive, verbName] = [verbMatch[1][1...verbMatch[1].length-1], verbMatch[2], verbMatch[3]]
+    else
       [verbRoot, verbInfinitive, verbName] = ["", "", "Not found"]
 
     window.Pealim.GoogleAnalyticsInstance.trackEvent("VerbSearch", "Show Conjugated verb", "#{verbRoot} - #{verbInfinitive} - #{verbName}")
