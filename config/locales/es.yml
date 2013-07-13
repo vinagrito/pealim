@@ -48,10 +48,6 @@ es:
     parragraph2: "Usted entiende hebreo, puede que apenas lo este empezando a estudiar o ya sea un estudiante avanzado, no a veces simplemente no logra recordar ése verbo ...."
     parragraph3: "Con gusto anunciamos!:"
     parragraph4: "Estámos acá para usted!!!"
-    # parragraph1: "Se te dificulta a veces recordar como se conjuga un verbo en Hebreo? Pealim resulta ser bastante útil."
-    # parragraph2: "Como se usa?. Bien, pues simplemente digita en el campo de búsqueda un verbo y escoje de la lista aquél que quieras revisar."
-    # parragraph3: "Actualmente la lista de verbos es bastante reducida y sólo contiene verbos del grupo 'paal'. Así que si notas la ausencia un verbo puedes agregarlo siguiendo el link 'agrégalo acá', el cual está bajo el campo de búsqueda."
-    # parragraph4: "Vale la pena decir que esta herramienta apenas ha sido creada y no es perfecta, así que de manera muy gentil les pido que tengan un poco de paciencia."
-    # parragraph5: "Mientras tanto, disfruten!."
+
   other:
     did_you_mean: "Quisiste decir"
