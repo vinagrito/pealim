@@ -81,7 +81,7 @@ puts "buildings created."
   ["Deny/Deprive", "Отрицать/Лишать", "Negar/Privar", ["ש", "ל", "ל"] ],
   ["Keep/Reserve/Preserve", "Сторожить/Беречь/Соблюдать", "Mantener/Cuidar", ["ש", "מ", "ר"] ],
   ["Weigh/Balance/Consider", "Взвешивать", "Pesar/Sopesar", ["ש", "ק", "ל"] ],
-  ["Burn", "Сжигать", "Quemar", ["ש", "ר", "פ"] ],
+  ["Set in fire", "Сжигать", "Quemar", ["ש", "ר", "פ"] ],
   ["Plant/Implant", "Сажать", "Plantar/Implantar", ["ש", "ת", "ל"] ],
   ["Shut up/Be silent", "Молчать", "Callar", ["ש", "ת", "ק"] ],
   ["Support", "Поддерживать", "Apoyar", ["ת", "מ", "כ"] ],
