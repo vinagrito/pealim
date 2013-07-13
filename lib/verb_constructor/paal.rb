@@ -366,8 +366,7 @@ module VerbConstructor
         end
       end
 
-      if GUTTURAL.reject{|letter| letter == "ה"}.include?(root[1]) && root[0] != "א"
-
+      if GUTTURAL.include?(root[1]) && root[0] != "א"
         prefix_sound_me = "ֶ"
         prefix_sound_you_us = prefix_sound_plural = "ִ"
 
