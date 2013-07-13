@@ -45,7 +45,7 @@ en:
     waiting_review: "The verb %{unreviewed} is already waiting for review"
   help:
     parragraph1: "Pealim - the Hebrew conjugation tool!"
-    parragraph2: "You understand Hebrew, you may be just beginning or already advanced, yet at times you find yourself no knowing how to conjugate that verb...."
+    parragraph2: "You understand Hebrew, you may be just beginning or already advanced, yet at times you find yourself not knowing how to conjugate that verb...."
     parragraph3: "Happy to announce:"
     parragraph4: "We are here for you!!!"
 
