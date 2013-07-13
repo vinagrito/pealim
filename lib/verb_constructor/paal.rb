@@ -91,6 +91,7 @@ module VerbConstructor
         hebrew_verb = conjugate_present_for_exception(root)
       end
 
+
       if GUTTURAL.include?(root[1]) && !GUTTURAL.include?(root[2]) && !CONDITION_VERBS_AND_SIMILAR_PEI_HA_POAL_YUD_EXCEPTIONS.include?(root.join("."))
         hebrew_verb[:mas_plu_pres]  = "#{root[0]}וֹ#{root[1]}ֲ#{root[2]}ִים"
         hebrew_verb[:fem_plu_pres]  = "#{root[0]}וֹ#{root[1]}ֲ#{root[2]}וֹת"
@@ -575,7 +576,7 @@ module VerbConstructor
         hebrew_verb[:plural_imp][1] = "ִ"
       end
 
-      if is_verb_with_no_guttural && root[1] != "ו" && hebrew_verb[:fem_imp][1] != "ְ"
+      if is_verb_with_no_guttural && root[1] != "ו" && !%w(י נ).include?(root[0])
         hebrew_verb[:fem_imp][1] = "ִ"
         hebrew_verb[:plural_imp][1] = "ִ"
       end
