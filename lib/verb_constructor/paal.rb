@@ -12,6 +12,7 @@ module VerbConstructor
     EXCEPTION_FUTURE_ROOTS = %w( ל.מ.ד ל.ב.ש ש.כ.ב ק.ר.נ ג.ד.ל ד.ב.ק)
     LETTERS_WITH_VISUAL_STRESS = %w( ב כ פ )
     PEI_HA_POAL_NUN_NORMAL_ALIKE = %w( נ.ק.מ נ.ש.מ)
+    HEI_EXCEPTION = %w( כ.מ.ה ג.ב.ה)
 
     def present_tense(root)
       hebrew_verb = Hash.new
@@ -47,7 +48,7 @@ module VerbConstructor
         hebrew_verb[:past_base]     = "#{root[0]}ָ#{root[1]}ָ#{root[2]}"
       end
 
-      if root[2] == "ה"
+      if root[2] == "ה" && !HEI_EXCEPTION.include?(root.join("."))
         hebrew_verb[:mas_sing_pres] = "#{root[0]}וֹ#{root[1]}ֶה"
         hebrew_verb[:fem_sing_pres] = "#{root[0]}וֹ#{root[1]}ָה"
         hebrew_verb[:mas_plu_pres]  = "#{root[0]}וֹ#{root[1]}ִים"
@@ -201,12 +202,12 @@ module VerbConstructor
       hebrew_verb = Hash.new
       _past_base = past_base.clone
 
-      if root[2] == "ה"
+      if root[2] == "ה" && !HEI_EXCEPTION.include?(root.join("."))
         _past_base.slice!(-2..-1)
         _past_base += "ִי"
       end
 
-      _past_base += "ְ" if root[2] != "ה" && root[2] != "א"
+      _past_base += "ְ" if root[2] != "ה" && root[2] != "א" || !HEI_EXCEPTION.include?(root.join("."))
       _past_base.slice!(-2..-1) if root[2] == "ת"
 
       hebrew_verb[:me_past]           = _past_base + "תִי"
@@ -215,7 +216,7 @@ module VerbConstructor
       hebrew_verb[:we_past]           = root[2] == "נ" ?  _past_base + "וּ" : _past_base + "נוּ"
       hebrew_verb[:you_mas_plu_past]  = _past_base + "תֶם"
       hebrew_verb[:you_fem_plu_past]  = _past_base + "תֶן"
-      if root[2] == "ה"
+      if root[2] == "ה" && !HEI_EXCEPTION.include?(root.join("."))
         hebrew_verb[:he_past] = past_base.clone
       else
         if %w(ת ע).include?(root[2])
@@ -231,7 +232,7 @@ module VerbConstructor
       _past_base.slice! 4
 
       if GUTTURAL.include? root[2]
-        if root[2] == "ה"
+        if root[2] == "ה" && !HEI_EXCEPTION.include?(root.join("."))
           _past_base.slice!(-1)
         # elsif root[2] == "ח"
         #   binding.pry
@@ -242,7 +243,7 @@ module VerbConstructor
       _past_base.insert 3, "ְ" if root[1] != "ו"
 
 
-      if root[2] == "ה"
+      if root[2] == "ה" && !HEI_EXCEPTION.include?(root.join("."))
         hebrew_verb[:she_past] = _past_base + "ְתָה"
         hebrew_verb[:they_past] = _past_base + "וּ "
       else
