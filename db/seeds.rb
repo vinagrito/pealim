@@ -206,7 +206,7 @@ puts "buildings created."
   ["Load", "Загрузить", "Cargar", ["ט", "ע", "נ"]],
   ["Examin/Test", "Экзаменовать/Тестировать", "Examinar", ["ב", "ח", "נ"]],
   ["Starve", "Голодать", "Pasar hambre", ["ר", "ע", "ב"]],
-  ["Be pleasant", "Быть приятним,", "Ser agradable", ["נ", "ע", "מ"]]
+  ["Be pleasant", "Быть приятним", "Ser agradable", ["נ", "ע", "מ"]]
 ].each do |verb|
   begin
     conditions = { :english => verb[0], :russian => verb[1], :spanish => verb[2] }
