@@ -8,7 +8,7 @@ module VerbConstructor
     # PEI_HA_POAL_YUD_EXCEPTIONS_1 = %w( י.צ.ר י.ר.ק י.ר.ש י.ז.מ )
     # PEI_HA_POAL_YUD_EXCEPTIONS_2 = %w( י.ש.נ י.ע.צ )
     CONDITION_VERBS_AND_SIMILAR_PEI_HA_POAL_YUD_EXCEPTIONS = %w( ר.ע.ב כ.מ.ה ש.מ.ח י.ג.ע י.ר.א צ.מ.א )
-    EXCEPTION_ROOTS = %w( ג.ב.ה ת.מ.מ י.כ.ל נ.ג.ש נ.ת.נ ה.י.ה ח.י.ה מ.ו.ת)
+    EXCEPTION_ROOTS = %w( ת.מ.מ י.כ.ל נ.ג.ש נ.ת.נ ה.י.ה ח.י.ה מ.ו.ת )
     EXCEPTION_FUTURE_ROOTS = %w( ל.מ.ד ל.ב.ש ש.כ.ב ק.ר.נ ג.ד.ל ד.ב.ק)
     LETTERS_WITH_VISUAL_STRESS = %w( ב כ פ )
     PEI_HA_POAL_NUN_NORMAL_ALIKE = %w( נ.ק.מ נ.ש.מ)
@@ -207,7 +207,7 @@ module VerbConstructor
         _past_base += "ִי"
       end
 
-      _past_base += "ְ" if root[2] != "ה" && root[2] != "א" || !HEI_EXCEPTION.include?(root.join("."))
+      _past_base += "ְ" if root[2] != "ה" && root[2] != "א" || HEI_EXCEPTION.include?(root.join("."))
       _past_base.slice!(-2..-1) if root[2] == "ת"
 
       hebrew_verb[:me_past]           = _past_base + "תִי"
@@ -234,14 +234,10 @@ module VerbConstructor
       if GUTTURAL.include? root[2]
         if root[2] == "ה" && !HEI_EXCEPTION.include?(root.join("."))
           _past_base.slice!(-1)
-        # elsif root[2] == "ח"
-        #   binding.pry
-        #   _past_base.insert 3, "ֲ"
         end
       end
 
       _past_base.insert 3, "ְ" if root[1] != "ו"
-
 
       if root[2] == "ה" && !HEI_EXCEPTION.include?(root.join("."))
         hebrew_verb[:she_past] = _past_base + "ְתָה"
@@ -689,15 +685,6 @@ module VerbConstructor
 
     def conjugate_past_for_exceptions(root)
       case root.join(".")
-      when "ג.ב.ה"
-        me_past           = "גָבַתִי"
-        you_mas_sing_past = "גָבַתָ"
-        you_fem_sing_past = "גָבַתְ"
-        we_past           = "גָבַנוּ"
-        you_mas_plu_past  = "גָבַתֶם"
-        he_past           = "גָבַה"
-        she_past          = "גָבְהָה"
-        they_past         = "גָבְהוּ"
       when "ת.מ.מ"
         me_past           = "תַמוֹתִי"
         you_mas_sing_past = "תַמוֹתָ"
