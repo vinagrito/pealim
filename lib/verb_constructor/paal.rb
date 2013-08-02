@@ -158,7 +158,7 @@ module VerbConstructor
 
       if %w( ו י ).include?(root[1]) && root[2] != "ה"
         second_component = root[1] == "ו" ? "וּ" : "ִי"
-        second_component = root.join(".") == "ב.ו.א" ? "וֹ" : "וּ"
+        second_component = "וֹ" if root.join(".") == "ב.ו.א"
         hebrew_verb[:infinitive] = "לָ#{root[0]}#{second_component}#{root[2]}"
       end
 
