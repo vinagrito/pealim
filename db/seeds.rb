@@ -43,7 +43,7 @@ end
 
 puts "buildings created."
 
-
+verb_count = 0
 [
   ["Live", "Жить", "Vivir", ["ב", "ו", "א"]],["Study", "Учиться", "Estudiar", ["ל", "מ", "ד"]],
   ["Work", "Работать", "Trabajar", ["ע","ב","ד"]],["Come", "Приходить/Наступать", "Venir", ["ב","ו","א"]],
@@ -59,7 +59,7 @@ puts "buildings created."
   ["Stand up/Arise", "Вставать/Возрождаться", "Levantarse", ["ק","ו","מ"]],
   ["Move(To a place)/Pass/Cross","Переежать/Проходить/Переходить","Mudarse/Pasar/Cruzar", ["ע","ב","ר"]],
   ["Cost/Ascend/Emigrate to Israel", "Стоить/Подниматься/Эмигрировать в Израиль", "Costar, Subir, Emigrar a Israel", ["ע","ל","ה"]],
-  ["Stand", "Стоять", "Estar de pie", ["ע","מ","ד"]],["Open", "Открывать", "Abrir", ["פ","ת","ח"]],
+  ["Stand", "Стоять", "Estar de pie", ["ע","מ","ד"]],
   ["See", "Видеть", "Mirar", ["ר","א","ה"]],["Rent(Hire)", "Снимать", "Arrendar(Tomar en arriendo)", ["ש","כ","ר"]],
   ["Hear", "Слышать", "Oir", ["ש","מ","ע"]],["Put", "Класть/Положить", "Colocar", ["ש","י","מ"]],["Grow", "Ростить", "Crecer", ["ג","ד","ל"]],
   ["Finish", "Заканчивать/Кончать", "Terminar", ["ג","מ","ר"]],
@@ -125,7 +125,7 @@ puts "buildings created."
   ["Cut", "Резать", "Cortar", ["ח", "ת", "כ"] ],
   ["Sign", "Подписывать", "Firmar", ["ח", "ת", "מ"] ],
   ["Dig/Trench", "Рыть/Копать", "Cavar", ["ח", "פ", "ר"] ],
-  ["Wish/Desire", "Желать", "Desear/Anhelar", ["ח", "פ", "צ"] ],
+  ["Wish/Desire", "Желать", "Desear", ["ח", "פ", "צ"] ],
   ["Celebrate", "Праздновать", "Celebrar", ["ח", "ג", "ג"] ],
   ["Pardon/Forgive", "Помиловать/Одаривать", "Perdonar", ["ח", "נ", "נ"] ],
   ["Dread/Be anxious", "Тревожиться/Страшиться", "Estar atemorizado", ["ח", "ר", "ד"] ],
@@ -206,24 +206,99 @@ puts "buildings created."
   ["Load", "Загрузить", "Cargar", ["ט", "ע", "נ"]],
   ["Examin/Test", "Экзаменовать/Тестировать", "Examinar", ["ב", "ח", "נ"]],
   ["Starve", "Голодать", "Pasar hambre", ["ר", "ע", "ב"]],
-  ["Be pleasant", "Быть приятним", "Ser agradable", ["נ", "ע", "מ"]]
+  ["Be pleasant", "Быть приятним", "Ser agradable", ["נ", "ע", "מ"]],
+  # Next case
+  ["Send/Dispatch", "Отправлять/Посылать", "Enviar", ["ש", "ל", "ח"]],
+  ["Shine/Glow", "Светить/Сиять", "Brillar", ["ז", "ר", "ח"]],
+  # ["", "", "", ["ט", "ר", "ח"]],
+  ["Prevent", "Предотвращать", "Evitar", ["מ", "נ", "ע"]],
+  ["Forgive", "Прощать", "Perdonar", ["ס", "ל", "ח"]],
+  ["Grow", "Расти", "Crecer", ["צ", "מ", "ח"]],
+  # ["", "Кричать", "Gritar", ["צ", "ר", "ח"]],
+  ["Tear/Rip", "Рвать", "Rasgar", ["ק", "ר", "ע"]],
+  ["Kill/Murder", "Убивать", "Asesinar", ["ר", "צ", "ח"]],
+  ["Boil", "Кипеть", "Hervir", ["ר", "ת", "ח"]],
+  ["Cheer/Delight", "Радоваться", "Regocirjarse", ["ש", "מ", "ח"]],
+  ["Hear", "Слышать", "Escuchar", ["ש", "מ", "ע"]],
+  ["Open", "Открывать", "Abrir", ["פ", "ת", "ח"]],
+  ["Swallow", "Глотать", "Tragar", ["ב", "ל", "ע"]],
+  ["Escape/Run away", "Убегать", "Escapar", ["ב", "ר", "ח"]],
+  ["Harm/Hurt/Offend", "Вредить/Оскорблять", "Herir/Insultar", ["פ", "ג", "ע"]],
+  ["Forget", "Забывать", "Olvidar", ["ש", "כ", "ח"]],
+  ["Drown/Sink", "Топить/Потонуть", "Ahogar/Hundir", ["ט", "ב", "ע"]],
+  ["Bark/Yap", "Лаять", "Ladrar", ["נ", "ב", "ח"]],
+  ["Result", "Вытекать/Следовать", "Resultar", ["נ", "ב", "ע"]],
+  ["Paint/Dye", "Красить", "Pintar", ["צ", "ב", "ע"]],
+  ["Determine/Set", "Устанавливать", "Determinar", ["ק", "ב", "ע"]],
+  ["Claim/Sue", "Требовать/Взыскивать", "Pedir/Demandar", ["ת", "ב", "ע"]],
+  ["Be filled/Receive enough", "Насытиться", "Llenarse/Atiborrarse", ["ש", "ב", "ע"]],
+  ["Yearn for", "Желать/Жаждать", "Anhelar/Ansiar", ["כ", "מ", "ה"]],
+  ["Be glorified", "Возвышаться", "Estar glorificado/Estar elevado", ["ג", "ב", "ה"]],
+  # Next case
+  ["Find", "Находить", "Encontrar", ["מ", "צ", "א"]],
+  ["Clap", "Хлопать", "Aplaudir", ["מ", "ח", "א"]],
+  ["Read", "Читать", "Leer", ["ק", "ר", "א"]],
+  ["Freeze", "Замораживать", "Congelar", ["ק", "פ", "א"]],
+  ["Create", "Создавать/Творить", "Crear", ["ב", "ר", "א"]],
+  ["Sin", "Грешить", "Pecar", ["ח", "ט", "א"]],
+  ["Hate", "Ненавидеть", "Odiar", ["ש", "נ", "א"]],
+  ["Be thirsty", "Испытывать жажду", "Tener sed", ["צ", "מ", "א"]]
+  # # Next case
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]],
+  # ["", "", "", ["", "", ""]]
 ].each do |verb|
+  verb_count += 1
+  root_1, root_2, root_3 = [verb[3][0], verb[3][1], verb[3][2]]
+
+  if HebrewVerb.find_by_root("#{root_3}.#{root_2}.#{root_1}").present?
+    puts "#{root_3}.#{root_2}.#{root_1} skipped, already exists."
+    next
+  end
+
   begin
     conditions = { :english => verb[0], :russian => verb[1], :spanish => verb[2] }
 
     new_verb = Verb.find(:first, :conditions => conditions) || Verb.create(conditions.merge!({reviewed: false}))
-    root_1, root_2, root_3 = [verb[3][0], verb[3][1], verb[3][2]]
 
     hebrew_verb = {verb_id: new_verb.id, building_id: 1}
     hebrew_verb.merge! Conjugations::Paal.conjugate_paal([root_1, root_2, root_3])
     hebrew_verb = HebrewVerb.create(hebrew_verb)
-
+    puts "#{root_3}.#{root_2}.#{root_1} added."
   rescue => exception
     puts exception.message
   end
 end
 
-puts "Small verbs list created!."
+puts "Small verbs list created!. DB contains #{verb_count} verbs"
 puts "DON'T FORGET TO FIX THE RUSSIAN TRANSLATIONS & GIVE MORE TRANSLATIONS FOR THE NEXT VERBS:"
 ["СТОЯТЬ,КУШАТЬ,СНИМАТЬ"].map{|verb| puts verb }
 
