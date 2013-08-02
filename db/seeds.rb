@@ -45,23 +45,17 @@ puts "buildings created."
 
 verb_count = 0
 [
-  ["Live", "Жить", "Vivir", ["ג", "ו", "ר"]],["Study", "Учиться", "Estudiar", ["ל", "מ", "ד"]],
-  ["Work", "Работать", "Trabajar", ["ע","ב","ד"]],["Come", "Приходить/Наступать", "Venir", ["ב","ו","א"]],
-  ["Want", "Хотеть", "Querer",["ר","צ","ה"]],["Love", "Любить", "Amar", ["א","ה","ב"]],
-  ["Say (paal)", "Сказать (пааль)", "Decir (paal)", ["א","מ","ר"]],["Sing", "Петь", "Cantar", ["ש","י","ר"]],
+  ["Study", "Учиться", "Estudiar", ["ל", "מ", "ד"]],
+  ["Work", "Работать", "Trabajar", ["ע","ב","ד"]],
+  ["Love", "Любить", "Amar", ["א","ה","ב"]],
+  ["Say (paal)", "Сказать (пааль)", "Decir (paal)", ["א","מ","ר"]],
   ["Think", "Думать", "Pensar", ["ח","ש","ב"]],["Write", "Писать", "Escribir", ["כ","ת","ב"]],
-  ["Do", "Делать", "Hacer", ["ע","ש","ה"]],
-  ["Buy", "Покупать", "Comprar", ["ק","נ","ה"]],
-  ["Ask", "Спрашивать", "Preguntar", ["ש","א","ל"]],["Answer", "Отвечать", "Contestar", ["ע","נ","ה"]],
   ["Eat", "Кушать", "Comer", ["א","כ","ל"]],["Dance", "Танцевать", "Bailar", ["ר","ק","ד"]],
-  ["Drink", "Пить", "Tomar", ["ש","ת","ה"]],["Meet (Find)", "Встречать", "Recibir (A alguien)", ["פ","ג","ש"]],
-  ["Hate", "Ненавидеть", "Odiar", ["ש","נ","א"]],["Read/Call/Name", "Читать/Звать/Называть", "Leer/Nombrar", ["ק","ר","א"]],
-  ["Stand up/Arise", "Вставать/Возрождаться", "Levantarse", ["ק","ו","מ"]],
+  ["Meet (Find)", "Встречать", "Recibir (A alguien)", ["פ","ג","ש"]],
   ["Move(To a place)/Pass/Cross","Переежать/Проходить/Переходить","Mudarse/Pasar/Cruzar", ["ע","ב","ר"]],
-  ["Cost/Ascend/Emigrate to Israel", "Стоить/Подниматься/Эмигрировать в Израиль", "Costar, Subir, Emigrar a Israel", ["ע","ל","ה"]],
   ["Stand", "Стоять", "Estar de pie", ["ע","מ","ד"]],
-  ["See", "Видеть", "Mirar", ["ר","א","ה"]],["Rent(Hire)", "Снимать", "Arrendar(Tomar en arriendo)", ["ש","כ","ר"]],
-  ["Hear", "Слышать", "Oir", ["ש","מ","ע"]],["Put", "Класть/Положить", "Colocar", ["ש","י","מ"]],["Grow", "Ростить", "Crecer", ["ג","ד","ל"]],
+  ["Rent(Hire)", "Снимать (брать в аренду)", "Arrendar(Tomar en arriendo)", ["ש","כ","ר"]],
+  ["Grow", "Ростить", "Crecer", ["ג","ד","ל"]],
   ["Finish", "Заканчивать/Кончать", "Terminar", ["ג","מ","ר"]],
   ["Steal", "Воровать/Красть", "Robar", ["ג", "נ", "ב"]],
   ["Cause", "Причинить", "Causar", ["ג", "ר", "מ"]],
@@ -71,7 +65,7 @@ verb_count = 0
   ["Measure", "Мерить", "Medir", ["מ", "ד", "ד"]],
   ["Pour/Decant", "Наливать", "Demarrar/Servir", ["מ", "ז", "ג"]],
   ["Hand over", "Передать", "Dar-2", ["מ", "ס", "ר"]],
-  ["Protest", "Восставать", "Protestar", ["מ", "ר", "ד"]],
+  ["Protest", "Боставать", "Protestar", ["מ", "ר", "ד"]],
   ["Atract/Withdraw", "Тянуть/Снимать деньги", "Atraer/Retirar dinero", ["מ", "ש", "כ"]],
   ["Close", "Закрыть", "Cerrar", ["ס", "ג", "ר"]],
   ["Register/Record/Right down", "Записывать", "Registrar/anotar", ["ר", "ש", "מ"] ],
@@ -237,44 +231,74 @@ verb_count = 0
   # Next case
   ["Find", "Находить", "Encontrar", ["מ", "צ", "א"]],
   ["Clap", "Хлопать", "Aplaudir", ["מ", "ח", "א"]],
-  ["Read", "Читать", "Leer", ["ק", "ר", "א"]],
+  ["Read/Call/Name", "Читать/Звать/Называть", "Leer/Nombrar", ["ק","ר","א"]],
   ["Freeze", "Замораживать", "Congelar", ["ק", "פ", "א"]],
   ["Create", "Создавать/Творить", "Crear", ["ב", "ר", "א"]],
   ["Sin", "Грешить", "Pecar", ["ח", "ט", "א"]],
   ["Hate", "Ненавидеть", "Odiar", ["ש", "נ", "א"]],
-  ["Be thirsty", "Испытывать жажду", "Tener sed", ["צ", "מ", "א"]]
+  ["Be thirsty", "Испытывать жажду", "Tener sed", ["צ", "מ", "א"]],
   # # Next case
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]],
-  # ["", "", "", ["", "", ""]]
+  ["Drink", "Пить", "Tomar/Beber", ["ש", "ת", "ה"]],
+  # ["Accompany", "сопровождать", "Acompañar", ["ל", "ו", "ה"]],s
+  ["Deviate", "Отклоняться", "Desviarse", ["ס", "ט", "ה"]],
+  ["Buy", "Покупать", "Comprar", ["ק", "נ", "ה"]],
+  ["Happen", "Происходить", "Suceder", ["ק", "ר", "ה"]],
+  ["Want", "Хотеть", "Querer", ["ר", "צ", "ה"]],
+  # ["Lapse", "впадать", "caducar", ["ש", "ג", "ה"]],s
+  ["Hang", "Вешать", "Colgar", ["ת", "ל", "ה"]],
+  ["Turn off", "Обращаться/Повернуть", "Dirigirse,Voltear", ["פ", "נ", "ה"]],
+  ["Build", "Строить", "Construir", ["ב", "נ", "ה"]],
+  # ["Watch", "Смотреть", "ver", ["צ", "פ", "ה"]],s
+  # ["Win", "Выиграть", "ganar", ["ז", "כ", "ה"]],s
+  ["Capture", "Брать в плен", "Capturar", ["ש", "ב", "ה"]],
+  ["Turn off", "Выключать", "Apagar", ["כ", "ב", "ה"]],
+  ["Cry", "Плакать", "Llorar", ["ב", "כ", "ה"]],
+  ["Shoot", "Стрелять", "Disparar", ["י", "ר", "ה"]],
+  # ["Tip", "наконечник", "punta", ["נ", "ט", "ה"]],s
+  ["Do", "Делать", "Hacer", ["ע", "ש", "ה"]],
+  ["Cost/Ascend/Emigrate to Israel", "Стоить/Подниматься/Эмигрировать в Израиль", "Costar, Subir, Emigrar a Israel", ["ע", "ל", "ה"]],
+  ["Answer", "Отвечать", "Responder/Contestar", ["ע", "נ", "ה"]],
+  ["Fall ill", "Болеть/Заболеть", "Enfermarse", ["ח", "ל", "ה"]],
+  ["Predict", "Предсказывать", "Predecir", ["ח", "ז", "ה"]],
+  # ["Rave", "бредить", "delirar", ["ה", "ז", "ה"]],s
+  ["Plump", "Толстеть", "Engordar", ["ע", "ב", "ה"]],
+  ["Bake", "Печь", "Hornear", ["א", "פ", "ה"]],
+  ["See", "Видеть", "Ver", ["ר", "א", "ה"]],
+  ["Reject", "Отвергать", "Rechazar", ["ד", "ח", "ה"]],
+  ["Err/Make a mistake", "Ошибаться", "Errar/Equivocarse", ["ט", "ע", "ה"]],
+  ["Protest", "Протестовать", "Protestar", ["מ", "ח", "ה"]],
+  ["Swim", "Плавать", "Nadar", ["ש", "ח", "ה"]],
+  ["Stray", "Заблуждаться", "Extraviarse", ["ת", "ע", "ה"]],
+  ["Force", "Заставлять/Навязывать", "Forzar/Obligar", ["כ", "פ", "ת"]],
+  ["Strike/Walk out", "Бастовать", "Hacer huelga", ["ש", "ב", "ת"]],
+  # Next case
+  ["Run", "Бегать", "Correr", ["ר", "ו", "צ"]],
+  ["Live (place)", "Проживать", "Vivir (lugar)", ["ג", "ו", "ר"]],
+  ["Move", "Двигаться", "Moverse", ["ז", "ו", "ז"]],
+  ["Fly", "Летать", "Volar", ["ט", "ו", "ס"]],
+  ["Fast", "Поститься", "Ayunar", ["צ", "ו", "מ"]],
+  ["Stand up/Arise", "Вставать/Возрождаться", "Levantarse", ["ק","ו","מ"]],
+  # ["Return", "Возвращать", "Devolver", ["ש", "ו", "ב"]],
+  ["Discuss", "Обсуждать/Судить", "Discutir/Juzgar", ["ד", "ו", "נ"]],
+  ["Despise", "Презирать", "Despreciar", ["ב", "ו", "ז"]],
+  ["Expire", "Истекать", "Caducar/Expirar", ["ג", "ו", "פ"]],
+  ["Rest", "Отдыхать", "Descansar", ["נ", "ו", "ח"]],
+  # ["Move", "двигаться", "mover", ["נ", "ו", "ע"]]
+  # Next case
+  ["Put", "Класть/Положить", "Colocar/Poner", ["ש","י","מ"]],
+  ["Quarrel/Brawl", "Ссориться", "Reñir", ["ר", "י", "ב"]],
+  ["Sing", "Петь", "Cantar", ["ש", "י", "ר"]],
+  # Next case
+  ["Be completed/Be finished", "Оканчиваться", "Acabarse", ["ת", "מ", "מ"]],
+  # Next case
+  ["Can", "Мочь", "Poder", ["י", "כ", "ל"]],
+  # ["Fear", "Страшиться", "Temer", ["י", "ר", "א"]],
+  ["Approach", "Подходить/Приступать", "Acercarse", ["נ", "ג", "ש"]],
+  ["Give", "Давать", "Dar", ["נ", "ת", "נ"]],
+  ["Be/Become", "Быть/Становиться", "Ser/Estar", ["ה", "י", "ה"]],
+  ["Live", "Жить", "Vivir", ["ח", "י", "ה"]],
+  ["Come", "Приходить/Идти", "Venir", ["ב", "ו", "א"]],
+  ["Die", "Умереть", "Morir", ["מ", "ו", "ת"]]
 ].each do |verb|
   verb_count += 1
   root_1, root_2, root_3 = [verb[3][0], verb[3][1], verb[3][2]]
@@ -287,7 +311,7 @@ verb_count = 0
   begin
     conditions = { :english => verb[0], :russian => verb[1], :spanish => verb[2] }
 
-    new_verb = Verb.find(:first, :conditions => conditions) || Verb.create(conditions.merge!({reviewed: false}))
+    new_verb = Verb.find(:first, :conditions => conditions) || Verb.create(conditions.merge!({reviewed: true}))
 
     hebrew_verb = {verb_id: new_verb.id, building_id: 1}
     hebrew_verb.merge! Conjugations::Paal.conjugate_paal([root_1, root_2, root_3])
@@ -298,9 +322,6 @@ verb_count = 0
   end
 end
 
-puts "Small verbs list created!. DB contains #{verb_count} verbs"
-puts "DON'T FORGET TO FIX THE RUSSIAN TRANSLATIONS & GIVE MORE TRANSLATIONS FOR THE NEXT VERBS:"
-["СТОЯТЬ,КУШАТЬ,СНИМАТЬ"].map{|verb| puts verb }
-
+puts "Small verbs list created!. DB contains #{Verb.count} verbs"
 
 puts "seed done!."
