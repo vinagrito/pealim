@@ -8,8 +8,7 @@ class Verb < ActiveRecord::Base
   #validate :has_at_least_translation
 
   scope :all_reviewed, where(reviewed: true)
-
-
+  scope :not_reviewed, where(reviewed: false)
 
   def self.new_preview_instance(params)
     self.new(english: params[:english], russian: params[:russian], spanish: params[:spanish], reviewed: false)
