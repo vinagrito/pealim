@@ -40,15 +40,15 @@
             h5 #{t("verb.imperative")}
         tbody
           tr
-            th אתה
+            th אתָה
             td = @hebrew_verb.mas_imp
         tbody
           tr
-            th את
+            th אתְ
             td = @hebrew_verb.fem_imp
         tbody
           tr
-            th אתם-ן
+            th אתֵם/ן
             td = @hebrew_verb.plural_imp
 
     / FUTURE TENSE TABLE
@@ -76,15 +76,15 @@
             td = @hebrew_verb.we_fut
         tbody
           tr
-            th את
+            th אתְ
             td = @hebrew_verb.you_fem_sing_fut
         tbody
           tr
-            th אתֵם-ן
+            th אתֵם/ן
             td = @hebrew_verb.you_plu_fut
         tbody
           tr
-            th הֵם-ן
+            th הֵם/ן
             td = @hebrew_verb.they_fut
     / PAST TENSE TABLE
     .span3
@@ -111,7 +111,7 @@
             td = @hebrew_verb.we_past
         tbody
           tr
-            th אתֵם-ן
+            th אתֵם/ן
             td = @hebrew_verb.you_mas_plu_past + "-ן"
         tbody
           tr
@@ -123,5 +123,5 @@
             td = @hebrew_verb.she_past
         tbody
           tr
-            th הֵם-ן
+            th הֵם/ן
             td = @hebrew_verb.they_past
