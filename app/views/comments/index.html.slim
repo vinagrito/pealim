@@ -3,7 +3,8 @@
     ul.nav
       li = link_to t("navigation.main"), verbs_path
     = render "shared/languages_bar"
-#comments
+
+#comments.pull-left
   h3 = t("comments.title")
   p.comment-clue = t("comments.clue")
   p.comment-email-no-reveal = t("comments.comment_email_no_reveal")
@@ -21,7 +22,7 @@
   #list_of_comments.container
    -@comments.each do |comment|
       .row
-        .span3.comment-holder
+        .span4.comment-holder
           span.comment-header
             p.posted-author = comment.author
             p.posted-time = comment.created_at.to_s(:short)

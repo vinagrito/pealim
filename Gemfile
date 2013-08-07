@@ -35,3 +35,6 @@ group :development, :test do
   gem "debugger-pry", :require => "debugger/pry"
   gem 'rspec-rails', '~> 2.0'
 end
+
+# Social
+gem "twitter"

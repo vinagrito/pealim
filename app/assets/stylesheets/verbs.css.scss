@@ -53,6 +53,30 @@ form.new_hebrew_verb {
   .submit { width: 100px; }
 }
 
+#tweeter-posts {
+  #twitter-image {
+    height: 50px;
+    width: 50px;
+  }
+  .content {
+    height: 8em;
+    padding: 0.5em;
+    overflow-y: auto;
+    .tweet {
+      margin: 0;
+      .text {
+        font-size: 18px;
+        border-bottom: 1px solid #EEE;
+        padding-bottom: 0.5em;
+        margin-bottom: 0;
+      }
+      .author {
+        font-size: 14px
+      }
+    }
+  }
+}
+
 #paypal-api { margin-top: 200px; }
 
 #footer {
