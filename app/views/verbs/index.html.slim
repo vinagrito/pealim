@@ -15,8 +15,10 @@
     iframe.fb-like-btn src="https://www.facebook.com/plugins/like.php?href=http://www.pealim.com" scrolling="no" frameborder="0" style="border:none; width:450px; height:80px"
 
 #tweeter-posts
+  a.twitter-share-button href="https://twitter.com/share" data-via="danielegsh" Tweet
   .span4.offset3#twitter-image
     = image_tag "twitter_circle_color.png"
+
   .span5.content
     - cache "twitter-tweets#{Date.today}" do
       - for tweet in Twitter.user_timeline(count: 10)
