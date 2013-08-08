@@ -22,7 +22,7 @@
   .span4.content
     - cache "twitter-tweets#{Date.today}" do
       - for tweet in Twitter.user_timeline(count: 10)
-        span.span10.pull-left.tweet
+        span.span12.pull-left.tweet
           p.text = tweet.text
           p.author.pull-right
            i = "- @#{tweet.user.screen_name}"
