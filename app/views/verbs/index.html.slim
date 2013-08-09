@@ -11,22 +11,26 @@
 = render "/shared/add_verb_link"
 
 .row-fluid
-  .span6 style="float: none; margin: 0 auto;"
-    iframe.fb-like-btn src="https://www.facebook.com/plugins/like.php?href=http://www.pealim.com" scrolling="no" frameborder="0" style="border:none; width:450px; height:80px"
+  .span5.offset3
+    .span5 style="float:left; margin: 0 auto"
+      iframe.fb-like-btn src="https://www.facebook.com/plugins/like.php?href=http://www.pealim.com" scrolling="no" frameborder="0" style="border:none; width:450px; height:80px"
+    .span1 style="float:right; margin: 0 auto"
+      a.twitter-share-button href="https://twitter.com/share" data-via="pealim_" Tweet
 
-#tweeter-posts.row-fluid.span5
-  a.twitter-share-button href="https://twitter.com/share" data-via="pealim_" Tweet
-  .span4.offset2#twitter-image
-    = image_tag "twitter_circle_color.png"
 
-  .span4.content
-    - cache "twitter-tweets#{Date.today}" do
-      - for tweet in Twitter.user_timeline(count: 10)
-        span.span12.pull-left.tweet
-          p.text = tweet.text
-          p.author.pull-right
-           i = "- @#{tweet.user.screen_name}"
-      end
+/ #tweeter-posts.row-fluid.span5
+/   a.twitter-share-button href="https://twitter.com/share" data-via="pealim_" Tweet
+/   .span4.offset2#twitter-image
+/     = image_tag "twitter_circle_color.png"
+
+  / .span4.content
+  /   - cache "twitter-tweets#{Date.today}" do
+  /     - for tweet in Twitter.user_timeline(count: 10)
+  /       span.span12.pull-left.tweet
+  /         p.text = tweet.text
+  /         p.author.pull-right
+  /          i = "- @#{tweet.user.screen_name}"
+  /     end
 / .row
 /   #paypal-api.span2.offset
 /     form action="https://www.paypal.com/cgi-bin/webscr" method="post"
