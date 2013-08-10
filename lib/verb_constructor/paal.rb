@@ -613,7 +613,9 @@ module VerbConstructor
       end
 
       %w(mas_sing_pres infinitive he_past me_fut you_mas_sing_she_fut he_fut we_fut mas_imp).each do |person|
-        conjugated_verb[person.to_sym][-1] = last_letter if conjugated_verb[person.to_sym][-1] == root_last
+        index_to_change = -1 if conjugated_verb[person.to_sym][-1] == root_last
+        index_to_change = -2 if conjugated_verb[person.to_sym][-2] == root_last
+        conjugated_verb[person.to_sym][index_to_change] = last_letter if index_to_change
       end
 
       conjugated_verb
